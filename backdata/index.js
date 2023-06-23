@@ -3,6 +3,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const axios = require("axios");
+const nodemailer = require("nodemailer");
 app.use(bodyParser.json());
 // app.use(express.static('public'))
 
@@ -44,6 +46,53 @@ app.post("/signup", (req, res) => {
 	});
 });
 
+
+
+app.post("/signupmail", (req, res) => {
+	let data = { name: req.body.Usr, email: req.body.mail , otp:req.body.otp};
+	let sql = "INSERT INTO testapi SET ?";
+	let query = conn.query(sql, data, (err, result) => {
+		if (err) throw err;
+		res.send(JSON.stringify({ status: 200, error: null, response: "New Record is Added successfully" }));
+	});
+});
+
+
+
+async function mail1(to, sub, body,res) {
+    let transporter = nodemailer.createTransport({
+      // host: "smtp.ethereal.email",
+      // port: 587,
+      service: "gmail", // true for 465, false for other ports
+      auth: {
+        user: "webdearsproject@gmail.com", // generated ethereal user
+        pass: "iefrtrdbsudvpsyx", // generated ethereal password
+      },
+    });
+  
+    var mailoptions = {
+      from: "webdearsproject@gmail.com",
+      to: to,
+      // subject:'Personal Secret Key From SH....Chat',
+      subject: sub,
+      html: body,
+      // html:`<p>Don't share This qr <b> </b> </p><p>
+      // <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${text}" alt=""></p>`
+    };
+  
+    transporter.sendMail(mailoptions, async function (err, info) {
+      if (err) {
+        res.send({ data: 0 });
+        return false;
+    }
+    else{
+    
+        res.send({ data: 1 });
+        return true;
+    }
+    
+    });
+}
 app.listen(port, () => {
 	console.log("server started on port 9000...");
 });
