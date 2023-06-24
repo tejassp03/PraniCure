@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="assets/js/navbaractivate.js"></script>
+
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#2196f3" />
+    <meta name="author" content="DexignZone" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="" />
+    <meta name="description" content="PraniCure - Animal Helpline App" />
+    <meta property="og:title" content="PraniCure - Animal Helpline App" />
+    <meta property="og:description" content="PraniCure - Animal Helpline App" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Favicons Icon -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/images/whitelogo.png"
+    />
+
+    <!-- Title -->
+    <title>PraniCure - Animal Helpline App</title>
+
+    <!-- Global CSS -->
+    <link
+      href="assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css"
+    />
+    <link rel="stylesheet" href="assets/vendor/nouislider/nouislider.min.css" />
+    <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&amp;family=Roboto+Slab:wght@100;300;500;600;800&amp;display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-white">
+    <div class="page-wraper">
+      <!-- Preloader -->
+      <div id="preloader">
+        <div class="spinner"></div>
+      </div>
+      <!-- Preloader end-->
+
+      <!-- Header -->
+      <header class="header" style="padding-top: 5px; border: 0">
+        <div class="main-bar">
+          <div class="container">
+            <div class="header-content">
+              <div class="left-content">
+                <div class="dz-info d-flex align-items-center">
+                  <img src="assets/images/whitelogo.png" width="30" alt="" />
+                  <h4 class="name mb-0" style="color: rgb(91, 91, 91)">
+                    &nbsp;Prani<span style="color: rgb(60, 164, 255)"
+                      >Care</span
+                    >
+                  </h4>
+                </div>
+              </div>
+              <div class="mid-content"></div>
+              <div class="right-content">
+                <a href="profile.html">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="21"
+                    fill="#bfc9da"
+                    xmlns:v="https://vecta.io/nano"
+                  >
+                    <path
+                      d="M8 7.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 1 0 0 7.5zm7.5 9v1.5c-.002.199-.079.39-.217.532C13.61 20.455 8.57 20.5 8 20.5s-5.61-.045-7.282-1.718C.579 18.64.501 18.449.5 18.25v-1.5a7.5 7.5 0 1 1 15 0z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Header End -->
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <div class="container">
+          <div class="serach-area">
+            <form>
+              <div class="mb-3 input-group input-radius">
+                <span class="input-group-text">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M20.5605 18.4395L16.7528 14.6318C17.5395 13.446 18 12.0262 18 10.5C18 6.3645 14.6355 3 10.5 3C6.3645 3 3 6.3645 3 10.5C3 14.6355 6.3645 18 10.5 18C12.0262 18 13.446 17.5395 14.6318 16.7528L18.4395 20.5605C19.0245 21.1462 19.9755 21.1462 20.5605 20.5605C21.1462 19.9748 21.1462 19.0252 20.5605 18.4395ZM5.25 10.5C5.25 7.605 7.605 5.25 10.5 5.25C13.395 5.25 15.75 7.605 15.75 10.5C15.75 13.395 13.395 15.75 10.5 15.75C7.605 15.75 5.25 13.395 5.25 10.5Z"
+                      fill="#B9B9B9"
+                    />
+                  </svg>
+                </span>
+                <input
+                  type="text"
+                  placeholder="Search doctors"
+                  class="form-control main-in ps-0 bs-0"
+                />
+              </div>
+            </form>
+
+            <!-- TITLE -->
+            <h4 class="title my-4">Doctors around you</h4>
+            <!-- TITLE -->
+
+            <div class="item-list recent-jobs-list">
+              <ul>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <h6 class="item-title">
+                          <a href="product-detail.html">Dr. Samarth Rajput</a>
+                        </h6>
+                        <div class="item-subtitle">General Veterinarian </div>
+                        <div class="item-subtitle"><small style="font-weight: 400;">2.0 kms away</small></div>
+                      </div>
+                      <div class="item-footer">
+                        <div class="d-flex align-items-center">
+                          <h6 class="me-3">₹ 149.99</h6>
+                          <del class="off-text"></del>
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <i class="fa-solid fa-star"></i>
+                          <h6>4.5</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item-media media media-90">
+                      <img src="assets/images/food/pic1.png" alt="logo" />
+                      
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <h6 class="item-title">
+                          <a href="product-detail.html">Dr. Rajesh Sharma</a>
+                        </h6>
+                        <div class="item-subtitle">Veterinary Researcher</div>
+                        <div class="item-subtitle"><small style="font-weight: 400;">2.8 kms away</small></div>
+                      </div>
+                      <div class="item-footer">
+                        <div class="d-flex align-items-center">
+                          <h6 class="me-3">₹ 149.99</h6>
+                          <del class="off-text"></del>
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <i class="fa-solid fa-star"></i>
+                          <h6>3.5</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item-media media media-90">
+                      <img src="assets/images/food/pic1.png" alt="logo" />
+                      
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <h6 class="item-title">
+                          <a href="product-detail.html">Dr. Deepika Patel</a>
+                        </h6>
+                        <div class="item-subtitle">Veterinary Technician</div>
+                        <div class="item-subtitle"><small style="font-weight: 400;">3.6 kms away</small></div>
+
+                      </div>
+                      <div class="item-footer">
+                        <div class="d-flex align-items-center">
+                          <h6 class="me-3">₹ 149.99</h6>
+                          <del class="off-text"></del>
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <i class="fa-solid fa-star"></i>
+                          <h6>4.2</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item-media media media-90">
+                      <img src="assets/images/food/pic1.png" alt="logo" />
+                      
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <h6 class="item-title">
+                          <a href="product-detail.html">Dr. Vikram Mehta</a>
+                        </h6>
+                        <div class="item-subtitle">Veterinary Pharmacist</div>
+                        <div class="item-subtitle"><small style="font-weight: 400;">4.4 kms away</small></div>
+
+                      </div>
+                      <div class="item-footer">
+                        <div class="d-flex align-items-center">
+                          <h6 class="me-3">₹ 149.99</h6>
+                          <del class="off-text"></del>
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <i class="fa-solid fa-star"></i>
+                          <h6>3.6</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item-media media media-90">
+                      <img src="assets/images/food/pic1.png" alt="logo" />
+                    
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <h6 class="item-title">
+                          <a href="product-detail.html">Dr. Aarti Gupta</a>
+                        </h6>
+                        <div class="item-subtitle">Veterinarian (DVM)</div>
+                        <div class="item-subtitle"><small style="font-weight: 400;">6.0 kms away</small></div>
+
+                      </div>
+                      <div class="item-footer">
+                        <div class="d-flex align-items-center">
+                          <h6 class="me-3">₹ 149.99</h6>
+                          <del class="off-text"></del>
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <i class="fa-solid fa-star"></i>
+                          <h6>4.8</h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item-media media media-90">
+                      <img src="assets/images/food/pic1.png" alt="logo" />
+                      
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- Job List -->
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <!-- Page Content End-->
+
+      
+      <!-- Theme Color Settings End -->
+      <!-- CART -->
+      
+      <!-- CART -->
+      <!-- FILTER -->
+      <div
+        class="offcanvas offcanvas-bottom"
+        tabindex="-1"
+        id="offcanvasBottom2"
+      >
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="offcanvas-body container">
+          <div class="mb-3">
+            <h5 class="title my-3">Category</h5>
+            <select class="form-control custom-image-select-2 image-select">
+              <option data-thumbnail="assets/images/svg/ramen.svg">
+                Ramen
+              </option>
+              <option data-thumbnail="assets/images/svg/pizza.svg">
+                pizza
+              </option>
+              <option data-thumbnail="assets/images/svg/burger.svg">
+                Burger
+              </option>
+              <option data-thumbnail="assets/images/svg/french-fries.svg">
+                French Fries
+              </option>
+              <option data-thumbnail="assets/images/svg/food.svg">
+                Fast Food
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <h5 class="title my-3">Cooking Time</h5>
+            <div
+              class="short-tag style-2"
+              role="group"
+              aria-label="radio toggle button"
+            >
+              <div class="clearfix">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="btnradio"
+                  id="btnradio1"
+                  checked=""
+                />
+                <label class="btn-outline-primary tag-btn" for="btnradio1"
+                  >Under 15 mins</label
+                >
+              </div>
+
+              <div class="clearfix">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="btnradio"
+                  id="btnradio2"
+                />
+                <label class="btn-outline-primary tag-btn" for="btnradio2"
+                  >Under 30 mins</label
+                >
+              </div>
+
+              <div class="clearfix">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="btnradio"
+                  id="btnradio3"
+                />
+                <label class="btn-outline-primary tag-btn" for="btnradio3"
+                  >Under 45 mins</label
+                >
+              </div>
+
+              <div class="clearfix">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="btnradio"
+                  id="btnradio4"
+                />
+                <label class="btn-outline-primary tag-btn" for="btnradio4"
+                  >Under 60 mins</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <h5 class="title my-3">Suggested Diets</h5>
+            <div
+              class="short-tag style-2"
+              role="group"
+              aria-label="radio toggle button"
+            >
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio5"
+                id="btnradio5"
+                checked=""
+              />
+              <label class="btn-outline-primary tag-btn" for="btnradio5"
+                >Vegetable</label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio5"
+                id="btnradio6"
+              />
+              <label class="btn-outline-primary tag-btn" for="btnradio6"
+                >Law Fast</label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio5"
+                id="btnradio7"
+              />
+              <label class="btn-outline-primary tag-btn" for="btnradio7"
+                >Gluten free</label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio5"
+                id="btnradio8"
+              />
+              <label class="btn-outline-primary tag-btn" for="btnradio8"
+                >Law Cafe</label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio5"
+                id="btnradio9"
+              />
+              <label class="btn-outline-primary tag-btn" for="btnradio9"
+                >Suger Free</label
+              >
+            </div>
+          </div>
+          <div class="mb-3">
+            <h5 class="title my-3">Calories</h5>
+            <div
+              class="short-tag style-2"
+              role="group"
+              aria-label="radio toggle button"
+            >
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio6"
+                id="btnradio10"
+                checked=""
+              />
+              <label class="btn-outline-primary tag-btn" for="btnradio10"
+                >55g Kacl</label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio6"
+                id="btnradio11"
+              />
+              <label class="btn-outline-primary tag-btn" for="btnradio11"
+                >65g Kacl</label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio6"
+                id="btnradio12"
+              />
+              <label class="btn-outline-primary tag-btn" for="btnradio12"
+                >70g Kacl</label
+              >
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio6"
+                id="btnradio13"
+              />
+              <label class="btn-outline-primary tag-btn" for="btnradio13"
+                >80g Kacl</label
+              >
+            </div>
+          </div>
+          <div class="mb-3">
+            <h5 class="title my-3">Ratings</h5>
+            <div
+              class="short-tag style-2"
+              role="group"
+              aria-label="radio toggle button"
+            >
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio7"
+                id="btnradio14"
+                checked=""
+              />
+              <label class="btn-outline-primary tag-btn" for="btnradio14">
+                <i class="fa-solid fa-star"></i>
+                4.3
+              </label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio7"
+                id="btnradio15"
+              />
+              <label class="btn-outline-primary tag-btn" for="btnradio15">
+                <i class="fa-solid fa-star"></i>
+                4.5
+              </label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio7"
+                id="btnradio16"
+              />
+              <label class="btn-outline-primary tag-btn" for="btnradio16">
+                <i class="fa-solid fa-star"></i>
+                4.7
+              </label>
+
+              <input
+                type="radio"
+                class="btn-check"
+                name="btnradio7"
+                id="btnradio17"
+              />
+              <label class="btn-outline-primary tag-btn" for="btnradio17">
+                <i class="fa-solid fa-star"></i>
+                5.0
+              </label>
+            </div>
+            <div class="mb-3">
+              <h5 class="title my-3">Pricing Table</h5>
+              <div class="snap">
+                <div id="snap"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="navbarContainer">
+        <script>
+          var currentURL = window.location.href;
+          activate(currentURL);
+        </script>
+      </div>
+      <!-- FILTER -->
+    </div>
+    <!--**********************************
+    Scripts
+***********************************-->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <!-- Swiper -->
+    <script src="assets/vendor/nouislider/nouislider.min.js"></script>
+    <script src="assets/js/dz.carousel.js"></script>
+    <!-- Swiper -->
+    <script src="assets/vendor/wnumb/wNumb.js"></script>
+    <script src="assets/js/noui-slider.init.js"></script>
+    <script src="assets/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+    <!-- Swiper -->
+    <script src="assets/js/settings.js"></script>
+    <!-- setting.js -->
+    <script src="assets/js/custom.js"></script>
+    <script>
+      $(".stepper").TouchSpin();
+    </script>
+    <script>
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then((content) => {
+          document.getElementById("navbarContainer").innerHTML = content;
+        });
+    </script>
+  </body>
+</html>

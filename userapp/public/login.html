@@ -230,14 +230,13 @@
                 </div>
               </form>
               <br>
-              <a href="">
-                <div class="google-btn">
-                  <div class="google-icon-wrapper">
-                    <img class="google-icon" src="https://i.ibb.co/ydLySMx/google.png" />
-                  </div>
-                  <p class="btn-text">Sign up with Google</p>
-                </div>
-              </a>
+
+              <div id="buttonContainer">
+                <script>
+                  var currentURL = window.location.href;
+                  activate(currentURL);
+                </script>
+              </div>
 
               <div class="text-center mb-auto p-tb20">
                 <a class="saprate">Don’t have an account?</a>
@@ -418,5 +417,6 @@
     <script src="assets/js/settings.js"></script>
     <script src="assets/js/custom.js"></script>
     <script src="login.js"></script>
+
   </body>
 </html>
