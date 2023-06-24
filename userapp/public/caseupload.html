@@ -84,14 +84,34 @@ input[type="file"]{
     display: flex;
     gap: 5px;
 }
-img{
-    width: 33%;
-    object-fit: contain;
-}
+
 figcaption{
     text-align: center;
     font-size: 2.4vmin;
     margin-top: 0.5vmin;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  width: 50%;
+  height:50%;
+  object-fit: contain;
+}
+
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>
 <body class="bg-white">
@@ -143,7 +163,7 @@ figcaption{
 
                 </div>
             
-                <a href="javascript:void(0);" class="btn btn-secondary mb-3 font-15 p-2 d-flex align-items-center btn-block">
+                <a href="javascript:void(0);" class="btn btn-secondary mb-3 font-15 p-2 mt-2 d-flex align-items-center btn-block">
                     <i class='fas fa-location-arrow' style='font-size:24px;color:white;'></i> &nbsp;Select Location</a>
 
                     <div class="mb-2 input-group input-radius">
@@ -234,49 +254,78 @@ $(function() {
 
       for (var i = 0; i < filesAmount; i++) {
         var reader = new FileReader();
+        var file = input.files[i];
 
-        reader.onload = function(event) {
-          $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-         
-        };
+        reader.onload = (function(file) {
+          return function(event) {
+            var imageContainer = $('<div>').addClass('image-container');
+            var img = $('<img>').attr('src', event.target.result);
+            var deleteBtn = $('<button>').text('X').addClass('delete-button');
 
-        reader.readAsDataURL(input.files[i]);
+            deleteBtn.on('click', function() {
+              $(this).closest('.image-container').remove();
+              form_data.delete("files[]", file);
+              updateFileCount();
+            });
+
+            imageContainer.append(img);
+            imageContainer.append(deleteBtn);
+            imageContainer.appendTo(placeToInsertImagePreview);
+
+            updateFileCount();
+          };
+        })(file);
+
+        reader.readAsDataURL(file);
       }
     }
   };
 
   var form_data = new FormData();
-  $('#file-input').change(function() {
-    var filesName = $('#file-input')[0].files;
+  var fileInput = $('#file-input');
+  var imageContainer = $('div.images');
+  var numOfFiles = $('#num-of-files');
+
+  function updateFileCount() {
+    var count = form_data.getAll("files[]").length;
+    numOfFiles.text(count + (count > 1 ? ' Files Selected' : ' File Selected'));
+  }
+
+  fileInput.change(function() {
+    var filesName = fileInput[0].files;
     var error = '';
 
+    if (filesName.length > 3) {
+      alert('Maximum 3 images can be uploaded.');
+      $(this).val('');
+      return;
+    }
 
     for (var count = 0; count < filesName.length; count++) {
       var name = filesName[count].name;
       var extension = name.split('.').pop().toLowerCase();
-      var numOfFiles = form_data.getAll("files[]").length;
-      
+
       if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
         error += "Invalid " + count + " Image File";
       } else {
-        if(numOfFiles>=3)
-        {
-            alert('Maximum 3 images can be uploaded.');
-            return;
-        }
         form_data.append("files[]", filesName[count]);
       }
     }
 
     if (error == '') {
-      imagesPreview(this, 'div.images');
-      var nofiles = form_data.getAll("files[]").length;
-      $('#num-of-files').text(nofiles + (nofiles > 1 ? ' Files Selected' : ' File Selected'));
+      imagesPreview(this, imageContainer);
     } else {
       alert(error);
+      $(this).val('');
     }
   });
+
+  $('#upload-button').on('click', function() {
+    var numOfFiles = form_data.getAll("files[]").length;
+    alert("Total " + numOfFiles + (numOfFiles > 1 ? ' Files Selected' : ' File Selected'));
+  });
 });
+
 
 </script>
 
