@@ -152,7 +152,7 @@ figcaption{
     
     <!-- Page content -->
     <div class="page-content">
-        <div class="container">
+        <div class="container fb">
             <input type="file" id="file-input" accept="image/png, image/jpeg"  multiple>
                 <label class="label" for="file-input">
                     <i class="fas fa-upload"></i> &nbsp; Upload Photos
@@ -162,7 +162,7 @@ figcaption{
                 <div class="images">
 
                 </div>
-            
+            <button id="upload">button</button>
                 <a href="javascript:void(0);" class="btn btn-secondary mb-3 font-15 p-2 mt-2 d-flex align-items-center btn-block">
                     <i class='fas fa-location-arrow' style='font-size:24px;color:white;'></i> &nbsp;Select Location</a>
 
@@ -320,7 +320,7 @@ $(function() {
     }
   });
 
-  $('#upload-button').on('click', function() {
+  $('#upload').on('click', function() {
     var numOfFiles = form_data.getAll("files[]").length;
     alert("Total " + numOfFiles + (numOfFiles > 1 ? ' Files Selected' : ' File Selected'));
   });
