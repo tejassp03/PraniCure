@@ -70,8 +70,11 @@
                                 </svg>
                             </a>
                         </div>
-                        <h5 class="mb-0 ms-2 text-nowrap">Sick Dog (Malnutrition)</h5>
+                        <h5 class="mb-0 ms-2 text-nowrap" id="title">Sick Dog (Malnutrition)
+                            
+                        </h5>
                         <div class="mid-content">
+                            <span class="list-group-item" id="type"></span>
                            
                         </div>
                         <div class="right-content">
@@ -274,6 +277,7 @@ function load(){
                   
 
                 }
+
                 else if(res.response.priority==2){
                     $("#pri").html(`<span class="badge badge-lg badge-primary me-1 mb-1">Moderate</span>`)
                 }
@@ -290,6 +294,16 @@ function load(){
                     $("#status").html(`<span class="badge badge-success me-1 mb-1">In-Active</span>`)
                     $("#butinner").html(`<a style="color:white" class="btn btn-success w-100 btn-block">Donate</a>`)
                 }
+
+                if(res.response.type==1){
+                    $("#type").html(`<span class="badge badge-secondary me-1 mb-1">Stray</span>`)
+                  
+
+                }
+                else{
+                    $("#type").html(`<span class="badge badge-danger me-1 mb-1">Pet</span>`)
+                }
+                $("#title").html(`${res.response.title.substring(0,12)}....`)
                 $("#city").html(res.response.address.split(" ")[1])
                 $("#addr").html(res.response.address)
                 var ph=res.response.photo.split(",")
