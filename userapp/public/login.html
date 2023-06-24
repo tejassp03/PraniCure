@@ -3,6 +3,8 @@
 
 <head>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
   <style>
     body {
       background: rgb(54, 54, 54);
@@ -237,14 +239,35 @@
                 </div>
               </form>
               <br>
-              <a href="">
-                <div class="google-btn">
-                  <div class="google-icon-wrapper">
-                    <img class="google-icon" src="https://i.ibb.co/ydLySMx/google.png" />
-                  </div>
-                  <p class="btn-text">Sign up with Google</p>
-                </div>
-              </a>
+              <div id="g_id_onload"
+              data-client_id="613169116404-bi6svv2r0m96gds1e4ff348bcluec5ut.apps.googleusercontent.com"
+              data-callback="handleCredentialResponse">
+         </div>
+       
+         <script>
+           function handleCredentialResponse(response) {
+             // Send the response to your server for further processing
+             // Example:
+             console.log(JSON.stringify(response.credential))
+             fetch('/auth/google/callback', {
+               method: 'POST',
+               headers: {
+                 'Content-Type': 'application/json'
+               },
+               body: JSON.stringify(response.credential)
+             })
+             .then(response => {
+               // Handle the response from your server
+               // Example: redirect to a success page
+              //  console.log(response.credential);
+               window.location.href = '/user-home.html';
+             })
+             .catch(error => {
+               console.error('Error:', error);
+               // Handle error condition
+             });
+           }
+         </script>
 
             <div class="text-center mb-auto p-tb20">
               <a class="saprate">Don’t have an account?</a>
