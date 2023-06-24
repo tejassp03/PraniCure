@@ -70,8 +70,11 @@
                                 </svg>
                             </a>
                         </div>
-                        <h5 class="mb-0 ms-2 text-nowrap">Sick Dog (Malnutrition)</h5>
+                        <h5 class="mb-0 ms-2 text-nowrap" id="title">Sick Dog (Malnutrition)
+                            
+                        </h5>
                         <div class="mid-content">
+                            <span class="list-group-item" id="type"></span>
                            
                         </div>
                         <div class="right-content">
@@ -118,15 +121,7 @@
                           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <img class="d-block w-100" src="assets/images/case_img1.png" alt="First slide">
-                          </div>
-                          <div class="carousel-item">
-                            <img class="d-block w-100" src="assets/images/case_img2.jpeg" alt="Second slide">
-                          </div>
-                          <div class="carousel-item">
-                            <img class="d-block w-100" src="assets/images/case_img3.jpeg" alt="Third slide">
-                          </div>
+                         
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -282,6 +277,7 @@ function load(){
                   
 
                 }
+
                 else if(res.response.priority==2){
                     $("#pri").html(`<span class="badge badge-lg badge-primary me-1 mb-1">Moderate</span>`)
                 }
@@ -298,9 +294,44 @@ function load(){
                     $("#status").html(`<span class="badge badge-success me-1 mb-1">In-Active</span>`)
                     $("#butinner").html(`<a style="color:white" class="btn btn-success w-100 btn-block">Donate</a>`)
                 }
+
+                if(res.response.type==1){
+                    $("#type").html(`<span class="badge badge-secondary me-1 mb-1">Stray</span>`)
+                  
+
+                }
+                else{
+                    $("#type").html(`<span class="badge badge-danger me-1 mb-1">Pet</span>`)
+                }
+                $("#title").html(`${res.response.title.substring(0,12)}....`)
                 $("#city").html(res.response.address.split(" ")[1])
                 $("#addr").html(res.response.address)
-                    
+                var ph=res.response.photo.split(",")
+if(ph==null){
+    ph=value.photo;
+    $(".carousel-inner").append(`
+        <div class="carousel-item active">
+                            <img class="d-block w-100" src=${ph} >
+                          </div>`)
+    
+}
+else{
+    for(let i=0;i<ph.length;i++){
+        if(i==0){
+            $(".carousel-inner").append(`
+        <div class="carousel-item active">
+                            <img class="d-block w-100" src=${ph[i]} >
+                          </div>`)
+        }
+        else{
+            $(".carousel-inner").append(`
+        <div class="carousel-item ">
+                            <img class="d-block w-100" src=${ph[i]} >
+                          </div>`)
+        }
+        
+    }
+}
                     console.log(res.response)
 var postedTime = res.response.created_at;
 var currentTime = new Date();

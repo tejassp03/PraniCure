@@ -1,168 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <style>
-      body {
-        background: rgb(54, 54, 54);
-        margin-top: 50px;
-      }
-      .google-btn,
-      .btn-fb {
-        margin: auto;
-        width: 50%;
-      }
-      /* Facebook Button */
-      .btn-fb {
-        display: inline-block;
-        border-radius: 3px;
-        text-decoration: none;
-        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
-        -webkit-transition: background-color 0.218s, border-color 0.218s,
-          box-shadow 0.218s;
-        transition: background-color 0.218s, border-color 0.218s,
-          box-shadow 0.218s;
-      }
-      .fb-content,
-      .btn-fb,
-      .btn-fb .fb-content {
-        display: -webkit-box;
-        display: flex;
-        -webkit-box-align: center;
-        align-items: center;
-        width: 210px;
-        height: 40px;
-      }
-      .fb-content .logo,
-      .btn-fb .logo,
-      .btn-fb .fb-content .logo {
-        padding: 3px;
-        height: inherit;
-      }
 
-      .fb-content svg,
-      .btn-fb svg,
-      .btn-fb .fb-content svg {
-        width: 18px;
-        height: 18px;
-      }
-      .fb-content p,
-      .btn-fb,
-      .btn-fb .fb-content p {
-        width: 100%;
-        width: 220px;
-        line-height: 1;
-        letter-spacing: 0.21px;
-        text-align: center;
-        font-weight: 500;
-        font-size: 14px;
-        font-family: "Roboto", sans-serif;
-      }
+<head>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <style>
+    body {
+      background: rgb(54, 54, 54);
+      margin-top: 50px;
+    }
 
-      .btn-fb {
-        padding-top: 1.5px;
-        background: #1877f2;
-        background-color: #1877f2;
-      }
-      .btn-fb:hover {
-        box-shadow: 0 0 3px 3px rgba(59, 89, 152, 0.3);
-      }
-      .btn-fb .fb-content p {
-        color: rgba(255, 255, 255, 0.87);
-      }
+    .google-btn,
+    .btn-fb {
+      margin: auto;
+      width: 50%;
+    }
 
-      /* Google Button */
-      @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=cyrillic);
+    /* Facebook Button */
+    .btn-fb {
+      display: inline-block;
+      border-radius: 3px;
+      text-decoration: none;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+      -webkit-transition: background-color 0.218s, border-color 0.218s,
+        box-shadow 0.218s;
+      transition: background-color 0.218s, border-color 0.218s,
+        box-shadow 0.218s;
+    }
 
-      .google-btn {
-        width: 200px;
-        height: 40px;
-        background-color: #4285f4;
-        border-radius: 2px;
-        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
-        -webkit-transition: background-color 0.218s, border-color 0.218s,
-          box-shadow 0.218s;
-        transition: background-color 0.218s, border-color 0.218s,
-          box-shadow 0.218s;
-      }
-      .google-btn .google-icon-wrapper {
-        position: absolute;
-        margin-top: 1px;
-        margin-left: 1px;
-        width: 38px;
-        height: 38px;
-        border-radius: 2px;
-        background-color: #fff;
-      }
-      .google-btn .google-icon {
-        position: absolute;
-        margin-top: 11px;
-        margin-left: 11px;
-        width: 18px;
-        height: 18px;
-      }
-      .google-btn .btn-text {
-        float: right;
-        margin: 11px 18px 0 0;
-        color: #fff;
-        font-size: 14px;
-        letter-spacing: 0.2px;
-        font-family: "Roboto";
-        font-weight: 500;
-      }
-      .google-btn:hover {
-        box-shadow: 0 0 6px #4285f4;
-        cursor: pointer;
-      }
-      .google-btn:active {
-        background: #1669f2;
-      }
-    </style>
+    .fb-content,
+    .btn-fb,
+    .btn-fb .fb-content {
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      width: 210px;
+      height: 40px;
+    }
 
-    <!-- Meta -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover"
-    />
-    <meta name="theme-color" content="#2196f3" />
-    <meta name="author" content="DexignZone" />
-    <meta name="keywords" content="" />
-    <meta name="robots" content="" />
-    <meta name="description" content="PraniCure - Animal Helpline App" />
-    <meta property="og:title" content="PraniCure - Animal Helpline App" />
-    <meta property="og:description" content="PraniCure - Animal Helpline App" />
-    <meta name="format-detection" content="telephone=no" />
+    .fb-content .logo,
+    .btn-fb .logo,
+    .btn-fb .fb-content .logo {
+      padding: 3px;
+      height: inherit;
+    }
 
-    <!-- Favicons Icon -->
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="assets/images/whitelogo.png"
-    />
+    .fb-content svg,
+    .btn-fb svg,
+    .btn-fb .fb-content svg {
+      width: 18px;
+      height: 18px;
+    }
 
-    <!-- Title -->
-    <title>PraniCure - Animal Helpline App</title>
+    .fb-content p,
+    .btn-fb,
+    .btn-fb .fb-content p {
+      width: 100%;
+      width: 220px;
+      line-height: 1;
+      letter-spacing: 0.21px;
+      text-align: center;
+      font-weight: 500;
+      font-size: 14px;
+      font-family: "Roboto", sans-serif;
+    }
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    .btn-fb {
+      padding-top: 1.5px;
+      background: #1877f2;
+      background-color: #1877f2;
+    }
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com/" />
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&amp;family=Roboto+Slab:wght@100;300;500;600;800&amp;display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="bg-white">
-    <div class="page-wraper">
-      <!-- Preloader -->
-      <div id="preloader">
-        <div class="spinner"></div>
-      </div>
-      <!-- Preloader end-->
+    .btn-fb:hover {
+      box-shadow: 0 0 3px 3px rgba(59, 89, 152, 0.3);
+    }
+
+    .btn-fb .fb-content p {
+      color: rgba(255, 255, 255, 0.87);
+    }
+
+    /* Google Button */
+    @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=cyrillic);
+
+    .google-btn {
+      width: 200px;
+      height: 40px;
+      background-color: #4285f4;
+      border-radius: 2px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+      -webkit-transition: background-color 0.218s, border-color 0.218s,
+        box-shadow 0.218s;
+      transition: background-color 0.218s, border-color 0.218s,
+        box-shadow 0.218s;
+    }
+
+    .google-btn .google-icon-wrapper {
+      position: absolute;
+      margin-top: 1px;
+      margin-left: 1px;
+      width: 38px;
+      height: 38px;
+      border-radius: 2px;
+      background-color: #fff;
+    }
+
+    .google-btn .google-icon {
+      position: absolute;
+      margin-top: 11px;
+      margin-left: 11px;
+      width: 18px;
+      height: 18px;
+    }
+
+    .google-btn .btn-text {
+      float: right;
+      margin: 11px 18px 0 0;
+      color: #fff;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+      font-family: "Roboto";
+      font-weight: 500;
+    }
+
+    .google-btn:hover {
+      box-shadow: 0 0 6px #4285f4;
+      cursor: pointer;
+    }
+
+    .google-btn:active {
+      background: #1669f2;
+    }
+  </style>
+
+  <!-- Meta -->
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover" />
+  <meta name="theme-color" content="#2196f3" />
+  <meta name="author" content="DexignZone" />
+  <meta name="keywords" content="" />
+  <meta name="robots" content="" />
+  <meta name="description" content="PraniCure - Animal Helpline App" />
+  <meta property="og:title" content="PraniCure - Animal Helpline App" />
+  <meta property="og:description" content="PraniCure - Animal Helpline App" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <!-- Favicons Icon -->
+  <link rel="shortcut icon" type="image/x-icon" href="assets/images/whitelogo.png" />
+
+  <!-- Title -->
+  <title>PraniCure - Animal Helpline App</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/" />
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&amp;family=Roboto+Slab:wght@100;300;500;600;800&amp;display=swap"
+    rel="stylesheet" />
+</head>
+
+<body class="bg-white">
+  <div class="page-wraper">
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="spinner"></div>
+    </div>
+    <!-- Preloader end-->
 
       <!-- Page Content -->
       <div class="page-content">
@@ -230,179 +237,102 @@
                 </div>
               </form>
               <br>
+              <a href="">
+                <div class="google-btn">
+                  <div class="google-icon-wrapper">
+                    <img class="google-icon" src="https://i.ibb.co/ydLySMx/google.png" />
+                  </div>
+                  <p class="btn-text">Sign up with Google</p>
+                </div>
+              </a>
 
-              <div id="buttonContainer">
-                <script>
-                  var currentURL = window.location.href;
-                  activate(currentURL);
-                </script>
-              </div>
-
-              <div class="text-center mb-auto p-tb20">
-                <a class="saprate">Don’t have an account?</a>
-              </div>
+            <div class="text-center mb-auto p-tb20">
+              <a class="saprate">Don’t have an account?</a>
             </div>
           </div>
         </div>
       </div>
-      <!-- Page Content End -->
-
-      <!-- Footer -->
-      <footer class="footer fixed">
-        <div class="container">
-          <a id="create" class="btn btn-transparent btn-rounded d-block"
-            >CREATE AN ACCOUNT</a
-          >
-        </div>
-      </footer>
-      <!-- Footer End -->
-
-      <!-- Theme Color Settings -->
-      <div
-        class="offcanvas offcanvas-bottom"
-        tabindex="-1"
-        id="offcanvasBottom"
-      >
-        <div class="offcanvas-body small">
-          <ul class="theme-color-settings">
-            <li>
-              <input
-                class="filled-in"
-                id="primary_color_8"
-                name="theme_color"
-                type="radio"
-                value="color-primary"
-              />
-              <label for="primary_color_8"></label>
-              <span>Default</span>
-            </li>
-            <li>
-              <input
-                class="filled-in"
-                id="primary_color_2"
-                name="theme_color"
-                type="radio"
-                value="color-green"
-              />
-              <label for="primary_color_2"></label>
-              <span>Green</span>
-            </li>
-            <li>
-              <input
-                class="filled-in"
-                id="primary_color_3"
-                name="theme_color"
-                type="radio"
-                value="color-blue"
-              />
-              <label for="primary_color_3"></label>
-              <span>Blue</span>
-            </li>
-            <li>
-              <input
-                class="filled-in"
-                id="primary_color_4"
-                name="theme_color"
-                type="radio"
-                value="color-pink"
-              />
-              <label for="primary_color_4"></label>
-              <span>Pink</span>
-            </li>
-            <li>
-              <input
-                class="filled-in"
-                id="primary_color_5"
-                name="theme_color"
-                type="radio"
-                value="color-yellow"
-              />
-              <label for="primary_color_5"></label>
-              <span>Yellow</span>
-            </li>
-            <li>
-              <input
-                class="filled-in"
-                id="primary_color_6"
-                name="theme_color"
-                type="radio"
-                value="color-orange"
-              />
-              <label for="primary_color_6"></label>
-              <span>Orange</span>
-            </li>
-            <li>
-              <input
-                class="filled-in"
-                id="primary_color_7"
-                name="theme_color"
-                type="radio"
-                value="color-purple"
-              />
-              <label for="primary_color_7"></label>
-              <span>Purple</span>
-            </li>
-            <li>
-              <input
-                class="filled-in"
-                id="primary_color_1"
-                name="theme_color"
-                type="radio"
-                value="color-red"
-              />
-              <label for="primary_color_1"></label>
-              <span>Red</span>
-            </li>
-            <li>
-              <input
-                class="filled-in"
-                id="primary_color_9"
-                name="theme_color"
-                type="radio"
-                value="color-lightblue"
-              />
-              <label for="primary_color_9"></label>
-              <span>Lightblue</span>
-            </li>
-            <li>
-              <input
-                class="filled-in"
-                id="primary_color_10"
-                name="theme_color"
-                type="radio"
-                value="color-teal"
-              />
-              <label for="primary_color_10"></label>
-              <span>Teal</span>
-            </li>
-            <li>
-              <input
-                class="filled-in"
-                id="primary_color_11"
-                name="theme_color"
-                type="radio"
-                value="color-lime"
-              />
-              <label for="primary_color_11"></label>
-              <span>Lime</span>
-            </li>
-            <li>
-              <input
-                class="filled-in"
-                id="primary_color_12"
-                name="theme_color"
-                type="radio"
-                value="color-deeporange"
-              />
-              <label for="primary_color_12"></label>
-              <span>Deeporange</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- Theme Color Settings End -->
     </div>
-    <!--**********************************
+    <!-- Page Content End -->
+
+    <!-- Footer -->
+    <footer class="footer fixed">
+      <div class="container">
+        <a id="create" class="btn btn-transparent btn-rounded d-block">CREATE AN ACCOUNT</a>
+      </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Theme Color Settings -->
+    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom">
+      <div class="offcanvas-body small">
+        <ul class="theme-color-settings">
+          <li>
+            <input class="filled-in" id="primary_color_8" name="theme_color" type="radio" value="color-primary" />
+            <label for="primary_color_8"></label>
+            <span>Default</span>
+          </li>
+          <li>
+            <input class="filled-in" id="primary_color_2" name="theme_color" type="radio" value="color-green" />
+            <label for="primary_color_2"></label>
+            <span>Green</span>
+          </li>
+          <li>
+            <input class="filled-in" id="primary_color_3" name="theme_color" type="radio" value="color-blue" />
+            <label for="primary_color_3"></label>
+            <span>Blue</span>
+          </li>
+          <li>
+            <input class="filled-in" id="primary_color_4" name="theme_color" type="radio" value="color-pink" />
+            <label for="primary_color_4"></label>
+            <span>Pink</span>
+          </li>
+          <li>
+            <input class="filled-in" id="primary_color_5" name="theme_color" type="radio" value="color-yellow" />
+            <label for="primary_color_5"></label>
+            <span>Yellow</span>
+          </li>
+          <li>
+            <input class="filled-in" id="primary_color_6" name="theme_color" type="radio" value="color-orange" />
+            <label for="primary_color_6"></label>
+            <span>Orange</span>
+          </li>
+          <li>
+            <input class="filled-in" id="primary_color_7" name="theme_color" type="radio" value="color-purple" />
+            <label for="primary_color_7"></label>
+            <span>Purple</span>
+          </li>
+          <li>
+            <input class="filled-in" id="primary_color_1" name="theme_color" type="radio" value="color-red" />
+            <label for="primary_color_1"></label>
+            <span>Red</span>
+          </li>
+          <li>
+            <input class="filled-in" id="primary_color_9" name="theme_color" type="radio" value="color-lightblue" />
+            <label for="primary_color_9"></label>
+            <span>Lightblue</span>
+          </li>
+          <li>
+            <input class="filled-in" id="primary_color_10" name="theme_color" type="radio" value="color-teal" />
+            <label for="primary_color_10"></label>
+            <span>Teal</span>
+          </li>
+          <li>
+            <input class="filled-in" id="primary_color_11" name="theme_color" type="radio" value="color-lime" />
+            <label for="primary_color_11"></label>
+            <span>Lime</span>
+          </li>
+          <li>
+            <input class="filled-in" id="primary_color_12" name="theme_color" type="radio" value="color-deeporange" />
+            <label for="primary_color_12"></label>
+            <span>Deeporange</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Theme Color Settings End -->
+  </div>
+  <!--**********************************
     Scripts
 ***********************************-->
 
@@ -417,6 +347,5 @@
     <script src="assets/js/settings.js"></script>
     <script src="assets/js/custom.js"></script>
     <script src="login.js"></script>
-
   </body>
 </html>
