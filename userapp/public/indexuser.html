@@ -12,16 +12,16 @@
 	<meta name="author" content="DexignZone" /> 
     <meta name="keywords" content="" /> 
     <meta name="robots" content="" /> 
-	<meta name="description" content="PraniCare - Animal Helpline App"/>
-	<meta property="og:title" content="PraniCare - Animal Helpline App" />
-	<meta property="og:description" content="PraniCare - Animal Helpline App" />
+	<meta name="description" content="PraniCure - Animal Helpline App"/>
+	<meta property="og:title" content="PraniCure - Animal Helpline App" />
+	<meta property="og:description" content="PraniCure - Animal Helpline App" />
 	<meta name="format-detection" content="telephone=no">
 	
     <!-- Favicons Icon -->
 	<link rel="shortcut icon" type="image/x-icon" href="assets/images/whitelogo.png" />
     <script src="https://code.jquery.com/jquery-3.6.2.slim.min.js" integrity="sha256-E3P3OaTZH+HlEM7f1gdAT3lHAn4nWBZXuYe89DFg2d0=" crossorigin="anonymous"></script>
     <!-- Title -->
-	<title>PraniCare - Animal Helpline App</title>
+	<title>PraniCure - Animal Helpline App</title>
 	
 	<!-- PWA Version -->
 	<link rel="manifest" href="manifest.json">
@@ -394,8 +394,8 @@
 		<div class="container">
 			<div class="offcanvas-body small">
 				<img class="logo" src="assets/images/whitelogo.png" alt="">
-				<h5 class="title">PraniCare on Your Home Screen</h5>
-				<p class="pwa-text">Install PraniCare on your device to access the app at ease and quickly when in need.</p>
+				<h5 class="title">PraniCure on Your Home Screen</h5>
+				<p class="pwa-text">Install PraniCure on your device to access the app at ease and quickly when in need.</p>
 				<a href="javascript:void(0);" class="btn btn-sm btn-primary pwa-btn">Add to Home Screen</a>
 			</div>
 		</div>
@@ -417,8 +417,14 @@
 <!-- <script src="index.js" defer></script> -->
 <script>
     $(".stepper").TouchSpin();
-
+    function openn(id){
+window.location.href=`tracking-order2.html?id=${id}`
+}
     $(document).ready(function () { 
+
+// $("#open").on("click",function(){
+//     alert()
+// })
         var ulat=''
         var ulon=''
         async function load(){
@@ -477,6 +483,12 @@ fetch(url, options)
   })
   .then(function(data) {
     let distance=''
+    let you='--';
+    let uid=localStorage.getItem("prani");
+  let id=uid.split('-')
+  if(id[0]==value.user_id){
+    you="You"
+  }
     if(data.distances[0]==undefined){
         distance='Allow Location---'
     }
@@ -486,13 +498,14 @@ fetch(url, options)
     $("#posts").append(
                     `<div  class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
                             <div class="item-media" style="width: 100%; object-fit: cover;">
-                                <img src="${value.photo}" alt="food" data-caseid=${value.case_id}>
+                                <img src="${value.photo}" alt="food" data-caseid=${value.case_id} onclick="openn('${value.case_id}')">
                             </div>
                             <div class="item-content" style="padding:10px 15px;" >
                                 <a href="product.html"><h6 class="mb-0">${value.description}</h6></a>
                                 <div class="item-footer mt-2">
                                     <h6>${distance} kms away</h6> 
                                     <a href="javascript:void(0);" class="item-bookmark">
+                                        <span class="badge badge-secondary">${you}</span>
                                         <span class="badge badge-secondary">${pri}</span>
                                     </a>
                                 </div>
@@ -559,8 +572,7 @@ async function getUserLocation() {
     ulat = position.coords.latitude;
       ulon = position.coords.longitude;
 
-        console.log('Latitude:', latitude);
-        console.log('Longitude:', longitude);
+
       },
       function(error) {
         if (error.code === error.PERMISSION_DENIED) {
@@ -682,7 +694,7 @@ fetch(url, options)
     $("#posts").append(
                     `<div  class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
                             <div class="item-media" style="width: 100%; object-fit: cover;">
-                                <img src="${value.photo}" alt="food" data-caseid=${value.case_id}>
+                                <img src="${value.photo}" alt="food" data-caseid=${value.case_id} onclick="openn('${value.case_id}') id="open">
                             </div>
                             <div class="item-content" style="padding:10px 15px;" >
                                 <a href="product.html"><h6 class="mb-0">${value.description}</h6></a>
