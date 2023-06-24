@@ -22,6 +22,8 @@ const httpsOptions = {
 
 //Create Database Connection
 
-const server = https.createServer(httpsOptions, app).listen(port, () => {
-	console.log('server running at ' + port)
-  })
+
+
+app.listen(port, () => {
+	console.log("server started on port 7000...");
+});

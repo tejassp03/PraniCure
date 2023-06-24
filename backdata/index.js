@@ -245,7 +245,19 @@ const timeString = `${formattedDate} ${dayOfWeek}`;
 	});
 });
 
+app.get("/fetch", (req, res) => {
 
+
+	let sqll = `SELECT * FROM cases `;
+	let query = conn.query(sqll,(err, result) => {
+		if (err) throw err;
+	
+		
+		res.send(JSON.stringify({ status: 500, error: null, response: result }));
+	
+	
+		})
+	});
 
 app.post("/signupemail",async (req, res) => {
 
