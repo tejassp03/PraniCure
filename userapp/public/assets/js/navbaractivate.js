@@ -26,8 +26,8 @@ function activate() {
       const userHomeLink = parentDocument.getElementById("messagelink");
       userHomeLink.classList.add("active");
   }
-  else if(page==="profile.html"){
-      const userHomeLink =parentDocument.getElementById("proflink");
-      userHomeLink.classList.add("active");
-  }
+  // else if(page==="profile.html"){
+  //     const userHomeLink =parentDocument.getElementById("proflink");
+  //     userHomeLink.classList.add("active");
+  // }
 }
