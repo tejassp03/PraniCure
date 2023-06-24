@@ -103,22 +103,13 @@
                     <div class="title-bar mt-4">
                         <h5 class="title">Cases Nearby 	📍</h5>
                     </div>
-                    <div class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
-                        <div class="item-media" style="width: 100%; object-fit: cover;">
-                            <img src="https://www.dartmoorzoo.org.uk/wp-content/uploads/2021/01/Tiger-1.jpg" alt="food">
-                        </div>
-                        <div class="item-content" style="padding:10px 15px;" >
-                            <a href="product.html"><h6 class="mb-0">Tiger injured near HAL 2nd stage</h6></a>
-                            <div class="item-footer mt-2">
-                                <h6>2.0 kms away</h6> 
-                                <a href="javascript:void(0);" class="item-bookmark">
-                                    <span class="badge badge-secondary ">Emergency</span>
-                                </a>
-                            </div>
-                        </div>
+                    <div id="posts">
+
+                        
                     </div>
+                    
                    
-                    <div class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
+                    <!-- <div class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
                         <div class="item-media" style="width: 100%; object-fit: cover;">
                             <img src="https://hips.hearstapps.com/hmg-prod/images/headshot-of-giraffe-sabi-sands-game-reserve-royalty-free-image-1573571360.jpg?crop=1.00xw:0.334xh;0,0.106xh&resize=1200:*" alt="food">
                         </div>
@@ -131,9 +122,9 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     
-                    <div class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
+                    <!-- <div class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
                         <div class="item-media" style="width: 100%; object-fit: cover;">
                             <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YW5pbWFsfGVufDB8fDB8fHww&w=1000&q=80" alt="food">
                         </div>
@@ -146,7 +137,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 					<!-- Item box Start -->
                     <a href="" class="btn btn-outline-primary btn-rounded btn-block">VIEW MORE</a>
 				</div>
@@ -425,6 +416,177 @@
 <script src="index.js" defer></script>
 <script>
     $(".stepper").TouchSpin();
+
+    $(document).ready(function () { 
+        var ulat=''
+        var ulon=''
+        async function load(){
+            await getUserLocation();
+        // alert("kk")
+        $("#tbody").html('')
+        await fetch('http://localhost:9000/fetch')
+        .then(response => response.json())
+        .then(data =>{ 
+            
+            data.response.sort((a, b) => {
+                return b.ID - a.ID;
+            });
+            console.log(data)
+            $.each(data.response,async function(key,value){
+                console.log(value.Fname)
+                $("#posts").html()
+                let pri=''
+                if(value.priority==1){
+                    pri="Emergency"
+
+                }
+                else if(value.priority==2){
+                    pri="Moderate"
+                }
+                else{
+                    pri="easy"
+                }
+                const options = {
+  method: 'GET',
+  headers: {
+    'X-RapidAPI-Key': 'b38251f12dmsh1e354647d127793p1fe19ejsnd617ffc74cff',
+    'X-RapidAPI-Host': 'trueway-matrix.p.rapidapi.com'
+  }
+};
+if(ulat==''){
+    ulat=0;
+    ulon=0;
+}
+const params = new URLSearchParams({
+  origins: `${ulat },${ulon}`,
+//   origins: `12.906060,77.566570`,
+  destinations: `${value.latitude},${value.longitude}`,
+});
+
+
+const url = `https://trueway-matrix.p.rapidapi.com/CalculateDrivingMatrix?${params}`;
+
+fetch(url, options)
+  .then(function(response) {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Network response was not ok.');
+    }
+  })
+  .then(function(data) {
+    let distance=''
+    if(data.distances[0]==undefined){
+        distance='Allow Location---'
+    }
+    else{
+        distance= data.distances[0]/1000
+    }
+    $("#posts").append(
+                    `<div  class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
+                            <div class="item-media" style="width: 100%; object-fit: cover;">
+                                <img src="${value.photo}" alt="food" data-caseid=${value.case_id}>
+                            </div>
+                            <div class="item-content" style="padding:10px 15px;" >
+                                <a href="product.html"><h6 class="mb-0">${value.description}</h6></a>
+                                <div class="item-footer mt-2">
+                                    <h6>${distance} kms away</h6> 
+                                    <a href="javascript:void(0);" class="item-bookmark">
+                                        <span class="badge badge-secondary">${pri}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>`
+                )
+ 
+    // console.log(data.distances[0]);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+// var ui= await geo('12.892920','77.528310',`${value.latitude}`,`${value.longitude}`);
+               
+    
+    
+            })
+            
+            
+            
+            console.log(data)
+        })
+    
+    }
+    load()
+
+async function geo(ulat,ulon,plat,plon){
+    const options = {
+  method: 'GET',
+  headers: {
+    'X-RapidAPI-Key': 'b38251f12dmsh1e354647d127793p1fe19ejsnd617ffc74cff',
+    'X-RapidAPI-Host': 'trueway-matrix.p.rapidapi.com'
+  }
+};
+
+const params = new URLSearchParams({
+  origins: `${ulat },${ulon}`,
+  destinations: `${plat},${plon}`,
+});
+
+const url = `https://trueway-matrix.p.rapidapi.com/CalculateDrivingMatrix?${params}`;
+
+fetch(url, options)
+  .then(function(response) {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Network response was not ok.');
+    }
+  })
+  .then(function(data) {
+    return data.distances[0]
+    // console.log(data.distances[0]);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+}
+
+async function getUserLocation() {
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+    ulat = position.coords.latitude;
+      ulon = position.coords.longitude;
+
+        console.log('Latitude:', latitude);
+        console.log('Longitude:', longitude);
+      },
+      function(error) {
+        if (error.code === error.PERMISSION_DENIED) {
+          console.error('Location permission denied.');
+        } else {
+          console.error('Error:', error.message);
+        }
+        
+        // Prompt again for location
+        // getUserLocation();
+      }
+    );
+  } else {
+    console.error('Geolocation is not supported by this browser.');
+  }
+}
+
+// Call the function to start requesting the user's location
+
+
+
+
+})
+
+
+
+
 </script>
 </body>
 

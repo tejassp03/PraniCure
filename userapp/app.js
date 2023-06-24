@@ -18,6 +18,9 @@ app.use(cors())
 
 
 
+
+
+
 app.listen(port, () => {
 	console.log("server started on port 7000...");
 });
