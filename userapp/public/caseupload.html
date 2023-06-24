@@ -32,6 +32,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&amp;family=Roboto+Slab:wght@100;300;500;600;800&amp;display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Load TensorFlow.js. This is required to use coco-ssd model. -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+
+<!-- Load the coco-ssd model. -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>
+
     <script src="https://code.jquery.com/jquery-3.6.2.slim.min.js" integrity="sha256-E3P3OaTZH+HlEM7f1gdAT3lHAn4nWBZXuYe89DFg2d0=" crossorigin="anonymous"></script>
 
 </head>   
@@ -136,8 +142,8 @@ figcaption{
     <!-- Page content -->
     <div class="page-content">
         <div class="container fb">
-            <input type="file" id="file-input" accept="image/png, image/jpeg"  multiple>
-                <label class="label" for="file-input">
+            <input type="file" id="fileinput" name="fileinput" accept="image/png, image/jpeg"  multiple>
+                <label class="label" for="fileinput">
                     <i class="fas fa-upload"></i> &nbsp; Upload Photos
                 </label>
                 <br>
@@ -146,21 +152,24 @@ figcaption{
 
                 </div>
             <!-- <button id="upload">button</button> -->
-                <a class="btn btn-secondary mb-3 font-15 p-2 mt-2 d-flex align-items-center btn-block">
-                    <i id="seloc" class='fas fa-location-arrow' style='font-size:24px;color:white;'></i> &nbsp;Select Location</a>
-
+                <a id="seloc" class="btn btn-secondary mb-3 font-15 p-2 mt-2 d-flex align-items-center btn-block">
+                    <i class='fas fa-location-arrow' style='font-size:24px;color:white;'></i> &nbsp;Select Location</a>
+                    <div class="mb-2 input-group input-radius" id="location">
+                    
+                        <input disabled type="text" class="form-control" placeholder="" required>
+                    </div>
                     <div class="mb-2 input-group input-radius">
                     
-                        <input type="text" class="form-control" placeholder="Case title eg. Injured cat near BEL Road..." required>
+                        <input type="text" id="title" class="form-control" placeholder="Case title eg. Injured cat near BEL Road..." required>
                     </div>
 
                     <div class="input-group mb-2 input-radius">
-                        <textarea class="form-control" placeholder="Case description, it'll help judge the case better" rows="4" required></textarea>
+                        <textarea class="form-control" id="desp" placeholder="Case description, it'll help judge the case better" rows="4" required></textarea>
                     </div>
 
                     <div class="mb-2 input-group input-radius">
                         <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-                        <input type="number" class="form-control" placeholder="Phone number" required>
+                        <input type="number" id="phone" class="form-control" placeholder="Phone number" required>
                     </div>
 
                     <div class="card-body pb-0">
@@ -169,11 +178,11 @@ figcaption{
                         </label>
                         <div class="radio circle-radio">
                             <label class="radio-label">Pet
-                                <input type="radio" checked="checked" name="radio1">
+                                <input type="radio" checked="checked" value="0" name="radio1">
                                 <span class="checkmark"></span>
                             </label>
                             <label class="radio-label">Stray
-                                <input type="radio" name="radio1">
+                                <input type="radio" value="1" name="radio1">
                                 <span class="checkmark"></span>
                             </label> 
                         </div>
@@ -184,15 +193,15 @@ figcaption{
                         </label>
                         <div class="radio circle-radio">
                             <label class="radio-label">Emergency
-                                <input type="radio" checked="checked" name="radio2">
+                                <input type="radio"value="1" checked="checked" name="radio2">
                                 <span class="checkmark"></span>
                             </label>
                             <label class="radio-label">Urgent
-                                <input type="radio" name="radio2">
+                                <input type="radio" value="2" name="radio2">
                                 <span class="checkmark"></span>
                             </label>
                             <label class="radio-label">Not Urgent
-                                <input type="radio" name="radio2">
+                                <input type="radio"  value="3" name="radio2">
                                 <span class="checkmark"></span>
                             </label>
                             
@@ -210,7 +219,7 @@ figcaption{
 		<div class="footer fixed ">
 			<div class="container">
 				<div class="footer-btn d-flex align-items-center">
-					<a href="payment.html" class="btn btn-primary btn-rounded flex-1 ms-2">POST CASE</a>
+					<a id="post" class="btn btn-primary btn-rounded flex-1 ms-2">POST CASE</a>
 				</div>
 			</div>
 		</div>		
@@ -233,9 +242,11 @@ figcaption{
 
      var ulat=""
     var ulon=""
+    $("#location").slideUp();
 $("#seloc").on("click",function(){
-    alert(0)
+   
     getUserLocation()
+   
 })
 
 async function getUserLocation() {
@@ -244,7 +255,17 @@ async function getUserLocation() {
       function(position) {
     ulat = position.coords.latitude;
       ulon = position.coords.longitude;
-alert(ulat)
+      const options = {method: 'GET'};
+
+fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=12.9767936&lon=77.590082', options)
+  .then(response => response.json())
+  .then(function(response){console.log(response)
+    $("#location").slideDown();
+    $("#location").html(response.display_name);
+
+})
+  .catch(err => console.error(err));
+     
         console.log('Latitude:', latitude);
         console.log('Longitude:', longitude);
       },
@@ -264,6 +285,34 @@ alert(ulat)
   }
 }
         
+    })
+
+    $("#post").on("click",function(){
+        var type = $('input[name="radio1"]:checked').val();
+        var priority = $('input[name="radio2"]:checked').val();
+        var title=$("#title").val()
+        var desp=$("#desp").val()
+        var phone=$("#phone").val()
+        if(title==''){
+            // tosat
+            alert("title")
+            return
+        }
+        if(desp==''){
+            // tosat
+            alert("desp")
+            return
+        }
+        if(phone==''){
+            // tosat
+            alert("phonr")
+            return
+        }
+
+
+        alert(type)
+        alert(priority)
+
     })
 
 </script>
@@ -288,28 +337,82 @@ alert(ulat)
     }
   };
 
-  var form_data = new FormData();
-  $('#file-input').change(function() {
-    var filesName = $('#file-input')[0].files;
-    var error = '';
+ 
+  $('#fileinput').change( async function() {
+    var form_data = new FormData();
+    form_data.append("fileinput", fileinput.files[0]);
+    //  var filesName = $('#fileinput')[0].files;
+    // var error = '';
 
 
-    for (var count = 0; count < filesName.length; count++) {
-      var name = filesName[count].name;
-      var extension = name.split('.').pop().toLowerCase();
-      var numOfFiles = form_data.getAll("files[]").length;
+//     for (var count = 0; count < filesName.length; count++) {
+//       var name = filesName[count].name;
+//       var extension = name.split('.').pop().toLowerCase();
+//       var numOfFiles = form_data.getAll("files[]").length;
+     
       
-      if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-        error += "Invalid " + count + " Image File";
-      } else {
-        if(numOfFiles>=3)
-        {
-            alert('Maximum 3 images can be uploaded.');
-            return;
-        }
-        form_data.append("files[]", filesName[count]);
-      }
-    }
+//       if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+//         error += "Invalid " + count + " Image File";
+//       } else {
+//         if(numOfFiles>4)
+//         {
+//             alert('Maximum 3 images can be uploaded.');
+//             return;
+//         }
+//     }
+// }
+      
+    //     let formData = new FormData(); 
+    //    formData.append("picfile", picfile.files[0]);
+    
+    await fetch('http://localhost:9000/upload', {
+           method: "POST", 
+           body:   form_data
+   }).then(response => response.json())
+
+           // Displaying results to console
+           .then(json => {
+               if(json.status==200){
+
+                   alert(1)
+               }})
+               
+
+
+
+for(let item of form_data.getAll("files[]")){
+    console.log(item.name)
+}
+   
+    // cocoSsd.load().then(model => {
+    //   // Load the image.
+    //   const img = new Image();
+    //   img.src = 'web/kitty.jpeg'; // Replace with the path to your image file.
+  
+    //   // When the image is loaded, perform object detection.
+    //   img.onload = () => {
+    //     console.time("test_timer");
+    //     // Detect objects in the image.
+    //     model.detect(img).then(predictions => {
+    //       console.timeEnd("test_timer");
+    //       const animalClasses = ['bird', 'cat', 'dog', 'horse','elephant']; // Array of most common animal classes
+    //       const detectedClasses = predictions.map(prediction => prediction.class);
+  
+    //       // Check if any of the detected classes are present in the animalClasses array
+    //       const isAnimal = detectedClasses.some(cls => animalClasses.includes(cls));
+  
+    //       console.log('Is animal:', isAnimal);
+
+    //       document.body.innerHTML = isAnimal;
+    //       document.body.append(img);
+    //     });
+    //   };
+    // });
+
+ 
+        // console.log(form_data.getAll("files[]"));
+
+ 
 
     if (error == '') {
       imagesPreview(this, 'div.images');
