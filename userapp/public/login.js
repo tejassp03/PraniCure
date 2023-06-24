@@ -2,7 +2,7 @@ let query =window.location.search
 let url =new URLSearchParams(query)
 let val=url.get('mode')
 if(localStorage.getItem("prani")){
-    window.location.href=`indexuser.html?mode=${val}`
+    window.location.href=`user-home.html?mode=${val}`
 }
 $("#create").on("click",function(){
     window.location.href=`signup.html?mode=${val}`
