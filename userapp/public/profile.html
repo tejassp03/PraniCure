@@ -46,7 +46,8 @@
 
   <!-- PWA Version -->
   <link rel="manifest" href="manifest.json" />
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link href="./plugins/toastr/css/toastr.min.css" rel="stylesheet">
   <!-- Stylesheets -->
   <link
     rel="stylesheet"
@@ -95,7 +96,68 @@
             </div>
         </div>
     </header> -->
-
+    <div class="modal fade" id="exampleModalCenter" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button class="btn-close" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="prof" style="display: flex;justify-content: space-between;">
+                   
+                    
+                        <div id="imgcontainer">
+                            <img src="profileimages/download.jpg" alt="..." style="height: 150px;width: 120px;" id="imageprofile">
+                            <!-- <img src="" alt=""> -->
+    
+                        </div>
+                        <div class="custom-file">
+                                                                      
+                            <input type="file" id="picfile" name="picfile" class="custom-file-input" >
+                            <input type="hidden" id="picdata" name="picdata" value="0" >
+                            <label class="custom-file-label">Choose file</label>
+    
+                            <div class="input-group-append">
+                                <button class="btn mb-1 btn-outline-secondary" id="fileuploder" type="button">Upload</button>
+                            </div>
+                        </div>
+                   </div>
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        <input type="text" class="form-control" placeholder="Name" id="nameedit">
+                    </div>
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+                        <input type="text" class="form-control" placeholder="Phone" id="phoneedit">
+                    </div>
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                        <input type="text" class="form-control dz-password" id="passedit" placeholder="Password">
+                        
+                    </div>
+                    <div class="mb-3 input-group input-mini">
+                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                        <input id="addedit" data-lat="" data-lon="" type="text" class="form-control dz-password" placeholder="Type Location" id="locinp" >
+                        <span class="input-group-text show-pass"> 
+                        
+                        </span>
+                        <div id="drop">
+                            <div name="locdrop" id="locdrop">
+                                <p value=""></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-danger light" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-sm btn-primary" id="profupdate">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <header class="header" style="padding-top:5px;border: 0;">
         <div class="main-bar">
             <div class="container">
@@ -147,8 +209,9 @@
             </div>    
             <div class="contact-section">
                 <div class="d-flex justify-content-between align-item-center">
-                    <h5 class="title">Contacts</h5>
-                    <a href="javascript:void(0);" class="btn-link">Edit</a>
+                    <!-- <h5 class="title">Contactscc</h5> -->
+                    <button type="button" class="btn w-100 btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Edit</button>
+                    <!-- <a href="javascript:void(0);" class="btn-link">Edit</a> -->
                 </div>
                 <ul>
                     <li>
@@ -182,6 +245,7 @@
 								<div class="light-text">Address</div>
 								<p class="mb-0" id="address">Franklin Avenue, Corner St.London, 24125151</p>
 							</div>
+                           
 						</a>
 					</li>
 				</ul>
@@ -266,7 +330,8 @@
 .then(function(content)  {
   document.getElementById('navbarContainer1').innerHTML = content;
 });
-
+let uid=localStorage.getItem("prani");
+  let id=uid.split('-')
   function load_profile(){
   let uid=localStorage.getItem("prani");
   let id=uid.split('-')
@@ -280,11 +345,16 @@
     success: function(res){
         if(res.status==200){
             $("#userimg").attr("src",res.response.profile_picture)
+            $("#imageprofile").attr("src",res.response.profile_picture)
           $("#name").html(res.response.username)
           $("#phone").html(res.response.phone_number)
           $("#mail").html(res.response.email)
           $("#address").html(res.response.address)
-          $("#phone").html(res.response.phone_number)
+          $("#phoneedit").val(res.response.phone_number)
+          $("#nameedit").val(res.response.username)
+          $("#passedit").val(res.response.password)
+          $("#addedit").val(res.response.address)
+
         //   $("#val-email").val(res.response.Email)
         //   $("#val-phone").val(res.response.Phone)
         //   $("#val-password").val(res.response.Pass)
@@ -300,11 +370,95 @@
 
 }
 load_profile()
+$("#fileuploder").on("click",async function(){
+       
+       let formData = new FormData(); 
+       formData.append("picfile", picfile.files[0]);
+       await fetch('http://localhost:9000/upload', {
+           method: "POST", 
+           body: formData
+   }).then(response => response.json())
+
+           // Displaying results to console
+           .then(json => {
+               if(json.status==200){
+
+                   let src=json.response.indexOf("profileimages")
+                   src=json.response.slice(src)
+
+                   $("#imageprofile").attr("src",src)
+                   $("#picdata").val(src)
+               }
+               
+               
+               console.log(json.response)}); 
+   })
+$(document).on("click","#profupdate",function(){
+  
+  let uid=localStorage.getItem("weather");
+
+  let picdata=$("#picdata").val()
+          let username=$("#nameedit").val()
+          let phone=$("#phoneedit").val()
+          let pass=$("#passedit").val()
+          let addr=$("#addedit").val()
+
+
+          $.ajax({
+            url:"http://localhost:9000/updateprof",
+            type:"post",
+            dataType: "json",
+            data: { Uid:id[0],Username:username,Pass:pass,Phone:phone,address:addr,lat: $("#addedit").data("lat"),lon:$("#addedit").data("lon"),img:picdata
+            },
+            
+            success: function(res){
+                if(res.status==200){
+                  swal("Success","Updated Successfully","success")
+                //   toastr.success("Updated successfully","Profile Updated",{positionClass:"toast-bottom-right",timeOut:5e3,closeButton:!0,debug:!1,newestOnTop:!0,progressBar:!0,preventDuplicates:!0,onclick:null,showDuration:"300",hideDuration:"1000",extendedTimeOut:"1000",showEasing:"swing",hideEasing:"linear",showMethod:"fadeIn",hideMethod:"fadeOut",tapToDismiss:!1})
+                  
+                load_profile()
+                 }
+                else if(res.status==500){
+                  console.log(res)
+                }
+            }
+        })
 
 
 
+  })
+  $("#drop").slideUp();
+  function set(place,lat,long){
+    alert(1);
+    $("#addedit").val(place);
+    $("#addedit").data("lat",lat)
+    $("#addedit").data("lon",long)
+    $("#drop").slideUp();
+    alert($("#addedit").data("lat"));
+    alert($("#addedit").data("lon"));
+
+}
+$("#addedit").on("keyup",function(){
+var val=$("#addedit").val();
+$("#drop").slideDown();
+const options = {method: 'GET'};
+
+fetch(`https://geocode.maps.co/search?q=${val}`, options)
+  .then(response => response.json())
+  .then(function(response) { 
+    $("#locdrop").html('')
+    for(let i of response){
+        $("#locdrop").append(`<p onclick="set('${i.display_name}','${i.lat}','${i.lon}')" style="cursor:pointer" id="locii" >${i.display_name}</p>`)
+    }
+    console.log(response)})
+  .catch(err => console.error(err));
+
+
+})
 
 
 </script>
+<script src="./plugins/toastr/js/toastr.min.js"></script>
+<script srbefore bbodyc="./plugins/toastr/js/toastr.init.js"></script>
 </body>
 </html>
