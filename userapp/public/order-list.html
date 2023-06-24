@@ -608,16 +608,23 @@
                     $("#progress").html('')
                         $("#done").html('')
                     for( let item of res.response){
+                        var ph=item.photo.split(",")
+if(ph==null){
+    ph=item.photo;
+}
+else{
+    ph=ph[0]
+}
                      
                         if(item.status==1){
                             $("#progress").append(`<li>
                             <div class="item-content">
                                 <div class="item-media media media-60">
-                                    <img src="${item.photo}" alt="logo">
+                                    <img src="${ph}" alt="logo">
                                 </div>
                                 <div class="item-inner">
                                     <div class="item-title-row">
-                                        <h6 class="item-title"><a href="order-list.html">${item.description.substring(0,26)}......</a></h6>
+                                        <h6 class="item-title"><a href="order-list.html">${item.title}</a></h6>
                                     </div>
                                     
                                 </div>
@@ -629,11 +636,11 @@
                             $("#done").append(`<li>
                             <div class="item-content">
                                 <div class="item-media media media-60">
-                                    <img src="${item.photo}" alt="logo">
+                                    <img src="${ph}" alt="logo">
                                 </div>
                                 <div class="item-inner">
                                     <div class="item-title-row">
-                                        <h6 class="item-title"><a href="order-list.html">${item.description.substring(0,26)}......</a></h6>
+                                        <h6 class="item-title"><a href="order-list.html">${item.title}</a></h6>
                                     </div>
                                     
                                 </div>

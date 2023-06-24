@@ -495,13 +495,20 @@ fetch(url, options)
     else{
         distance= (data.distances[0]/1000).toFixed(1);
     }
+var ph=value.photo.split(",")
+if(ph==null){
+    ph=value.photo;
+}
+else{
+    ph=ph[0]
+}
     $("#posts").append(
                     `<div  class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
                             <div class="item-media" style="width: 100%; object-fit: cover;">
-                                <img src="${value.photo}" alt="food" data-caseid=${value.case_id} onclick="openn('${value.case_id}')">
+                                <img src="${ph}" alt="food" data-caseid=${value.case_id} onclick="openn('${value.case_id}')">
                             </div>
                             <div class="item-content" style="padding:10px 15px;" >
-                                <a href="product.html"><h6 class="mb-0">${value.description}</h6></a>
+                                <a href="product.html"><h6 class="mb-0">${value.title}</h6></a>
                                 <div class="item-footer mt-2">
                                     <h6>${distance} kms away</h6> 
                                     <a href="javascript:void(0);" class="item-bookmark">
@@ -628,7 +635,7 @@ $.ajax({
                                 <div class="item-footer mt-2">
                                     <h6> kms away</h6> 
                                     <a href="javascript:void(0);" class="item-bookmark">
-                                        <span class="badge badge-secondary"></span>
+                                        <span class="badge badge-secondary">Not found</span>
                                     </a>
                                 </div>
                             </div>
@@ -691,13 +698,20 @@ fetch(url, options)
         distance= (data.distances[0]/1000).toFixed(1);
 
     }
+    var ph=value.photo.split(",")
+if(ph==null){
+    ph=value.photo;
+}
+else{
+    ph=ph[0]
+}
     $("#posts").append(
                     `<div  class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
                             <div class="item-media" style="width: 100%; object-fit: cover;">
-                                <img src="${value.photo}" alt="food" data-caseid=${value.case_id} onclick="openn('${value.case_id}') id="open">
+                                <img src="${ph}" alt="food" data-caseid=${value.case_id} onclick="openn('${value.case_id}') id="open">
                             </div>
                             <div class="item-content" style="padding:10px 15px;" >
-                                <a href="product.html"><h6 class="mb-0">${value.description}</h6></a>
+                                <a href="product.html"><h6 class="mb-0">${value.title}</h6></a>
                                 <div class="item-footer mt-2">
                                     <h6>${distance} kms away</h6> 
                                     <a href="javascript:void(0);" class="item-bookmark">
