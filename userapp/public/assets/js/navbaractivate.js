@@ -11,14 +11,14 @@ function activate() {
   var parentDocument = window.parent.document;
   var page = window.location.href.split('/').pop();
 
-  if (page === "user-home.html" || page === "indexuser.html") {
+  if (page === "user-home.html") {
     console.log("user home clicked!");
     const userHomeLink = parentDocument.getElementById("homelink");
     if (userHomeLink) {
       userHomeLink.classList.add("active");
     }
   }
-  else if(page==="notification.html"){
+  else if(page==="indexuser.html"){
     const userHomeLink = parentDocument.getElementById("notiflink");
     userHomeLink.classList.add("active");
   }

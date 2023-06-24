@@ -116,15 +116,15 @@
 
       <!-- Page Content -->
       <div>
-        <div class="container fb">
+        <div class="container fb m-0">
           <div class="col-12">
             <!-- <div class="card-header border-0 pb-0">
                         <h5 class="card-title">Card title</h5>
                     </div> -->
-            <div class="card-body">
+            <div class="card-body p-0">
               <!-- Onboading Start -->
               <div
-                class="swiper-container tag-group mt-4 recomand-swiper swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events"
+                class="swiper-container tag-group recomand-swiper swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events"
               >
                 <div
                   class="swiper-wrapper"
@@ -133,7 +133,7 @@
                   style="
                     transition-duration: 0ms;
                     transform: translate3d(-1072.5px, 0px, 0px);
-                  "
+                    "
                 >
                   <div
                     class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-prev"
@@ -142,12 +142,12 @@
                     role="group"
                     aria-label="1 / 7"
                   >
-                    <div class="card add-banner bg-primary">
+                    <div class="card add-banner bg-primary" ma>
                       <div class="circle-1"></div>
                       <div class="circle-2"></div>
                       <div class="card-body">
                         <div class="card-info">
-                          <span>Happy Weekend</span>
+                          <span>Happy Weekend 1</span>
                           <h2 data-text="60% OFF" class="title m-t10">
                             60% OFF
                           </h2>
@@ -168,7 +168,7 @@
                       <div class="circle-2"></div>
                       <div class="card-body">
                         <div class="card-info">
-                          <span>Happy Weekend</span>
+                          <span>Happy Weekend 2</span>
                           <h2 data-text="60% OFF" class="title m-t10">
                             60% OFF
                           </h2>
@@ -180,7 +180,7 @@
                   <div
                     class="swiper-slide swiper-slide-duplicate-next"
                     data-swiper-slide-index="0"
-                    style="width: 265px; margin-right: 10px"
+                    style="width: 265px; margin-right: 20px;"
                     role="group"
                     aria-label="3 / 7"
                   >
@@ -189,14 +189,14 @@
                       <div class="circle-2"></div>
                       <div class="card-body">
                         <div class="card-info">
-                          <span>Happy Weekend</span>
+                          <span>Happy Weekend 3</span>
                           <h2 data-text="60% OFF" class="title m-t10">
                             60% OFF
                           </h2>
                           <small>*for All Menus</small>
                         </div>
                       </div>
-                    </div>
+                  </div>
                   </div>
                   <div
                     class="swiper-slide swiper-slide-prev"
@@ -210,7 +210,7 @@
                       <div class="circle-2"></div>
                       <div class="card-body">
                         <div class="card-info">
-                          <span>Happy Weekend</span>
+                          <span>Happy Weekend 4</span>
                           <h2 data-text="60% OFF" class="title m-t10">
                             60% OFF
                           </h2>
@@ -231,7 +231,7 @@
                       <div class="circle-2"></div>
                       <div class="card-body">
                         <div class="card-info">
-                          <span>Happy Weekend</span>
+                          <span>Happy Weekend 5</span>
                           <h2 data-text="60% OFF" class="title m-t10">
                             60% OFF
                           </h2>
@@ -252,7 +252,7 @@
                       <div class="circle-2"></div>
                       <div class="card-body">
                         <div class="card-info">
-                          <span>Happy Weekend</span>
+                          <span>Happy Weekend 6</span>
                           <h2 data-text="60% OFF" class="title m-t10">
                             60% OFF
                           </h2>
@@ -273,7 +273,7 @@
                       <div class="circle-2"></div>
                       <div class="card-body">
                         <div class="card-info">
-                          <span>Happy Weekend</span>
+                          <span>Happy Weekend 7</span>
                           <h2 data-text="60% OFF" class="title m-t10">
                             60% OFF
                           </h2>
@@ -300,9 +300,11 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                background-color: aliceblue;
+                border-radius: 5%;
               "
             >
-              <div class="btn-group">
+              <div class="btn-group gap-2">
                 <button type="button" class="btn btn-primary">
                   Grooming centres
                 </button>
@@ -311,8 +313,8 @@
                 </button>
               </div>
             </div>
-            <div class="card">
-              <div class="card-body" style="margin-left: 2%">
+         
+              <div class="card-body mt-2" style="background-color: aliceblue; border-radius: 5%;">
                 <h6>
                   Funds Raised : ₹105000<br />Funds Target : ₹200000
                   <br /><br />Status : 85%
@@ -338,9 +340,9 @@
                   </button>
                 </div>
               </div>
-            </div>
+            
           </div>
-          <div class="card">
+          <!-- <div class="card">
             <div class="card-body" style="margin-left: 2%">
               <div style="display: flex; justify-content: space-between">
                 <h6>Tommy</h6>
@@ -425,7 +427,7 @@
               </button>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- Page Content End-->
 
         <div id="navbarContainer">
@@ -475,16 +477,16 @@
     <!-- Swiper -->
 
     <script>
-      var swiper = new Swiper(".swiper-container", {
-        slidesPerView: 1, // Number of slides per view
-        spaceBetween: 66, // Space between slides
-        loop: true, // Enable loop mode
-        autoplay: {
-          delay: 3000, // Delay between slides (in milliseconds)
-          disableOnInteraction: false, // Continue autoplay even on user interaction
-        },
-        speed: 500,
-      });
+      // var swiper = new Swiper(".swiper-container", {
+      //   slidesPerView: 1, // Number of slides per view
+      //   spaceBetween: 66, // Space between slides
+      //   loop: true, // Enable loop mode
+      //   autoplay: {
+      //     delay: 3000, // Delay between slides (in milliseconds)
+      //     disableOnInteraction: false, // Continue autoplay even on user interaction
+      //   },
+      //   speed: 500,
+      // });
     </script>
     <script>
       fetch("navbar.html")

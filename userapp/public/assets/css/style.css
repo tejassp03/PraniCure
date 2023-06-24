@@ -167,6 +167,16 @@
   :root {
     scroll-behavior: smooth; } }
 
+.card-title{
+  font-weight: 1000;
+  padding-bottom: 10px;
+}
+  .card-text{
+padding-top: 10px;
+line-height: 2;
+color: black;
+    }
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -221,7 +231,8 @@ h4, .h4 {
       font-size: 1.375rem; } }
 
 h5, .h5 {
-  font-size: 1.125rem; }
+  font-size: 1.125rem;
+margin-bottom: 10px; }
 
 h6, .h6 {
   font-size: 1rem; }
@@ -4735,7 +4746,7 @@ textarea.form-control-lg {
 
 .carousel-item-prev:not(.carousel-item-end),
 .active.carousel-item-start {
-  transform: translateX(-100%); }
+  transform: translateX(100%); }
 
 /* rtl:end:ignore */
 .carousel-fade .carousel-item {
@@ -4962,6 +4973,10 @@ textarea.form-control-lg {
   margin-bottom: 0;
   line-height: 1.6; }
 
+  .carousel-item>img
+  {
+width: 26rem !important;
+  }
 .offcanvas-body {
   flex-grow: 1;
   padding: 1rem 1rem;
@@ -4972,7 +4987,7 @@ textarea.form-control-lg {
   left: 0;
   width: 400px;
   border-right: 1px solid rgba(0, 0, 0, 0.2);
-  transform: translateX(-100%); }
+  transform: translateX(100%); }
 
 .offcanvas-end {
   top: 0;
@@ -5773,7 +5788,8 @@ textarea.form-control-lg {
   margin-left: 0.25rem !important; }
 
 .ms-2 {
-  margin-left: 0.5rem !important; }
+  margin-left: 0.5rem !important; 
+}
 
 .ms-3 {
   margin-left: 1rem !important; }
@@ -8213,7 +8229,8 @@ small, .small, .small {
   font-weight: 800 !important; }
 
 .font-w900 {
-  font-weight: 900 !important; }
+  font-weight: 900 !important; 
+text-align: center;}
 
 .p-a0 {
   padding: 0px; }
@@ -15107,13 +15124,16 @@ ul.list-check {
   text-align: center;
   margin-bottom: 20px;
 }
+.logo-image{
+display: flex;
+margin-left: 50px;}
 .welcome-box {
   box-shadow: none;
-  padding: 20px;
+  padding: 7px;
   background-color: var(--bg-white);
   border-radius: var(--border-radius-base);
   border: 1px solid var(--border-color);
-  margin: 0 0 20px 0;
+  margin: 10px 5px 10px 5px;
   color: #000;
   display: block;
   position: relative; }
@@ -15390,7 +15410,7 @@ ul.list-check {
     .started-swiper-box .dz-media img {
       max-width: 250px; }
   .started-swiper-box .slide-info {
-    height: 64%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
