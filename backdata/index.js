@@ -258,7 +258,23 @@ app.get("/fetch", (req, res) => {
 	
 		})
 	});
+	app.post("/updateprof", (req, res) => {
 
+		let sql =`UPDATE std_user SET username= '${req.body.Username}',address='${req.body.address}',phone_number='${req.body.Phone}',password='${req.body.Pass}',lat='${req.body.lat}',lon='${req.body.lon}',profile_picture='${req.body.img}' WHERE user_id='${req.body.Uid}'`;
+		let query = conn.query(sql, async (err,result) => {
+	  
+	  if (err) {
+				  console.log(err)
+				  res.send(JSON.stringify({ status: 500, error: null, response:"error" }));
+				}
+				else{
+				  res.send(JSON.stringify({ status: 200, error: null, response: "Updated"}));
+				}
+	  
+		})
+	  
+	  
+	  }) 
 app.post("/signupemail",async (req, res) => {
 
 	let data = { email_id: req.body.Mail , otp:req.body.Otp,phone:req.body.Phone};
