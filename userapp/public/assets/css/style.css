@@ -8046,9 +8046,11 @@ ul {
 
 img {
   border-style: none;
-  width:200px; 
-  height: auto;
-  vertical-align: middle; }
+  height: 100%;
+  max-width: 98px;
+  vertical-align: middle;
+  border-radius: 10px;
+  margin-left: 2px; }
 
 li {
   list-style: none; }
@@ -14057,7 +14059,7 @@ button {
     min-width: 135px; }
   .item-box .item-content {
     width: 100%;
-    padding: 7px 25px;
+    padding: 14px 15px;
     background: var(--bg-white);
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius-base);
@@ -14371,8 +14373,9 @@ svg.text-primary g path {
 .title {
   font-weight: 700;
   margin-bottom: 0;
-  margin-left: 150px;
-  color: var(--dark); }
+  margin-left: 126px;
+  color: var(--dark); 
+font-size: 20px;}
 
 .team-swiper-4 .swiper-wrapper .swiper-slide:first-child {
   margin-left: 15px; }
@@ -14507,7 +14510,7 @@ ul.list-check {
     margin-right: 10px; }
 
 .order-status {
-  margin: -10px 0; }
+  margin: 42px 0; }
   .order-status .tag-status {
     display: flex;
     align-items: center;
@@ -15167,7 +15170,7 @@ margin-left: 50px;}
   background-color: var(--bg-white);
   border-radius: var(--border-radius-base);
   border: 1px solid var(--border-color);
-  margin: 10px 10px;
+  margin: 10px 5px 10px 5px;
   color: #000;
   display: block;
   position: relative; }
@@ -15507,7 +15510,7 @@ margin-left: 50px;}
   background-color: var(--dark);
   border-radius: var(--border-radius-base);
   position: fixed;
-  bottom: 15px;
+  bottom: 50px;
   left: 15px;
   width: calc(100% - 30px); }
   .detail-box .handler {
