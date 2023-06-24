@@ -15101,8 +15101,12 @@ ul.list-check {
     padding: 0 0 15px;
     margin: auto 0 0; }
     .welcome-area .join-area .started {
-      margin-bottom: 30px; }
-
+      margin-bottom: 30px; 
+}
+.join-area .started{
+  text-align: center;
+  margin-bottom: 20px;
+}
 .welcome-box {
   box-shadow: none;
   padding: 20px;
@@ -15231,7 +15235,7 @@ ul.list-check {
       text-align: center;
       line-height: 90px;
       margin: 0 auto;
-      background-color: var(--primary);
+      background-color:(--primary);
       border-radius: var(--border-radius-base);
       overflow: hidden; }
       .main-screen .brand-logo .logo .brand-title {
@@ -15377,16 +15381,16 @@ ul.list-check {
   display: flex;
   padding: 0;
   flex-direction: column;
-  height: calc(100vh - 80px); }
+  height: calc(61vh - 80px); }
   .started-swiper-box .swiper-slide {
-    height: 100%;
+    height: 50%;
     position: relative; }
   .started-swiper-box .dz-media {
-    margin: auto auto 40px; }
+    margin: 120px auto auto; }
     .started-swiper-box .dz-media img {
       max-width: 250px; }
   .started-swiper-box .slide-info {
-    height: 100%;
+    height: 64%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
