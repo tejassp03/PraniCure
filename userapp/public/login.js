@@ -1,6 +1,9 @@
 let query =window.location.search
 let url =new URLSearchParams(query)
 let val=url.get('mode')
+if(localStorage.getItem("prani")){
+    window.location.href=`indexuser.html?mode=${val}`
+}
 $("#create").on("click",function(){
     window.location.href=`signup.html?mode=${val}`
 })
@@ -45,12 +48,21 @@ $("#login").on("click",function(){
                 console.log(res.response)
                 if(res.status==200){
                     swal("Logged In Successfully")
-                    setTimeout(function(){
-                        window.location.href='index.html'
-                        localStorage.setItem('prani',`${res.response[0].user_id}-${val}`)
+                
+                    localStorage.setItem('prani',`${res.response[0].user_id}-${res.response[0].user_type}`)
+                    if(res.response[0].user_type=='user'){
+                     setTimeout(function(){
+                        window.location.href='indexuser.html'
 
-                    
-                    },2000)
+                        },2000)
+                    }
+                    else{
+                        setTimeout(function(){
+                            window.location.href='indexngo.html'
+    
+                            },2000)
+                    }
+                   
                 }
                 else if(res.status==500){
                     swal("Failed", "No user exist with given Credentials ", "error");
