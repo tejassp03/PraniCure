@@ -362,6 +362,23 @@ app.post("/casedesp", (req, res) => {
   
   })  
 
+  app.post("/orderlist", (req, res) => {
+	let sql = `SELECT * FROM cases where user_id="${req.body.uid}"`;
+	let query = conn.query(sql, async (err,result) => {
+  
+  if (err) {
+			  console.log(err)
+			  res.send(JSON.stringify({ status: 500, error: null, response:"error" }));
+			}
+			else{
+			  res.send(JSON.stringify({ status: 200, error: null, response: result[0]}));
+			}
+  
+	})
+  
+  
+  })  
+
 app.post("/loadprof", (req, res) => {
 
 	let sql = `SELECT * FROM std_user where user_id="${req.body.Uid}"`;
