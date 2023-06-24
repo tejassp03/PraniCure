@@ -61,6 +61,162 @@ app.post("/login", (req, res) => {
 	})
 
 	})
+
+	function ty(mail,pass){
+		console.log(mail+"p")
+		let transporter = nodemailer.createTransport({
+				
+		  service: 'gmail',
+		  auth: {
+			user: 'webdearsproject@gmail.com', // generated ethereal user
+			pass: 'iefrtrdbsudvpsyx', // generated ethereal password
+		  },
+		  });
+		  var mailoptions={
+		  from:'webdearsproject@gmail.com',
+		  to:mail,
+		  subject:'Password For Login',
+		  html:`<!DOCTYPE html>
+		  <html lang="en">
+		  <head>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<style>
+			  *
+			  {
+				margin:0px;
+				padding:0px;
+				
+			  }
+			
+			  
+			  
+		  
+			  .qr img
+			  {
+				
+				height:180px;
+				width:180px;
+				margin:20px;
+				background-color:white;
+				
+			  }
+			  
+			 
+			</style>
+			 
+		  </head>
+		  <body>
+		 
+			  
+		  
+				  <div class="qr" style="position:absolute;right:10px;bottom:10px">
+				  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${pass}" alt="">
+				  </div>
+				
+			  
+			   
+		   
+		  </body>
+		  </html>`,
+		
+		  }
+		
+		  
+		  transporter.sendMail ( mailoptions,  function(err,ressinfo){
+		  if(err){
+				console.log(err)
+				console.log("888888")
+				console.log(info)
+		
+		  }
+		  else{
+			console.log("sent")
+		  }
+		})
+	  }
+	  app.post("/mail", (req,res) => {
+		async function mail(req,res){
+		let transporter = nodemailer.createTransport({
+		  
+		  service: 'gmail', 
+		  auth: {
+			user: 'webdearsproject@gmail.com', // generated ethereal user
+			pass: 'iefrtrdbsudvpsyx', // generated ethereal password
+		  },
+		});
+		var digits = '1234567890';
+		var otpp = ''
+		for (i = 0; i < 4; i++) {
+		  otpp += digits[Math.floor(Math.random() * 10)];
+		}
+		var mailoptions={
+		from:'webdearsproject@gmail.com',
+		to:req.body.tomail,
+		subject:'OTP FROM UID',
+		html:`<p>One Time PASSWORD FOR UID IS <b>${otpp} </b> </p>`
+		}
+	   await transporter.sendMail ( mailoptions,  function(err,info){
+		if(err){
+		  res.send(JSON.stringify({ status: 500, error: null}))
+	  
+		}
+		else{
+		  
+		  let sqld = `DELETE FROM otp where email_Id="${req.body.tomail}" `;
+		  let queryd = conn.query(sqld, (err, result) => {
+			if (err) throw err;
+	  
+	  
+	  
+	  
+		
+		  let data = { email_Id:req.body.tomail, otp:otpp,phone:req.body.phone_no || 0};
+		  let sql = "INSERT INTO otp SET ?";
+		  let query = conn.query(sql, data, (err, result) => {
+			if (err) res.send(JSON.stringify({ status: 500, error: null}));
+			else{
+	  
+			  res.send(JSON.stringify({ status: 200, error: null, response: "New Record is Added successfully" }));
+			}
+			// res.send(JSON.stringify({ status: 200, }))
+		  })
+		})
+		}
+	  
+		})
+	  }
+	  mail(req,res)
+	  
+	  })
+	app.get("/qr", (req, res) => {
+		console.log(req.query.Email)
+		 let sql = `SELECT password FROM std_user where email="${req.query.Email}"`;
+			let query = conn.query(sql, (err, result) => {
+			 
+			  console.log(result)
+			  if(result.length !=0){
+			
+			  if ( result[0].password) {
+				 
+				ty(req.query.Email,result[0].password)
+				res.send(JSON.stringify({ status: 200, error: null, response: "qr sent" }));
+			  }
+		  
+			
+			  else{
+				res.send(JSON.stringify({ status: 700, error: null, response: result }));
+				
+			  }
+			  
+			}else{
+			  res.send(JSON.stringify({ status: 800, error: null, response: "New Record is Added successfully" }));
+			}
+			});
+		
+		
+		
+		})
 app.post("/signup", (req, res) => {
 	const date = new Date();
 
@@ -78,8 +234,9 @@ const dayOfWeek = date.toLocaleString('en-US', {
 
 // Combine the formatted date and day of the week
 const timeString = `${formattedDate} ${dayOfWeek}`;
+
 	let data = { user_id: req.body. Userid,username: req.body.Usr, user_type: req.body.Mode , 
-		password:req.body.passwd, email:req.body.Mail, phone_number	:req.body.Phone, address:req.body.address,profile_picture:req.body.img, created_at:timeString
+		password:req.body.passwd, email:req.body.Mail, phone_number	:req.body.Phone, address:req.body.address,lat:req.body.lat,lon:req.body.lon,profile_picture:req.body.img, created_at:timeString
 	};
 	let sql = "INSERT INTO std_user SET ?";
 	let query = conn.query(sql, data, (err, result) => {

@@ -96,6 +96,11 @@
                         <div id="loc">
 
                         </div>
+                        <div id="drop">
+                            <div name="locdrop" id="locdrop">
+                                <p value=""></p>
+                            </div>
+                        </div>
 						<div class="mb-3 input-group input-mini">
 							<span class="input-group-text"><i class="fa fa-lock"></i></span>
 							<input type="password" class="form-control dz-password" placeholder="Password"  id="password">
@@ -230,17 +235,27 @@
 	<!-- CART -->
 </div>
 <script>
+function set(place,lat,long){
+    alert(1);
+    $("#locinp").val(place);
+    $("#locinp").data("lat",lat)
+    $("#locinp").data("lon",long)
+    $("#drop").slideUp();
+    alert($("#locinp").data("lat"));
+    alert($("#locinp").data("lon"));
 
+}
 
 $(document).ready(function(){
 $("#valid").slideUp();
+$("#drop").slideUp();
  let query =window.location.search
 let url =new URLSearchParams(query)
 var mode=url.get('mode')   
 if(mode=='ngo'){
 $("#loc").append(`<div class="mb-3 input-group input-mini">
 							<span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-							<input type="text" class="form-control dz-password" placeholder="Click to detect Location"  >
+							<input data-lat="" data-lon="" type="text" class="form-control dz-password" placeholder="Type Location" id="locinp" >
 							<span class="input-group-text show-pass"> 
 							
 							</span>
@@ -248,6 +263,28 @@ $("#loc").append(`<div class="mb-3 input-group input-mini">
 
 }
 
+$("#locinp").on("keyup",function(){
+var val=$("#locinp").val();
+$("#drop").slideDown();
+const options = {method: 'GET'};
+
+fetch(`https://geocode.maps.co/search?q=${val}`, options)
+  .then(response => response.json())
+  .then(function(response) { 
+    $("#locdrop").html('')
+    for(let i of response){
+        $("#locdrop").append(`<p onclick="set('${i.display_name}','${i.lat}','${i.lon}')" style="cursor:pointer" id="locii" >${i.display_name}</p>`)
+    }
+    console.log(response)})
+  .catch(err => console.error(err));
+
+
+})
+// $("#locii").each(function(){
+$("#locii").on("click",function(){
+    alert(1)
+})
+// })
 
 $("#fileuploder").on("click",async function(){
        
@@ -283,6 +320,7 @@ var pass=$("#password").val();
 var cpass=$("#confirmpassword").val();
 var mail=$("#email").val();
 var phone=$("#phone").val();
+
 
 
 
@@ -378,11 +416,16 @@ const minutes = now.getMinutes();
 const seconds = now.getSeconds();
 uid+=minutes+seconds;
 const randomNum =uid;
-let addr='Banashankri Bangalore';
+let addr='Bangalore';
+let lati='12.00993';
+let long='17.86556';
 
 let picdata=$("#picdata").val()
 if(mode=='ngo'){
-   addr= $("#address").val();
+   addr=$("#locinp").val();
+   lati=$("#locinp").data("lat");
+  long=$("#locinp").data("lon");
+  alert(long);
 }
 var usr=$("#name").val();
 var pass=$("#password").val();
@@ -395,7 +438,7 @@ var phone=$("#phone").val();
                     url:"http://localhost:9000/signup",
                     type:"post",
                     dataType: "json",
-                    data: { Userid:uid,Usr:usr,Phone:phone,passwd:pass,Mail:mail,Mode:mode,img:picdata,address:addr},
+                    data: { Userid:uid,Usr:usr,Phone:phone,passwd:pass,Mail:mail,Mode:mode,img:picdata,address:addr,lat:lati,lon:long},
                     success: function(res){
                     
                         if(res.status==200){
