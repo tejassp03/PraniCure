@@ -3,7 +3,7 @@
 
 
 <head>
-
+    
     <!-- Meta -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
@@ -44,36 +44,39 @@
   <!-- Title -->
   <title>PraniCare - Animal Helpline App</title>
 
-    <!-- PWA Version -->
-    <link rel="manifest" href="manifest.json" />
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link href="./plugins/toastr/css/toastr.min.css" rel="stylesheet">
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="assets/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" />
+  <!-- PWA Version -->
+  <link rel="manifest" href="manifest.json" />
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link href="./plugins/toastr/css/toastr.min.css" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link
+    rel="stylesheet"
+    href="assets/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css"
+  />
 
-    <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com/" />
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&amp;family=Roboto+Slab:wght@100;300;500;600;800&amp;display=swap"
-        rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/" />
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&amp;family=Roboto+Slab:wght@100;300;500;600;800&amp;display=swap"
+    rel="stylesheet"
+  />
 
-</head>
-
+</head>   
 <body class="bg-white">
-    <div class="page-wraper">
-
-        <!-- Preloader -->
-        <!-- <div id="preloader">
+<div class="page-wraper">
+    
+    <!-- Preloader -->
+    <!-- <div id="preloader">
         <div class="spinner"></div>
     </div> -->
-        <!-- Preloader end-->
-
-        <!-- Header -->
-        <!-- <header class="header">
+    <!-- Preloader end-->
+    
+	<!-- Header -->
+    <!-- <header class="header">
         <div class="main-bar">
             <div class="container">
                 <div class="header-content">
@@ -93,453 +96,372 @@
             </div>
         </div>
     </header> -->
-        <<<<<<< HEAD <div class="modal fade" id="exampleModalCenter" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-                        <button class="btn-close" data-bs-dismiss="modal">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="prof" style="display: flex;justify-content: space-between;">
-
-
-                            <div id="imgcontainer">
-                                <img src="profileimages/download.jpg" alt="..." style="height: 150px;width: 120px;"
-                                    id="imageprofile">
-                                <!-- <img src="" alt=""> -->
-
+    <div class="modal fade" id="exampleModalCenter" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button class="btn-close" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="prof" style="display: flex;justify-content: space-between;">
+                   
+                    
+                        <div id="imgcontainer">
+                            <img src="profileimages/download.jpg" alt="..." style="height: 150px;width: 120px;" id="imageprofile">
+                            <!-- <img src="" alt=""> -->
+    
+                        </div>
+                        <div class="custom-file">
+                                                                      
+                            <input type="file" id="picfile" name="picfile" class="custom-file-input" >
+                            <input type="hidden" id="picdata" name="picdata" value="0" >
+                            <label class="custom-file-label">Choose file</label>
+    
+                            <div class="input-group-append">
+                                <button class="btn mb-1 btn-outline-secondary" id="fileuploder" type="button">Upload</button>
                             </div>
-                            <div class="custom-file">
-
-                                <input type="file" id="picfile" name="picfile" class="custom-file-input">
-                                <input type="hidden" id="picdata" name="picdata" value="0">
-                                <label class="custom-file-label">Choose file</label>
-
-                                <div class="input-group-append">
-                                    <button class="btn mb-1 btn-outline-secondary" id="fileuploder"
-                                        type="button">Upload</button>
+                        </div>
+                   </div>
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        <input type="text" class="form-control" placeholder="Name" id="nameedit">
+                    </div>
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+                        <input type="text" class="form-control" placeholder="Phone" id="phoneedit">
+                    </div>
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                        <input type="text" class="form-control dz-password" id="passedit" placeholder="Password">
+                        
+                    </div>
+                    <div class="mb-3 input-group input-mini">
+                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                        <input id="addedit" data-lat="" data-lon="" type="text" class="form-control dz-password" placeholder="Type Location" id="locinp" >
+                        <span class="input-group-text show-pass"> 
+                        
+                        </span>
+                        <div id="drop">
+                            <div name="locdrop" id="locdrop">
+                                <p value=""></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-danger light" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-sm btn-primary" id="profupdate">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header class="header" style="padding-top:5px;border: 0;">
+        <div class="main-bar">
+            <div class="container">
+                <div class="header-content">
+                    <div class="left-content">
+                        <div class="dz-info d-flex align-items-center">
+                            <img src="assets/images/whitelogo.png" width="30" alt="">
+                            <h4 class="name mb-0" style="color: rgb(91, 91, 91);">&nbsp;Prani<span style="color:rgb(60, 164, 255)">Care</span></h4>
+                        </div>
+                    </div>
+                    <div class="mid-content">
+                    </div>
+                    <div class="right-content">
+                      <a href="profile.html">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="21"
+                        fill="#bfc9da"
+                        xmlns:v="https://vecta.io/nano"
+                      >
+                        <path
+                          d="M8 7.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 1 0 0 7.5zm7.5 9v1.5c-.002.199-.079.39-.217.532C13.61 20.455 8.57 20.5 8 20.5s-5.61-.045-7.282-1.718C.579 18.64.501 18.449.5 18.25v-1.5a7.5 7.5 0 1 1 15 0z"
+                        />
+                      </svg>
+                      </a>	
+                  </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+	
+    <!-- Page Content -->
+    <div class="page-content bottom-content ">
+        <div class="container profile-area">
+            <div class="profile">
+                <div class="media media-100">
+                    <img src="assets/images/message/pic6.jpg" alt="/" id="userimg">
+                    <svg class="progress-style" height="100" width="100">
+                        <circle id="round-1" cx="60" cy="60" r="50" stroke="#E8EFF3" stroke-width="7" fill="none" />
+                        <circle id="round-2" cx="60" cy="60" r="50" stroke="#C3AC58" stroke-width="7" fill="none" />
+                    </svg>
+                </div>
+                <div class="mb-2">
+                    <h4 id="name">James Hawkins</h4>
+                    <!-- <h6 class="detail">GOLD MEMBER</h6> -->
+                </div>
+            </div>    
+            <div class="contact-section">
+                <div class="d-flex justify-content-between align-item-center">
+                    <!-- <h5 class="title">Contactscc</h5> -->
+                    <button type="button" class="btn w-100 btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Edit</button>
+                    <!-- <a href="javascript:void(0);" class="btn-link">Edit</a> -->
+                </div>
+                <ul>
+                    <li>
+						<a >
+							<div class="icon-box">
+								<i class="fa-solid fa-phone"></i>
+							</div> 
+							<div class="ms-3">
+								<div class="light-text">Mobile Phone</div>
+								<p class="mb-0" id="phone">+12 345 678 92</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a >
+							<div class="icon-box">
+								<i class="fa-solid fa-envelope"></i>
+							</div> 
+							<div class="ms-3">
+								<div class="light-text">Email Address</div>
+								<p class="mb-0" id="mail">jameshawkins@mail.com</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a >
+							<div class="icon-box">
+								<i class="fa-solid fa-location-dot"></i>
+							</div> 
+							<div class="ms-3">
+								<div class="light-text">Address</div>
+								<p class="mb-0" id="address">Franklin Avenue, Corner St.London, 24125151</p>
+							</div>
+                           
+						</a>
+					</li>
+				</ul>
+                <div class="d-flex justify-content-between align-item-center">
+                    <h5 class="title">Your Reward 🏆</h5>
+                    <a href="javascript:void(0);" class="btn-link">History</a>
+                </div>
+                <div class="swiper-btn-center-lr">
+                    <div class="swiper-container mt-4 offer-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="offer-bx">
+                                    <div class="offer-content">
+                                        <h6>Order 10 packs French Fries Deluxe</h6>
+                                        <small>4 days ago</small>
+                                    </div>
+                                    <div class="point">
+                                        <h5 class="title">150</h5>
+                                        <small class="d-block">Pts</small>
+                                    </div>
                                 </div>
-                                =======
-                                <div class="modal fade" id="exampleModalCenter" style="display: none;"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Modal title</h5>
-                                                <button class="btn-close" data-bs-dismiss="modal" id="cls">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div id="prof" style="display: flex;justify-content: space-between;">
-
-
-                                                    <div id="imgcontainer">
-                                                        <img src="profileimages/download.jpg" alt="..."
-                                                            style="height: 150px;width: 120px;" id="imageprofile">
-                                                        <!-- <img src="" alt=""> -->
-
-                                                    </div>
-                                                    <div class="custom-file">
-
-                                                        <input type="file" id="picfile" name="picfile"
-                                                            class="custom-file-input">
-                                                        <input type="hidden" id="picdata" name="picdata" value="0">
-                                                        <label class="custom-file-label">Choose file</label>
-
-                                                        <div class="input-group-append">
-                                                            <button class="btn mb-1 btn-outline-secondary"
-                                                                id="fileuploder" type="button">Upload</button>
-                                                            >>>>>>> 86369b3fba2bc5d81b236b84d12dc16bf53d1a25
-                                                        </div>
-                                                    </div>
-                                                    <div class="mb-3 input-group">
-                                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Name"
-                                                            id="nameedit">
-                                                    </div>
-                                                    <div class="mb-3 input-group">
-                                                        <span class="input-group-text"><i
-                                                                class="fa-solid fa-phone"></i></span>
-                                                        <input type="text" class="form-control" placeholder="Phone"
-                                                            id="phoneedit">
-                                                    </div>
-                                                    <div class="mb-3 input-group">
-                                                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                                                        <input type="text" class="form-control dz-password"
-                                                            id="passedit" placeholder="Password">
-
-                                                    </div>
-                                                    <div class="mb-3 input-group input-mini">
-                                                        <span class="input-group-text"><i
-                                                                class="fas fa-map-marker-alt"></i></span>
-                                                        <input id="addedit" data-lat="" data-lon="" type="text"
-                                                            class="form-control dz-password" placeholder="Type Location"
-                                                            id="locinp">
-                                                        <span class="input-group-text show-pass">
-
-                                                        </span>
-                                                        <div id="drop">
-                                                            <div name="locdrop" id="locdrop">
-                                                                <p value=""></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-sm btn-danger light"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-sm btn-primary"
-                                                        id="profupdate">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="offer-bx">
+                                    <div class="offer-content">
+                                        <h6>Order 10 packs French Fries Deluxe</h6>
+                                        <small>4 days ago</small>
                                     </div>
-                                    <header class="header" style="padding-top:5px;border: 0;">
-                                        <div class="main-bar">
-                                            <div class="container">
-                                                <div class="header-content">
-                                                    <div class="left-content">
-                                                        <div class="dz-info d-flex align-items-center">
-                                                            <img src="assets/images/whitelogo.png" width="30" alt="">
-                                                            <h4 class="name mb-0" style="color: rgb(91, 91, 91);">
-                                                                &nbsp;Prani<span
-                                                                    style="color:rgb(60, 164, 255)">Care</span></h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mid-content">
-                                                    </div>
-                                                    <div class="right-content">
-                                                        <a href="profile.html">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="21" fill="#bfc9da"
-                                                                xmlns:v="https://vecta.io/nano">
-                                                                <path
-                                                                    d="M8 7.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 1 0 0 7.5zm7.5 9v1.5c-.002.199-.079.39-.217.532C13.61 20.455 8.57 20.5 8 20.5s-5.61-.045-7.282-1.718C.579 18.64.501 18.449.5 18.25v-1.5a7.5 7.5 0 1 1 15 0z" />
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </header>
-                                    <!-- Header End -->
-
-                                    <!-- Page Content -->
-                                    <div class="page-content bottom-content ">
-                                        <div class="container profile-area">
-                                            <div class="profile">
-                                                <div class="media media-100">
-                                                    <img src="assets/images/message/pic6.jpg" alt="/" id="userimg">
-                                                    <svg class="progress-style" height="100" width="100">
-                                                        <circle id="round-1" cx="60" cy="60" r="50" stroke="#E8EFF3"
-                                                            stroke-width="7" fill="none" />
-                                                        <circle id="round-2" cx="60" cy="60" r="50" stroke="#C3AC58"
-                                                            stroke-width="7" fill="none" />
-                                                    </svg>
-                                                </div>
-                                                <div class="mb-2">
-                                                    <h4 id="name">James Hawkins</h4>
-                                                    <!-- <h6 class="detail">GOLD MEMBER</h6> -->
-                                                </div>
-                                            </div>
-                                            <div class="contact-section">
-                                                <div class="d-flex justify-content-between align-item-center">
-                                                    <!-- <h5 class="title">Contactscc</h5> -->
-                                                    <button type="button" class="btn w-100 btn-primary mb-2"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModalCenter">Edit</button>
-                                                    <!-- <a href="javascript:void(0);" class="btn-link">Edit</a> -->
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <a>
-                                                            <div class="icon-box">
-                                                                <i class="fa-solid fa-phone"></i>
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                <div class="light-text">Mobile Phone</div>
-                                                                <p class="mb-0" id="phone">+12 345 678 92</p>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a>
-                                                            <div class="icon-box">
-                                                                <i class="fa-solid fa-envelope"></i>
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                <div class="light-text">Email Address</div>
-                                                                <p class="mb-0" id="mail">jameshawkins@mail.com</p>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a>
-                                                            <div class="icon-box">
-                                                                <i class="fa-solid fa-location-dot"></i>
-                                                            </div>
-                                                            <div class="ms-3">
-                                                                <div class="light-text">Address</div>
-                                                                <p class="mb-0" id="address">Franklin Avenue, Corner
-                                                                    St.London, 24125151</p>
-                                                            </div>
-
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                                <div class="d-flex justify-content-between align-item-center">
-                                                    <h5 class="title">Your Reward 🏆</h5>
-                                                    <a href="javascript:void(0);" class="btn-link">History</a>
-                                                </div>
-                                                <div class="swiper-btn-center-lr">
-                                                    <div class="swiper-container mt-4 offer-swiper">
-                                                        <div class="swiper-wrapper">
-                                                            <div class="swiper-slide">
-                                                                <div class="offer-bx">
-                                                                    <div class="offer-content">
-                                                                        <h6>Be their Hero. Donate Today!</h6>
-
-                                                                    </div>
-                                                                    <div class="point">
-                                                                        <h5 class="title"><img
-                                                                                src="assets/images/paw4.png"></h5>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="swiper-slide">
-                                                                <div class="offer-bx">
-                                                                    <div class="offer-content">
-                                                                        <h6>Be a PraniCure Champion by helping the
-                                                                            animals in distress!</h6>
-
-                                                                    </div>
-                                                                    <div class="point">
-                                                                        <h5 class="title"><img
-                                                                                src="assets/images/trofee.png"></h5>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="point">
+                                        <h5 class="title">150</h5>
+                                        <small class="d-block">Pts</small>
                                     </div>
-                                    <!-- Page Content End-->
-
-                                    <!-- Menubar -->
-                                    <div id="navbarContainer">
-                                        <script>
-                                            var currentURL = window.location.href;
-                                            activate(currentURL);
-                                        </script>
-                                        <!-- Menubar -->
-
-                                        <!-- Theme Color Settings -->
-                                    </div>
-                                    <!-- Theme Color Settings End -->
                                 </div>
-                                <!--**********************************
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="offer-bx">
+                                    <div class="offer-content">
+                                        <h6>Order 10 packs French Fries Deluxe</h6>
+                                        <small>4 days ago</small>
+                                    </div>
+                                    <div class="point">
+                                        <h5 class="title">150</h5>
+                                        <small class="d-block">Pts</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Content End-->
+    
+    <!-- Menubar -->
+    <div id="navbarContainer">
+        <script>
+            var currentURL = window.location.href;
+            activate(currentURL);
+        </script>
+	<!-- Menubar -->
+	
+    <!-- Theme Color Settings -->
+	</div>
+	<!-- Theme Color Settings End -->
+</div> 
+<!--**********************************
     Scripts
 ***********************************-->
-                                <script src="assets/js/jquery.js"></script>
-                                <script src="assets/vendor/lightgallery/dist/lightgallery.umd.js"></script>
-                                <script
-                                    src="assets/vendor/lightgallery/dist/plugins/thumbnail/lg-thumbnail.umd.js"></script>
-                                <script src="assets/vendor/lightgallery/dist/plugins/zoom/lg-zoom.umd.js"></script>
-                                <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-                                <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-                                <!-- Swiper -->
-                                <script src="assets/js/dz.carousel.js"></script>
-                                <!-- Swiper -->
-                                <script>
-                                    fetch('navbar.html')
-                                        .then(response => response.text())
-                                        .then(function (content) {
-                                            document.getElementById('navbarContainer1').innerHTML = content;
-                                        });
-                                    let uid = localStorage.getItem("prani");
-                                    let id = uid.split('-')
-                                    function load_profile() {
-                                        let uid = localStorage.getItem("prani");
-                                        let id = uid.split('-')
-                                        $.ajax({
-                                            url: "http://localhost:9000/loadprof",
-                                            type: "post",
-                                            dataType: "json",
-                                            data: {
-                                                Uid: id[0]
-                                            },
+<script src="assets/js/jquery.js"></script>
+<script src="assets/vendor/lightgallery/dist/lightgallery.umd.js"></script>
+<script src="assets/vendor/lightgallery/dist/plugins/thumbnail/lg-thumbnail.umd.js"></script>
+<script src="assets/vendor/lightgallery/dist/plugins/zoom/lg-zoom.umd.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<!-- Swiper -->
+<script src="assets/js/dz.carousel.js"></script>
+<!-- Swiper -->
+<script>
+    fetch('navbar.html')
+.then(response => response.text())
+.then(function(content)  {
+  document.getElementById('navbarContainer1').innerHTML = content;
+});
+let uid=localStorage.getItem("prani");
+  let id=uid.split('-')
+  function load_profile(){
+  let uid=localStorage.getItem("prani");
+  let id=uid.split('-')
+  $.ajax({
+    url:"http://localhost:9000/loadprof",
+    type:"post",
+    dataType: "json",
+    data: { Uid:id[0]
+    },
+    
+    success: function(res){
+        if(res.status==200){
+            $("#userimg").attr("src",res.response.profile_picture)
+            $("#picdata").val(res.response.profile_picture)
+            $("#imageprofile").attr("src",res.response.profile_picture)
+          $("#name").html(res.response.username)
+          $("#phone").html(res.response.phone_number)
+          $("#mail").html(res.response.email)
+          $("#address").html(res.response.address)
+          $("#phoneedit").val(res.response.phone_number)
+          $("#nameedit").val(res.response.username)
+          $("#passedit").val(res.response.password)
+          $("#addedit").val(res.response.address)
+          $("#addedit").data("lat",res.response.lat)
+          $("#addedit").data("lon",res.response.lon)
 
-                                            success: function (res) {
-                                                if (res.status == 200) {
-                                                    $("#userimg").attr("src", res.response.profile_picture)
-                                                    $("#imageprofile").attr("src", res.response.profile_picture)
-                                                    $("#name").html(res.response.username)
-                                                    $("#phone").html(res.response.phone_number)
-                                                    $("#mail").html(res.response.email)
-                                                    $("#address").html(res.response.address)
-                                                    $("#phoneedit").val(res.response.phone_number)
-                                                    $("#nameedit").val(res.response.username)
-                                                    $("#passedit").val(res.response.password)
-                                                    $("#addedit").val(res.response.address)
+        //   $("#val-email").val(res.response.Email)
+        //   $("#val-phone").val(res.response.Phone)
+        //   $("#val-password").val(res.response.Pass)
+          console.log(res)
+          
+        
+         }
+        else if(res.status==500){
+          console.log(res)
+        }
+    }
+})
 
-                                                    //   $("#val-email").val(res.response.Email)
-                                                    //   $("#val-phone").val(res.response.Phone)
-                                                    //   $("#val-password").val(res.response.Pass)
-                                                    console.log(res)
+}
+load_profile()
+$("#fileuploder").on("click",async function(){
+       
+       let formData = new FormData(); 
+       formData.append("picfile", picfile.files[0]);
+       await fetch('http://localhost:9000/upload', {
+           method: "POST", 
+           body: formData
+   }).then(response => response.json())
 
+           // Displaying results to console
+           .then(json => {
+               if(json.status==200){
 
-                                                }
-                                                else if (res.status == 500) {
-                                                    console.log(res)
-                                                }
-                                            }
-                                        })
+                   let src=json.response.indexOf("profileimages")
+                   src=json.response.slice(src)
 
-                                    }
-                                    load_profile()
-                                    $("#fileuploder").on("click", async function () {
+                   $("#imageprofile").attr("src",src)
+                   $("#picdata").val(src)
+               }
+               
+               
+               console.log(json.response)}); 
+   })
+$(document).on("click","#profupdate",function(){
+  
+  let uid=localStorage.getItem("weather");
 
-                                        let formData = new FormData();
-                                        formData.append("picfile", picfile.files[0]);
-                                        await fetch('http://localhost:9000/upload', {
-                                            method: "POST",
-                                            body: formData
-                                        }).then(response => response.json())
-
-                                            // Displaying results to console
-                                            .then(json => {
-                                                if (json.status == 200) {
-
-                                                    let src = json.response.indexOf("profileimages")
-                                                    src = json.response.slice(src)
-
-                                                    $("#imageprofile").attr("src", src)
-                                                    $("#picdata").val(src)
-                                                }
-
-
-                                                console.log(json.response)
-                                            });
-                                    })
-                                    $(document).on("click", "#profupdate", function () {
-
-                                        let uid = localStorage.getItem("weather");
-
-                                        let picdata = $("#picdata").val()
-                                        let username = $("#nameedit").val()
-                                        let phone = $("#phoneedit").val()
-                                        let pass = $("#passedit").val()
-                                        let addr = $("#addedit").val()
-
-
-                                        $.ajax({
-                                            url: "http://localhost:9000/updateprof",
-                                            type: "post",
-                                            dataType: "json",
-                                            data: {
-                                                Uid: id[0], Username: username, Pass: pass, Phone: phone, address: addr, lat: $("#addedit").data("lat"), lon: $("#addedit").data("lon"), img: picdata
-                                            },
-
-                                            success: function (res) {
-                                                if (res.status == 200) {
-                                                    swal("Success", "Updated Successfully", "success")
-                                                    //   toastr.success("Updated successfully","Profile Updated",{positionClass:"toast-bottom-right",timeOut:5e3,closeButton:!0,debug:!1,newestOnTop:!0,progressBar:!0,preventDuplicates:!0,onclick:null,showDuration:"300",hideDuration:"1000",extendedTimeOut:"1000",showEasing:"swing",hideEasing:"linear",showMethod:"fadeIn",hideMethod:"fadeOut",tapToDismiss:!1})
-
-                                                    load_profile()
-                                                }
-                                                else if (res.status == 500) {
-                                                    console.log(res)
-                                                }
-                                            }
-                                        })
+  let picdata=$("#picdata").val()
+          let username=$("#nameedit").val()
+          let phone=$("#phoneedit").val()
+          let pass=$("#passedit").val()
+          let addr=$("#addedit").val()
 
 
-
-                                    })
-                                    $("#drop").slideUp();
-                                    function set(place, lat, long) {
-                                        alert(1);
-                                        $("#addedit").val(place);
-                                        $("#addedit").data("lat", lat)
-                                        $("#addedit").data("lon", long)
-                                        $("#drop").slideUp();
-                                        alert($("#addedit").data("lat"));
-                                        alert($("#addedit").data("lon"));
-
-                                    }
-                                    $("#addedit").on("keyup", function () {
-                                        var val = $("#addedit").val();
-                                        $("#drop").slideDown();
-                                        const options = { method: 'GET' };
-
-                                        fetch(`https://geocode.maps.co/search?q=${val}`, options)
-                                            .then(response => response.json())
-                                            .then(function (response) {
-                                                $("#locdrop").html('')
-                                                for (let i of response) {
-                                                    $("#locdrop").append(`<p onclick="set('${i.display_name}','${i.lat}','${i.lon}')" style="cursor:pointer" id="locii" >${i.display_name}</p>`)
-                                                }
-                                                console.log(response)
-                                            })
-                                            .catch(err => console.error(err));
-
-
-                                    })
+          $.ajax({
+            url:"http://localhost:9000/updateprof",
+            type:"post",
+            dataType: "json",
+            data: { Uid:id[0],Username:username,Pass:pass,Phone:phone,address:addr,lat: $("#addedit").data("lat"),lon:$("#addedit").data("lon"),img:picdata
+            },
+            
+            success: function(res){
+                if(res.status==200){
+                  swal("Success","Updated Successfully","success")
+                //   toastr.success("Updated successfully","Profile Updated",{positionClass:"toast-bottom-right",timeOut:5e3,closeButton:!0,debug:!1,newestOnTop:!0,progressBar:!0,preventDuplicates:!0,onclick:null,showDuration:"300",hideDuration:"1000",extendedTimeOut:"1000",showEasing:"swing",hideEasing:"linear",showMethod:"fadeIn",hideMethod:"fadeOut",tapToDismiss:!1})
+                  
+                load_profile()
+                 }
+                else if(res.status==500){
+                  console.log(res)
+                }
+            }
+        })
 
 
 
-                                </script>
-                                <script src="./plugins/toastr/js/toastr.min.js"></script>
-                                <script srbefore bbodyc="./plugins/toastr/js/toastr.init.js"></script>
+  })
+  $("#drop").slideUp();
+  function set(place,lat,long){
+    alert(1);
+    $("#addedit").val(place);
+    $("#addedit").data("lat",lat)
+    $("#addedit").data("lon",long)
+    $("#drop").slideUp();
+    alert($("#addedit").data("lat"));
+    alert($("#addedit").data("lon"));
 
-                                })
-                                $("#drop").slideUp();
-                                function set(place,lat,long){
-                                alert(1);
-                                $("#addedit").val(place);
-                                $("#addedit").data("lat",lat)
-                                $("#addedit").data("lon",long)
-                                $("#drop").slideUp();
-                                alert($("#addedit").data("lat"));
-                                alert($("#addedit").data("lon"));
+}
+$("#addedit").on("keyup",function(){
+var val=$("#addedit").val();
+$("#drop").slideDown();
+const options = {method: 'GET'};
 
-                                }
-                                $("#cls").on("click",function () {
-                                $("#drop").slideUp();
-                                $("#locdrop").html('')
-                                })
-                                $("#addedit").on("keyup",function(){
-                                var val=$("#addedit").val();
-                                $("#drop").slideDown();
-                                const options = {method: 'GET'};
-
-                                fetch(`https://geocode.maps.co/search?q=${val}`, options)
-                                .then(response => response.json())
-                                .then(function(response) {
-                                $("#locdrop").html('')
-                                for(let i of response){
-                                $("#locdrop").append(`<p onclick="set('${i.display_name}','${i.lat}','${i.lon}')"
-                                    style="cursor:pointer" id="locii">${i.display_name}</p>`)
-                                }
-                                console.log(response)})
-                                .catch(err => console.error(err));
+fetch(`https://geocode.maps.co/search?q=${val}`, options)
+  .then(response => response.json())
+  .then(function(response) { 
+    $("#locdrop").html('')
+    for(let i of response){
+        $("#locdrop").append(`<p onclick="set('${i.display_name}','${i.lat}','${i.lon}')" style="cursor:pointer" id="locii" >${i.display_name}</p>`)
+    }
+    console.log(response)})
+  .catch(err => console.error(err));
 
 
-                                })
+})
 
 
-                                </script>
-                                <script src="./plugins/toastr/js/toastr.min.js"></script>
-                                <script srbefore bbodyc="./plugins/toastr/js/toastr.init.js"></script>
-                                
+</script>
+<script src="./plugins/toastr/js/toastr.min.js"></script>
+<script srbefore bbodyc="./plugins/toastr/js/toastr.init.js"></script>
 </body>
-
 </html>

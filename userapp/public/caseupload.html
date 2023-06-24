@@ -144,14 +144,14 @@ figcaption{
         <div class="container fb">
             <input type="file" id="fileinput" name="fileinput" accept="image/png, image/jpeg"  multiple>
                 <label class="label" for="fileinput">
-                    <i class="fas fa-upload"></i> &nbsp; Upload Photos
+                    <i class="fas fa-upload"></i> &nbsp; Select photos
                 </label>
                 <br>
                 <p id="num-of-files">No Files Chosen</p>
                 <div class="images">
 
                 </div>
-            <!-- <button id="upload">button</button> -->
+                <button type="button" class="btn btn-primary w-100">Upload</button>
                 <a id="seloc" class="btn btn-secondary mb-3 font-15 p-2 mt-2 d-flex align-items-center btn-block">
                     <i class='fas fa-location-arrow' style='font-size:24px;color:white;'></i> &nbsp;Select Location</a>
                     <div class="mb-2 input-group input-radius" id="location">
@@ -341,76 +341,28 @@ fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=12.9767936&lo
   $('#fileinput').change( async function() {
     var form_data = new FormData();
     form_data.append("fileinput", fileinput.files[0]);
-    //  var filesName = $('#fileinput')[0].files;
-    // var error = '';
+     var filesName = $('#fileinput')[0].files;
+    var error = '';
 
 
-//     for (var count = 0; count < filesName.length; count++) {
-//       var name = filesName[count].name;
-//       var extension = name.split('.').pop().toLowerCase();
-//       var numOfFiles = form_data.getAll("files[]").length;
+    for (var count = 0; count < filesName.length; count++) {
+      var name = filesName[count].name;
+      var extension = name.split('.').pop().toLowerCase();
+      var numOfFiles = form_data.getAll("files[]").length;
      
       
-//       if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-//         error += "Invalid " + count + " Image File";
-//       } else {
-//         if(numOfFiles>4)
-//         {
-//             alert('Maximum 3 images can be uploaded.');
-//             return;
-//         }
-//     }
-// }
-      
-    //     let formData = new FormData(); 
-    //    formData.append("picfile", picfile.files[0]);
-    
-    await fetch('http://localhost:9000/upload', {
-           method: "POST", 
-           body:   form_data
-   }).then(response => response.json())
-
-           // Displaying results to console
-           .then(json => {
-               if(json.status==200){
-
-                   alert(1)
-               }})
-               
-
-
-
-for(let item of form_data.getAll("files[]")){
-    console.log(item.name)
+      if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+        error += "Invalid " + count + " Image File";
+      } else {
+        if(numOfFiles>4)
+        {
+            alert('Maximum 3 images can be uploaded.');
+            return;
+        }
+    }
 }
-   
-    // cocoSsd.load().then(model => {
-    //   // Load the image.
-    //   const img = new Image();
-    //   img.src = 'web/kitty.jpeg'; // Replace with the path to your image file.
+      
   
-    //   // When the image is loaded, perform object detection.
-    //   img.onload = () => {
-    //     console.time("test_timer");
-    //     // Detect objects in the image.
-    //     model.detect(img).then(predictions => {
-    //       console.timeEnd("test_timer");
-    //       const animalClasses = ['bird', 'cat', 'dog', 'horse','elephant']; // Array of most common animal classes
-    //       const detectedClasses = predictions.map(prediction => prediction.class);
-  
-    //       // Check if any of the detected classes are present in the animalClasses array
-    //       const isAnimal = detectedClasses.some(cls => animalClasses.includes(cls));
-  
-    //       console.log('Is animal:', isAnimal);
-
-    //       document.body.innerHTML = isAnimal;
-    //       document.body.append(img);
-    //     });
-    //   };
-    // });
-
- 
-        // console.log(form_data.getAll("files[]"));
 
  
 
