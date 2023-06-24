@@ -22,7 +22,7 @@ function activate() {
     const userHomeLink = parentDocument.getElementById("notiflink");
     userHomeLink.classList.add("active");
   }
-  else if(page==="messages.html"){
+  else if(page==="order-list.html"){
       const userHomeLink = parentDocument.getElementById("messagelink");
       userHomeLink.classList.add("active");
   }

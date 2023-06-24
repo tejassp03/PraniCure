@@ -3546,7 +3546,8 @@ textarea.form-control-lg {
   padding: 1rem 1rem; }
 
 .card-title {
-  margin-bottom: 0.5rem; }
+  margin-bottom: .2010000000000005rem;
+  margin-top: -1.2010000000000005rem; }
 
 .card-subtitle {
   margin-top: -0.25rem;
@@ -8220,7 +8221,10 @@ small, .small, .small {
   font-weight: 500 !important; }
 
 .font-w600 {
-  font-weight: 600 !important; }
+  font-weight: 600 !important;
+font-size: 1rem;
+color: var(--dark);
+text-align: center; }
 
 .font-w700 {
   font-weight: 700 !important; }
@@ -13653,6 +13657,12 @@ button {
       line-height: 25px;
       border-radius: var(--border-radius-base);
       box-shadow: 0 2px 13px -2px #edbebe; }
+
+.card{
+  background-color:white;
+  color: black;
+  
+}
   .offcanvas .offcanvas-header {
     padding: 1rem 0;
     margin: 0 0.875rem !important;
@@ -15501,7 +15511,7 @@ margin-left: 50px;}
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 15px 0px 28px 0; }
+  margin: 10px 2px 2px 2px; }
   .location-area .location-mark {
     width: 40px;
     min-width: 40px;
