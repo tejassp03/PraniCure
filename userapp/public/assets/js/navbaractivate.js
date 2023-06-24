@@ -11,7 +11,7 @@ function activate() {
   var parentDocument = window.parent.document;
   var page = window.location.href.split('/').pop();
 
-  if (page === "user-home.html") {
+  if (page === "user-home.html" || page === "indexuser.html") {
     console.log("user home clicked!");
     const userHomeLink = parentDocument.getElementById("homelink");
     if (userHomeLink) {
@@ -21,10 +21,6 @@ function activate() {
   else if(page==="notification.html"){
     const userHomeLink = parentDocument.getElementById("notiflink");
     userHomeLink.classList.add("active");
-  }
-  else if(page==="navbar.html"){
-      const userHomeLink = parentDocument.getElementById("camlink");
-      userHomeLink.classList.add("active");
   }
   else if(page==="messages.html"){
       const userHomeLink = parentDocument.getElementById("messagelink");
