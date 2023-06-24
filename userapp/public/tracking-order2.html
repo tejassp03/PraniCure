@@ -27,7 +27,7 @@
 
 <!-- Bootstrap JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.2.slim.min.js" integrity="sha256-E3P3OaTZH+HlEM7f1gdAT3lHAn4nWBZXuYe89DFg2d0=" crossorigin="anonymous"></script>
 
     <!-- Title -->
     <title>PraniCare - Animal Helpline App</title>
@@ -72,8 +72,10 @@
                         </div>
                         <h5 class="mb-0 ms-2 text-nowrap">Sick Dog (Malnutrition)</h5>
                         <div class="mid-content">
+                           
                         </div>
                         <div class="right-content">
+                            <span class="list-group-item" id="pri">Priority of the Case:</span>
                         </div>
                     </div>
                 </div>
@@ -85,14 +87,17 @@
         <!-- Page Content -->
         <div class="page-content">
             <div class="container bottom-content">
+                
                 <div class="location-area">
                     <div class="d-flex align-items-center">
                         <a href="javascript:void(0);" class="location-mark">
                             <i class="fa-solid fa-location-dot"></i>
                         </a>
+                        
                         <div class="ms-3">
-                            <h6 class="title">Delhi/India</h6>
-                            <span class="font-14 font-w600">3252 Shakti Nagar</span>
+                           
+                            <h6 class="title" id="city" style="text-transform: uppercase;">Delhi/India</h6>
+                            <span class="font-14 font-w600" style="text-transform: uppercase;" id="addr">3252 Shakti Nagar</span>
                         </div>
                     </div>
                     <div class="text-end">
@@ -101,7 +106,8 @@
                             <small class="font-w600">Posted:</small>
 
                         </div>
-                        <span class="font-w900 font-14 text-dark d-block">15 min ago</span>
+                        <span class="font-w900 font-14 text-dark d-block" id="tm">15 min ago</span>
+                     
                     </div>
                 </div>
                 <a href="tracking-order.html" class="short-map">
@@ -137,9 +143,9 @@
 
                         <div class="card-body text-success">
                             <h5 class="card-title">
-                                <center>Case description</center>
+                                <center>Case description  <p id="status"></p></center>
                             </h5>
-                            <p class="card-text">A Golden Retriever at Shakti Nagar, is in dire need of assistance as he
+                            <p class="card-text" id="desp">A Golden Retriever at Shakti Nagar, is in dire need of assistance as he
                                 hasn't eaten for several days, resulting in severe sickness. Immediate intervention is
                                 crucial to address his malnutrition and initiate a tailored treatment plan for his
                                 recovery, ensuring that he can regain his vitality and bring joy back to his life.</p>
@@ -150,15 +156,15 @@
                 <div class="card" style="width: 18rem;">
                    
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Posted By:</li>
-                      <li class="list-group-item">User Phone Number:</li>
-                      <li class="list-group-item">Priority of the Case:</li>
+                      <li class="list-group-item" id="pb">Posted By:</li>
+                      <li class="list-group-item" id="phone">User Phone Number:</li>
+                      <!-- <li class="list-group-item" id="pri">Priority of the Case:</li> -->
                     </ul>
                   </div>
                 <div class="footer fixed ">
                     <div class="container">
-                        <div class="footer-btn d-flex align-items-center">
-                            <a href="order-list.html" class="btn btn-primary btn-block">CONFIRM PICKUP</a>
+                        <div class="footer-btn d-flex align-items-center" id="butinner">
+                            
                         </div>
                     </div>
                 </div>
@@ -250,6 +256,107 @@
     <!--**********************************
     Scripts
 ***********************************-->
+<script>
+    $(document).ready(function(){
+
+
+let query =window.location.search
+let url =new URLSearchParams(query)
+let val=url.get('id')
+function load(){
+    $.ajax({
+            url:"http://localhost:9000/casedesp",
+            type:"post",
+            dataType: "json",
+            data: { caseid:val
+            },
+            success: function(res){
+                // console.log(res.response)
+                if(res.status==200){
+                    $("#desp").html(res.response.description)
+                    $("#pb").html(res.response.phone_number)
+                    $("#phone").html(res.response.phone_number)
+                    let pri='';
+                if(res.response.priority==1){
+                    $("#pri").html(`<span class="badge badge-secondary me-1 mb-1">Emergency</span>`)
+                  
+
+                }
+                else if(res.response.priority==2){
+                    $("#pri").html(`<span class="badge badge-lg badge-primary me-1 mb-1">Moderate</span>`)
+                }
+                else{
+                    $("#pri").html(`<span class="badge badge-sm badge-success me-1 mb-1">Easy</span>`)
+                }
+                if(res.response.status==1){
+                    $("#status").html(`<span class="badge badge-danger me-1 mb-1">Active</span>`)
+                    $("#butinner").html(`<a style="color:white" class="btn btn-primary btn-block"> CONFIRM PICKUP</a>`)
+                  
+
+                }
+                else if(res.response.status==2){
+                    $("#status").html(`<span class="badge badge-success me-1 mb-1">In-Active</span>`)
+                    $("#butinner").html(`<a style="color:white" class="btn btn-success w-100 btn-block">Donate</a>`)
+                }
+                $("#city").html(res.response.address.split(" ")[1])
+                $("#addr").html(res.response.address)
+                    
+                    console.log(res.response)
+var postedTime = res.response.created_at;
+var currentTime = new Date();
+var currentTime = new Date();
+
+var timeDiff = Math.abs(currentTime - new Date(postedTime));
+var minutesDiff = Math.floor(timeDiff / (1000 * 60));
+
+if (minutesDiff < 60) {
+  var postedText = minutesDiff + ' min ago';
+} else if (minutesDiff < 1440) {
+  var hoursDiff = Math.floor(minutesDiff / 60);
+  var postedText = hoursDiff + ' hour ago';
+} else {
+  var daysDiff = Math.floor(minutesDiff / 1440);
+  var postedText = daysDiff + ' day ago';
+}
+
+// var postedText = minutesDiff + ' min ago';
+$("#tm").html(postedText)
+console.log('Posted:', postedText);
+                    $.ajax({
+    url:"http://localhost:9000/loadprof",
+    type:"post",
+    dataType: "json",
+    data: { Uid:res.response.user_id
+    },
+    
+    success: function(dat){
+        if(res.status==200){
+           
+            $("#pb").html(dat.response.username)
+        
+         }
+        else if(res.status==500){
+          console.log(res)
+        }
+    }
+})
+                    
+                   
+                }
+                else if(res.status==500){
+                    swal("Failed", "No user exist with given Credentials ", "error");
+
+                }
+                else{
+                    alert("No user exist")
+                }
+
+            }
+        })
+}
+load()
+})
+</script>
     <script src="assets/js/jquery.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/dz.carousel.js"></script><!-- Swiper -->
