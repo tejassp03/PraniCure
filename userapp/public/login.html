@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
       body {
         background: rgb(54, 54, 54);
@@ -187,7 +188,7 @@
                   <span class="input-group-text"
                     ><i class="fa fa-user"></i
                   ></span>
-                  <input type="text" class="form-control" placeholder="Name" />
+                  <input type="text" class="form-control" placeholder=" email" id="name" />
                 </div>
                 <div class="mb-3 input-group input-mini">
                   <span class="input-group-text"
@@ -196,7 +197,7 @@
                   <input
                     type="password"
                     class="form-control dz-password"
-                    placeholder="Password"
+                    placeholder="Password" id="pass"
                   />
                   <span class="input-group-text show-pass">
                     <i class="fa fa-eye-slash"></i>
@@ -205,7 +206,7 @@
                 </div>
                 <div class="input-group">
                   <a
-                    href="index.html"
+                   id="login"
                     class="btn mt-2 btn-primary w-100 btn-rounded"
                     >SIGN IN</a
                   >
@@ -239,7 +240,7 @@
               </a>
 
               <div class="text-center mb-auto p-tb20">
-                <a href="signup.html" class="saprate">Don’t have an account?</a>
+                <a class="saprate">Don’t have an account?</a>
               </div>
             </div>
           </div>
@@ -250,7 +251,7 @@
       <!-- Footer -->
       <footer class="footer fixed">
         <div class="container">
-          <a href="signup.html" class="btn btn-transparent btn-rounded d-block"
+          <a id="create" class="btn btn-transparent btn-rounded d-block"
             >CREATE AN ACCOUNT</a
           >
         </div>
