@@ -234,7 +234,7 @@ const dayOfWeek = date.toLocaleString('en-US', {
 
 // Combine the formatted date and day of the week
 const timeString = `${formattedDate} ${dayOfWeek}`;
-console.log(req.body.lat+" "+req.body.lat);
+
 	let data = { user_id: req.body. Userid,username: req.body.Usr, user_type: req.body.Mode , 
 		password:req.body.passwd, email:req.body.Mail, phone_number	:req.body.Phone, address:req.body.address,lat:req.body.lat,lon:req.body.lon,profile_picture:req.body.img, created_at:timeString
 	};
