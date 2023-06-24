@@ -31,7 +31,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&amp;family=Roboto+Slab:wght@100;300;500;600;800&amp;display=swap" rel="stylesheet">
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="./plugins/toastr/css/toastr.min.css" rel="stylesheet">
 </head>   
 <body class="bg-white">
 <div class="page-wraper">
@@ -60,7 +61,26 @@
                 <div class="account-area">
                     <h3 class="title">Create your account</h3>
                     <p>Lorem ipsum dolor sit amet</p>
-					<form class="input-style">
+                    <div id="prof" style="display: flex;justify-content: space-between;">
+                   
+                    
+                    <div id="imgcontainer">
+                        <img src="profileimages/download.jpg" alt="..." style="height: 150px;width: 120px;" id="imageprofile">
+                        <!-- <img src="" alt=""> -->
+
+                    </div>
+                    <div class="custom-file">
+                                                                  
+                        <input type="file" id="picfile" name="picfile" class="custom-file-input" >
+                        <input type="hidden" id="picdata" name="picdata" value="0" >
+                        <label class="custom-file-label">Choose file</label>
+
+                        <div class="input-group-append">
+                            <button class="btn mb-1 btn-outline-secondary" id="fileuploder" type="button">Upload</button>
+                        </div>
+                    </div>
+               </div>
+					<div class="input-style">
 						<div class="input-group input-mini mb-3">
 							<span class="input-group-text"><i class="fa fa-user"></i></span>
 							<input type="text" class="form-control" placeholder="Name" id="name">
@@ -73,6 +93,14 @@
 							<span class="input-group-text"><i class="fa fa-phone"></i></span>
 							<input type="text" class="form-control" placeholder="Phone"  id="phone">
 						</div>
+                        <div id="loc">
+
+                        </div>
+                        <div id="drop">
+                            <div name="locdrop" id="locdrop">
+                                <p value=""></p>
+                            </div>
+                        </div>
 						<div class="mb-3 input-group input-mini">
 							<span class="input-group-text"><i class="fa fa-lock"></i></span>
 							<input type="password" class="form-control dz-password" placeholder="Password"  id="password">
@@ -89,8 +117,16 @@
 								<i class="fa fa-eye"></i>
 							</span>
 						</div>
-						<div class="input-group">
+
+                        
+						<div class="input-group" id="sggrp">
 							<a  id="signup" class="btn mt-2 btn-primary w-100 btn-rounded">SIGN UP</a>
+						</div>
+
+                        <div class="input-group" id="valid">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+							<input type="text" class="form-control dz-password" placeholder="Enter Otp"  id="otpval">
+							<a  id="validate" class="btn mt-2 btn-primary w-100 btn-rounded">Validate Otp</a>
 						</div>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="form-check">
@@ -100,7 +136,7 @@
 								</label>
 							</div>
 						</div>
-					</form>  
+					</div>  
                     <div class="text-center mb-auto p-tb20">
                         <a href="login.html" class="saprate">Already have account?</a>
                     </div>
@@ -199,11 +235,83 @@
 	<!-- CART -->
 </div>
 <script>
+function set(place,lat,long){
+    alert(1);
+    $("#locinp").val(place);
+    $("#locinp").data("lat",lat)
+    $("#locinp").data("lon",long)
+    $("#drop").slideUp();
+    alert($("#locinp").data("lat"));
+    alert($("#locinp").data("lon"));
 
+}
 
 $(document).ready(function(){
+$("#valid").slideUp();
+$("#drop").slideUp();
+ let query =window.location.search
+let url =new URLSearchParams(query)
+var mode=url.get('mode')   
+if(mode=='ngo'){
+$("#loc").append(`<div class="mb-3 input-group input-mini">
+							<span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+							<input data-lat="" data-lon="" type="text" class="form-control dz-password" placeholder="Type Location" id="locinp" >
+							<span class="input-group-text show-pass"> 
+							
+							</span>
+						</div>`);
 
-         
+}
+
+$("#locinp").on("keyup",function(){
+var val=$("#locinp").val();
+$("#drop").slideDown();
+const options = {method: 'GET'};
+
+fetch(`https://geocode.maps.co/search?q=${val}`, options)
+  .then(response => response.json())
+  .then(function(response) { 
+    $("#locdrop").html('')
+    for(let i of response){
+        $("#locdrop").append(`<p onclick="set('${i.display_name}','${i.lat}','${i.lon}')" style="cursor:pointer" id="locii" >${i.display_name}</p>`)
+    }
+    console.log(response)})
+  .catch(err => console.error(err));
+
+
+})
+// $("#locii").each(function(){
+$("#locii").on("click",function(){
+    alert(1)
+})
+// })
+
+$("#fileuploder").on("click",async function(){
+       
+       let formData = new FormData(); 
+       formData.append("picfile", picfile.files[0]);
+       await fetch('http://localhost:9000/upload', {
+           method: "POST", 
+           body: formData
+   }).then(response => response.json())
+
+           // Displaying results to console
+           .then(json => {
+               if(json.status==200){
+
+                   let src=json.response.indexOf("profileimages")
+                   src=json.response.slice(src)
+
+                   $("#imageprofile").attr("src",src)
+                   $("#picdata").val(src)
+               }
+               
+               
+               console.log(json.response)}); 
+   })
+
+
+
 
 
 $("#signup").on("click",function(){
@@ -215,11 +323,12 @@ var phone=$("#phone").val();
 
 
 
+
 if(usr== '' || usr.length<=7){
 
 alert("user");     
 
-// toastr.warning("Please Enter valid user name having more that 5 letters", "User name  Error", { positionClass: "toast-top-right", timeOut: 5e3, closeButton: !0, debug: !1, newestOnTop: !0, progressBar: !0, preventDuplicates: !0, onclick: null, showDuration: "300", hideDuration: "1000", extendedTimeOut: "1000", showEasing: "swing", hideEasing: "linear", showMethod: "fadeIn", hideMethod: "fadeOut", tapToDismiss: !1 }) 
+ toastr.warning("Please Enter valid user name having more that 5 letters", "User name  Error", { positionClass: "toast-top-right", timeOut: 5e3, closeButton: !0, debug: !1, newestOnTop: !0, progressBar: !0, preventDuplicates: !0, onclick: null, showDuration: "300", hideDuration: "1000", extendedTimeOut: "1000", showEasing: "swing", hideEasing: "linear", showMethod: "fadeIn", hideMethod: "fadeOut", tapToDismiss: !1 }) 
 return;
    
 }
@@ -237,12 +346,12 @@ if(mail!=''|| mail==''){
 var epat=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 if(!epat.test(mail)){
     alert("mail");
-// toastr.warning("Please Enter a valid Mail", "Mail  Error", { positionClass: "toast-top-right", timeOut: 5e3, closeButton: !0, debug: !1, newestOnTop: !0, progressBar: !0, preventDuplicates: !0, onclick: null, showDuration: "300", hideDuration: "1000", extendedTimeOut: "1000", showEasing: "swing", hideEasing: "linear", showMethod: "fadeIn", hideMethod: "fadeOut", tapToDismiss: !1 }) 
+ toastr.warning("Please Enter a valid Mail", "Mail  Error", { positionClass: "toast-top-right", timeOut: 5e3, closeButton: !0, debug: !1, newestOnTop: !0, progressBar: !0, preventDuplicates: !0, onclick: null, showDuration: "300", hideDuration: "1000", extendedTimeOut: "1000", showEasing: "swing", hideEasing: "linear", showMethod: "fadeIn", hideMethod: "fadeOut", tapToDismiss: !1 }) 
 return;
 }
    
 }
-if(pass=='' && !( pass===cpass)){
+if(pass=='' || !( pass===cpass)){
 
 alert("pass");
 // toastr.warning("Please Enter valid Paaword having more that 5 characters", "Password  Error", { positionClass: "toast-top-right", timeOut: 5e3, closeButton: !0, debug: !1, newestOnTop: !0, progressBar: !0, preventDuplicates: !0, onclick: null, showDuration: "300", hideDuration: "1000", extendedTimeOut: "1000", showEasing: "swing", hideEasing: "linear", showMethod: "fadeIn", hideMethod: "fadeOut", tapToDismiss: !1 }) 
@@ -250,10 +359,53 @@ return;
 
 
 }
-
-var uid=''
 var digits='1234567890'
+var otp=''
 
+
+for (let j = 0; j < 4; j++) {
+  otp += digits[Math.floor(Math.random() * 10)];
+}
+$.ajax({
+                    url:"http://localhost:9000/signupemail",
+                    type:"post",
+                    dataType: "json",
+                    data: { Mail:mail,Otp:otp,Phone:phone},
+                    success: function(res){
+                    
+                        if(res.status==200){
+                            swal("Otp Sent Successfully");
+                            $("#sggrp").slideUp();
+                           $("#valid").slideDown();
+                        }
+                        else{
+                            alert("some error occured")
+                        }
+
+                    }
+                })
+
+
+
+            })
+
+
+
+            $("#validate").on("click",function(){
+var mail=$("#email").val();
+var otpvalue=$("#otpval").val();
+                $.ajax(`http://localhost:9000/validateotp?mail=${mail}&otpval=${otpvalue} `, {
+            type: 'GET',
+            dataType: 'json',
+         
+      
+            success: function(res){
+                // console.log(res)
+                if(res.status==200){
+
+                    var uid=''
+
+                    var digits='1234567890'
 for (let j = 0; j < 4; j++) {
   uid += digits[Math.floor(Math.random() * 10)];
 }
@@ -264,22 +416,37 @@ const minutes = now.getMinutes();
 const seconds = now.getSeconds();
 uid+=minutes+seconds;
 const randomNum =uid;
+let addr='Bangalore';
+let lati='12.00993';
+let long='17.86556';
 
-
+let picdata=$("#picdata").val()
+if(mode=='ngo'){
+   addr=$("#locinp").val();
+   lati=$("#locinp").data("lat");
+  long=$("#locinp").data("lon");
+  alert(long);
+}
+var usr=$("#name").val();
+var pass=$("#password").val();
+var cpass=$("#confirmpassword").val();
+var mail=$("#email").val();
+var phone=$("#phone").val();
    
 
         $.ajax({
                     url:"http://localhost:9000/signup",
                     type:"post",
                     dataType: "json",
-                    data: { Usr:usr,Phone:phone,passwd:pass,Mail:mail},
+                    data: { Userid:uid,Usr:usr,Phone:phone,passwd:pass,Mail:mail,Mode:mode,img:picdata,address:addr,lat:lati,lon:long},
                     success: function(res){
                     
                         if(res.status==200){
-                            // localStorage.setItem("webcom",uid);
+                           
                             swal("Sign Up Successfully")
+                            
                             setTimeout(function(){
-                                window.location.href='login.html'
+                                window.location.href=`login.html?mode=${mode}`
 
                             
                             },1000)
@@ -293,6 +460,12 @@ const randomNum =uid;
                     }
                 })
 
+
+                }
+            else{
+                alert("otp failed")
+            }}
+            })
             })
 
 })
@@ -314,6 +487,8 @@ const randomNum =uid;
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/settings.js"></script>
 <script src="assets/js/custom.js"></script>
+<script src="./plugins/toastr/js/toastr.min.js"></script>
+<script src="./plugins/toastr/js/toastr.init.js"></script>
 </body>
 
 

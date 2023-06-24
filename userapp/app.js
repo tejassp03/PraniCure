@@ -2,6 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require('cors');
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static('public'))
@@ -9,14 +10,14 @@ app.use(express.static('public'))
 const port = process.env.PORT ||7000
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use(cors())
 // parse application/json
-app.use(bodyParser.json());
+
 
 //Create Database Connection
 
 
 
 app.listen(port, () => {
-	console.log("server started on port 9000...");
+	console.log("server started on port 7000...");
 });
