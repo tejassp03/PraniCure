@@ -134,15 +134,15 @@
         <div class="container profile-area">
             <div class="profile">
                 <div class="media media-100">
-                    <img src="assets/images/message/pic6.jpg" alt="/">
+                    <img src="assets/images/message/pic6.jpg" alt="/" id="userimg">
                     <svg class="progress-style" height="100" width="100">
                         <circle id="round-1" cx="60" cy="60" r="50" stroke="#E8EFF3" stroke-width="7" fill="none" />
                         <circle id="round-2" cx="60" cy="60" r="50" stroke="#C3AC58" stroke-width="7" fill="none" />
                     </svg>
                 </div>
                 <div class="mb-2">
-                    <h4>James Hawkins</h4>
-                    <h6 class="detail">GOLD MEMBER</h6>
+                    <h4 id="name">James Hawkins</h4>
+                    <!-- <h6 class="detail">GOLD MEMBER</h6> -->
                 </div>
             </div>    
             <div class="contact-section">
@@ -152,35 +152,35 @@
                 </div>
                 <ul>
                     <li>
-						<a href="messages.html">
+						<a >
 							<div class="icon-box">
 								<i class="fa-solid fa-phone"></i>
 							</div> 
 							<div class="ms-3">
 								<div class="light-text">Mobile Phone</div>
-								<p class="mb-0">+12 345 678 92</p>
+								<p class="mb-0" id="phone">+12 345 678 92</p>
 							</div>
 						</a>
 					</li>
 					<li>
-						<a href="messages.html">
+						<a >
 							<div class="icon-box">
 								<i class="fa-solid fa-envelope"></i>
 							</div> 
 							<div class="ms-3">
 								<div class="light-text">Email Address</div>
-								<p class="mb-0">jameshawkins@mail.com</p>
+								<p class="mb-0" id="mail">jameshawkins@mail.com</p>
 							</div>
 						</a>
 					</li>
 					<li>
-						<a href="messages.html">
+						<a >
 							<div class="icon-box">
 								<i class="fa-solid fa-location-dot"></i>
 							</div> 
 							<div class="ms-3">
 								<div class="light-text">Address</div>
-								<p class="mb-0">Franklin Avenue, Corner St.London, 24125151</p>
+								<p class="mb-0" id="address">Franklin Avenue, Corner St.London, 24125151</p>
 							</div>
 						</a>
 					</li>
@@ -263,9 +263,48 @@
 <script>
     fetch('navbar.html')
 .then(response => response.text())
-.then(content => {
+.then(function(content)  {
   document.getElementById('navbarContainer1').innerHTML = content;
 });
+
+  function load_profile(){
+  let uid=localStorage.getItem("prani");
+  let id=uid.split('-')
+  $.ajax({
+    url:"http://localhost:9000/loadprof",
+    type:"post",
+    dataType: "json",
+    data: { Uid:id[0]
+    },
+    
+    success: function(res){
+        if(res.status==200){
+            $("#userimg").attr("src",res.response.profile_picture)
+          $("#name").html(res.response.username)
+          $("#phone").html(res.response.phone_number)
+          $("#mail").html(res.response.email)
+          $("#address").html(res.response.address)
+          $("#phone").html(res.response.phone_number)
+        //   $("#val-email").val(res.response.Email)
+        //   $("#val-phone").val(res.response.Phone)
+        //   $("#val-password").val(res.response.Pass)
+          console.log(res)
+          
+        
+         }
+        else if(res.status==500){
+          console.log(res)
+        }
+    }
+})
+
+}
+load_profile()
+
+
+
+
+
 </script>
 </body>
 </html>
