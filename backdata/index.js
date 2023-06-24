@@ -371,7 +371,8 @@ app.post("/casedesp", (req, res) => {
 			  res.send(JSON.stringify({ status: 500, error: null, response:"error" }));
 			}
 			else{
-			  res.send(JSON.stringify({ status: 200, error: null, response: result[0]}));
+				console.log(result)
+			  res.send(JSON.stringify({ status: 200, error: null, response: result}));
 			}
   
 	})
