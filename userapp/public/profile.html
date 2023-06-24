@@ -101,7 +101,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Modal title</h5>
-                    <button class="btn-close" data-bs-dismiss="modal">
+                    <button class="btn-close" data-bs-dismiss="modal" id="cls">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
@@ -152,7 +152,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-danger light" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-sm btn-danger light" data-bs-dismiss="modal" id="cls">Close</button>
                     <button type="button" class="btn btn-sm btn-primary" id="profupdate">Save changes</button>
                 </div>
             </div>
@@ -438,6 +438,10 @@ $(document).on("click","#profupdate",function(){
     alert($("#addedit").data("lon"));
 
 }
+$("#cls").on("click",function () {
+    $("#drop").slideUp();
+    $("#locdrop").html('')
+  })
 $("#addedit").on("keyup",function(){
 var val=$("#addedit").val();
 $("#drop").slideDown();
