@@ -333,7 +333,16 @@ app.post("/signupemail",async (req, res) => {
 	
 	
 });
+app.get("/glbsearch", (req, res) => {
+	console.log(req.query.search)
+	let sql = `SELECT * FROM cases WHERE address LIKE "%${req.query.search}%" OR description LIKE "%${req.query.search}%" OR case_id LIKE "%${req.query.search}%"
+	OR phone_number LIKE "%${req.query.search}%" OR created_at LIKE "%${req.query.search}%"`;
+	let query = conn.query(sql, (err, result) => {
+		if (err) throw err;
 
+		res.send(JSON.stringify({ status: 200, error: null, response: result }));
+	});
+});
 app.post("/loadprof", (req, res) => {
 
 	let sql = `SELECT * FROM std_user where user_id="${req.body.Uid}"`;

@@ -106,7 +106,7 @@
 								<path d="M20.5605 18.4395L16.7528 14.6318C17.5395 13.446 18 12.0262 18 10.5C18 6.3645 14.6355 3 10.5 3C6.3645 3 3 6.3645 3 10.5C3 14.6355 6.3645 18 10.5 18C12.0262 18 13.446 17.5395 14.6318 16.7528L18.4395 20.5605C19.0245 21.1462 19.9755 21.1462 20.5605 20.5605C21.1462 19.9748 21.1462 19.0252 20.5605 18.4395ZM5.25 10.5C5.25 7.605 7.605 5.25 10.5 5.25C13.395 5.25 15.75 7.605 15.75 10.5C15.75 13.395 13.395 15.75 10.5 15.75C7.605 15.75 5.25 13.395 5.25 10.5Z" fill="#B9B9B9"/>
 							</svg>
 						</span>
-                        <input type="text" placeholder="Search vets, ngo, volunteers..." class="form-control main-in ps-0 bs-0">
+                        <input type="text" id="search" placeholder="Search cases.." class="form-control main-in ps-0 bs-0"><i style="display: block;position:relative;top:10px;right:25px;font-size: 25px;" class="fas fa-times-circle" id="cls"></i> 
 					</div>
                 </form>
                 
@@ -481,7 +481,7 @@ fetch(url, options)
         distance='Allow Location---'
     }
     else{
-        distance= data.distances[0]/1000
+        distance= (data.distances[0]/1000).toFixed(1);
     }
     $("#posts").append(
                     `<div  class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
@@ -577,6 +577,144 @@ async function getUserLocation() {
     console.error('Geolocation is not supported by this browser.');
   }
 }
+$("#cls").slideUp();
+$("#cls").on("click",function(){
+    $("#posts").html('')
+    $("#search").val('');
+    $("#cls").slideDown();
+    load();
+
+})
+$("#search").on("keyup",function(){
+    var val=$("#search").val();
+    if(val.length ==0){
+        load();
+        $("#cls").slideUp();
+        return
+    }
+
+$("#cls").slideDown();
+$.ajax({
+        
+        url:`http://localhost:9000/glbsearch?search=${val}`,
+        type: 'GET',
+        dataType: "json",
+        // data:{query:val},
+    
+        success: function(res){
+           
+            console.log(res.response)
+            if(res.response.length==0){
+                $("#posts").html('')
+                $("#posts").append(
+                    `<div  class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
+                            <div class="item-media" style="width: 100%; object-fit: cover;">
+                                <img src="" alt="food" data-caseid=>
+                            </div>
+                            <div class="item-content" style="padding:10px 15px;" >
+                                <a href="product.html"><h6 class="mb-0"></h6></a>
+                                <div class="item-footer mt-2">
+                                    <h6> kms away</h6> 
+                                    <a href="javascript:void(0);" class="item-bookmark">
+                                        <span class="badge badge-secondary"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>`
+                    )
+                    return
+
+            }
+            res.response.sort((a, b) => {
+                return b.ID - a.ID;
+            });
+            $.each(res.response,async function(key,value){
+                // console.log(value.Fname)
+                $("#posts").html('')
+                let pri=''
+                if(value.priority==1){
+                    pri="Emergency"
+
+                }
+                else if(value.priority==2){
+                    pri="Moderate"
+                }
+                else{
+                    pri="easy"
+                }
+                const options = {
+  method: 'GET',
+  headers: {
+    'X-RapidAPI-Key': 'b38251f12dmsh1e354647d127793p1fe19ejsnd617ffc74cff',
+    'X-RapidAPI-Host': 'trueway-matrix.p.rapidapi.com'
+  }
+};
+if(ulat==''){
+    ulat=0;
+    ulon=0;
+}
+const params = new URLSearchParams({
+  origins: `${ulat },${ulon}`,
+//   origins: `12.906060,77.566570`,
+  destinations: `${value.latitude},${value.longitude}`,
+});
+
+
+const url = `https://trueway-matrix.p.rapidapi.com/CalculateDrivingMatrix?${params}`;
+
+fetch(url, options)
+  .then(function(response) {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Network response was not ok.');
+    }
+  })
+  .then(function(data) {
+    let distance=''
+    if(data.distances[0]==undefined){
+        distance='Allow Location---'
+    }
+    else{
+        distance= (data.distances[0]/1000).toFixed(1);
+
+    }
+    $("#posts").append(
+                    `<div  class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
+                            <div class="item-media" style="width: 100%; object-fit: cover;">
+                                <img src="${value.photo}" alt="food" data-caseid=${value.case_id}>
+                            </div>
+                            <div class="item-content" style="padding:10px 15px;" >
+                                <a href="product.html"><h6 class="mb-0">${value.description}</h6></a>
+                                <div class="item-footer mt-2">
+                                    <h6>${distance} kms away</h6> 
+                                    <a href="javascript:void(0);" class="item-bookmark">
+                                        <span class="badge badge-secondary">${pri}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>`
+                )
+ 
+  
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+// var ui= await geo('12.892920','77.528310',`${value.latitude}`,`${value.longitude}`);
+               
+    
+    
+            })
+
+        }
+    })
+
+
+
+
+})
+
 
 // Call the function to start requesting the user's location
 
