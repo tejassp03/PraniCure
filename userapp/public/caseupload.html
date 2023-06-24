@@ -32,7 +32,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&amp;family=Roboto+Slab:wght@100;300;500;600;800&amp;display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-   
+    <script src="https://code.jquery.com/jquery-3.6.2.slim.min.js" integrity="sha256-E3P3OaTZH+HlEM7f1gdAT3lHAn4nWBZXuYe89DFg2d0=" crossorigin="anonymous"></script>
 
 </head>   
 
@@ -145,9 +145,9 @@ figcaption{
                 <div class="images">
 
                 </div>
-            
-                <a href="javascript:void(0);" class="btn btn-secondary mb-3 font-15 p-2 mt-2 d-flex align-items-center btn-block">
-                    <i class='fas fa-location-arrow' style='font-size:24px;color:white;'></i> &nbsp;Select Location</a>
+            <!-- <button id="upload">button</button> -->
+                <a class="btn btn-secondary mb-3 font-15 p-2 mt-2 d-flex align-items-center btn-block">
+                    <i id="seloc" class='fas fa-location-arrow' style='font-size:24px;color:white;'></i> &nbsp;Select Location</a>
 
                     <div class="mb-2 input-group input-radius">
                     
@@ -169,11 +169,11 @@ figcaption{
                         </label>
                         <div class="radio circle-radio">
                             <label class="radio-label">Pet
-                                <input type="radio" checked="checked" name="radio2">
+                                <input type="radio" checked="checked" name="radio1">
                                 <span class="checkmark"></span>
                             </label>
                             <label class="radio-label">Stray
-                                <input type="radio" name="radio2">
+                                <input type="radio" name="radio1">
                                 <span class="checkmark"></span>
                             </label> 
                         </div>
@@ -229,7 +229,47 @@ figcaption{
     Scripts
 ***********************************-->
 <script>
-$(function() {
+    $(document).ready(function(){
+
+     var ulat=""
+    var ulon=""
+$("#seloc").on("click",function(){
+    alert(0)
+    getUserLocation()
+})
+
+async function getUserLocation() {
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+    ulat = position.coords.latitude;
+      ulon = position.coords.longitude;
+alert(ulat)
+        console.log('Latitude:', latitude);
+        console.log('Longitude:', longitude);
+      },
+      function(error) {
+        if (error.code === error.PERMISSION_DENIED) {
+          console.error('Location permission denied.');
+        } else {
+          console.error('Error:', error.message);
+        }
+        
+        // Prompt again for location
+        // getUserLocation();
+      }
+    );
+  } else {
+    console.error('Geolocation is not supported by this browser.');
+  }
+}
+        
+    })
+
+</script>
+<script>
+   
+
   // Multiple images preview in browser
   var imagesPreview = function(input, placeToInsertImagePreview) {
     if (input.files) {
@@ -279,11 +319,17 @@ $(function() {
       alert(error);
     }
   });
-});
+
+
+//   $('#upload').on('click', function() {
+//     var numOfFiles = form_data.getAll("files[]").length;
+//     alert("Total " + numOfFiles + (numOfFiles > 1 ? ' Files Selected' : ' File Selected'));
+//   });
 
 
 
 </script>
+
 
 <script src="assets/js/jquery.js"></script>
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -49,7 +49,7 @@
     <!-- Preloader end-->
     
 	<!-- Header -->
-    <header class="header" style="padding-top: 5px; border: 0">
+    <!-- <header class="header" style="padding-top: 5px; border: 0">
         <div class="main-bar">
           <div class="container">
             <div class="header-content">
@@ -82,7 +82,7 @@
             </div>
           </div>
         </div>
-      </header>
+      </header> -->
 
     <div class="header">
         <div class="main-bar">
@@ -121,8 +121,8 @@
                     </div>
                 
 				<div class="item-list style-2 recent-jobs-list">
-					<ul>
-						<li>
+					<ul id="progress">
+						<!-- <li>
                             <div class="item-content">
                                 <div class="item-media media media-60">
                                     <img src="assets/images/food/pic3.png" alt="logo">
@@ -146,11 +146,11 @@
                                     </div>
                                     <div class="item-footer">
                                            
-                                        <!-- <span>2x</span> -->
+                                       
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                     <div class="saprater"></div>    
                     <div class="order-status my-3">
@@ -160,21 +160,9 @@
                             <!-- <a href="javascript:void(0);" class="btn-link">View Details</a> -->
                         </div>
                     </div>
-                    <ul>
-						<li>
-                            <div class="item-content">
-                                <div class="item-media media media-60">
-                                    <img src="assets/images/food/pic4.png" alt="logo">
-                                </div>
-                                <div class="item-inner">
-                                    <div class="item-title-row">
-                                        <h6 class="item-title"><a href="order-list.html">Philly</a></h6>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </li>
-                        <li>
+                    <ul id="done">
+					
+                        <!-- <li>
                             <div class="item-content">
                                 <div class="item-media media media-60">
                                     <img src="assets/images/food/pic5.png" alt="logo">
@@ -198,7 +186,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
 				</div>
 				<!-- Job List -->                    
@@ -600,28 +588,73 @@
         .then((response) => response.text())
         .then((content) => {
           document.getElementById("navbarContainer").innerHTML = content;
-        });
-
+        });</script>
+ <script>
         $(document).ready(function(){
             let uid=localStorage.getItem("prani");
   let id=uid.split('-')
+//   alert(id)
             function load(){
                 $.ajax({
             url:"http://localhost:9000/orderlist",
             type:"post",
             dataType: "json",
-            data: { uid:id
+            data: { uid:id[0]
             },
             success: function(res){
                 console.log(res.response)
                 if(res.status==200){
-                    
+                    console.log(res.response)
+                    $("#progress").html('')
+                        $("#done").html('')
+                    for( let item of res.response){
+                        var ph=item.photo.split(",")
+if(ph==null){
+    ph=item.photo;
+}
+else{
+    ph=ph[0]
+}
+                     
+                        if(item.status==1){
+                            $("#progress").append(`<li>
+                            <div class="item-content">
+                                <div class="item-media media media-60">
+                                    <img src="${ph}" alt="logo">
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <h6 class="item-title"><a href="order-list.html">${item.title}</a></h6>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </li>`)
+                        // alert(800)
+                        }
+                        else{
+                            $("#done").append(`<li>
+                            <div class="item-content">
+                                <div class="item-media media media-60">
+                                    <img src="${ph}" alt="logo">
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-title-row">
+                                        <h6 class="item-title"><a href="order-list.html">${item.title}</a></h6>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </li>`)
+                        // alert(8)
+                        }
+
+                        
+                    }
                     }
                     else{
-                        setTimeout(function(){
-                            window.location.href='indexngo.html'
-    
-                            },2000)
+                        alert(0)
+                        console.log("noo")
                     }
                    
                 }
@@ -630,6 +663,7 @@
             })
         
         }
+        load()
 
 
         })
