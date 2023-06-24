@@ -11,16 +11,16 @@
 	<meta name="author" content="DexignZone" /> 
     <meta name="keywords" content="" /> 
     <meta name="robots" content="" /> 
-	<meta name="description" content="PraniCare - Animal Helpline App"/>
-	<meta property="og:title" content="PraniCare - Animal Helpline App" />
-	<meta property="og:description" content="PraniCare - Animal Helpline App" />
+	<meta name="description" content="PraniCure - Animal Helpline App"/>
+	<meta property="og:title" content="PraniCure - Animal Helpline App" />
+	<meta property="og:description" content="PraniCure - Animal Helpline App" />
 	<meta name="format-detection" content="telephone=no">
     
     <!-- Favicons Icon -->
-	<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
+	<link rel="shortcut icon" type="image/x-icon" href="assets/images/whitelogo.png" />
     
     <!-- Title -->
-	<title>PraniCare - Animal Helpline App</title>
+	<title>PraniCure - Animal Helpline App</title>
 	
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -31,7 +31,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&amp;family=Roboto+Slab:wght@100;300;500;600;800&amp;display=swap" rel="stylesheet">
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+   
 
 </head>   
 
@@ -55,10 +56,10 @@ input[type="file"]{
     background-color: #ffffff;
     border: 1px solid rgb(59, 59, 59);
     color: #424242;
-    font-size: 18px;
+    font-size: 15px;
     text-align: center;
     width: 300px;
-    padding: 10px 0;
+    padding: 5px 0;
     margin: auto;
     border-radius: 5px;
     cursor: pointer;
@@ -76,16 +77,41 @@ input[type="file"]{
     gap: 5px;
    
 }
-figure{
-    width: 45%;
-}
-img{
+.images{
     width: 100%;
+    position: relative;
+    
+    display: flex;
+    gap: 5px;
 }
+
 figcaption{
     text-align: center;
     font-size: 2.4vmin;
     margin-top: 0.5vmin;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  width: 50%;
+  height:50%;
+  object-fit: contain;
+}
+
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>
 <body class="bg-white">
@@ -126,16 +152,18 @@ figcaption{
     
     <!-- Page content -->
     <div class="page-content">
-        <div class="container">
-            <input type="file" id="file-input" accept="image/png, image/jpeg" onchange="preview()" multiple>
+        <div class="container fb">
+            <input type="file" id="file-input" accept="image/png, image/jpeg"  multiple>
                 <label class="label" for="file-input">
                     <i class="fas fa-upload"></i> &nbsp; Upload Photos
                 </label>
                 <br>
                 <p id="num-of-files">No Files Chosen</p>
-                <div id="images"></div>
+                <div class="images">
 
-                <a href="javascript:void(0);" class="btn btn-secondary mb-4 font-20 d-flex align-items-center btn-block">
+                </div>
+            <button id="upload">button</button>
+                <a href="javascript:void(0);" class="btn btn-secondary mb-3 font-15 p-2 mt-2 d-flex align-items-center btn-block">
                     <i class='fas fa-location-arrow' style='font-size:24px;color:white;'></i> &nbsp;Select Location</a>
 
                     <div class="mb-2 input-group input-radius">
@@ -152,6 +180,21 @@ figcaption{
                         <input type="number" class="form-control" placeholder="Phone number" required>
                     </div>
 
+                    <div class="card-body pb-0">
+                        <label class="mb-2">
+                            <h5>Animal Type</h5>
+                        </label>
+                        <div class="radio circle-radio">
+                            <label class="radio-label">Pet
+                                <input type="radio" checked="checked" name="radio2">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="radio-label">Stray
+                                <input type="radio" name="radio2">
+                                <span class="checkmark"></span>
+                            </label> 
+                        </div>
+                    </div>
                     <div class="card-body">
                         <label class="mb-2">
                             <h5>Priority</h5>
@@ -202,6 +245,90 @@ figcaption{
 <!--**********************************
     Scripts
 ***********************************-->
+<script>
+$(function() {
+  // Multiple images preview in browser
+  var imagesPreview = function(input, placeToInsertImagePreview) {
+    if (input.files) {
+      var filesAmount = input.files.length;
+
+      for (var i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+        var file = input.files[i];
+
+        reader.onload = (function(file) {
+          return function(event) {
+            var imageContainer = $('<div>').addClass('image-container');
+            var img = $('<img>').attr('src', event.target.result);
+            var deleteBtn = $('<button>').text('X').addClass('delete-button');
+
+            deleteBtn.on('click', function() {
+              $(this).closest('.image-container').remove();
+              form_data.delete("files[]", file);
+              updateFileCount();
+            });
+
+            imageContainer.append(img);
+            imageContainer.append(deleteBtn);
+            imageContainer.appendTo(placeToInsertImagePreview);
+
+            updateFileCount();
+          };
+        })(file);
+
+        reader.readAsDataURL(file);
+      }
+    }
+  };
+
+  var form_data = new FormData();
+  var fileInput = $('#file-input');
+  var imageContainer = $('div.images');
+  var numOfFiles = $('#num-of-files');
+
+  function updateFileCount() {
+    var count = form_data.getAll("files[]").length;
+    numOfFiles.text(count + (count > 1 ? ' Files Selected' : ' File Selected'));
+  }
+
+  fileInput.change(function() {
+    var filesName = fileInput[0].files;
+    var error = '';
+
+    if (filesName.length > 3) {
+      alert('Maximum 3 images can be uploaded.');
+      $(this).val('');
+      return;
+    }
+
+    for (var count = 0; count < filesName.length; count++) {
+      var name = filesName[count].name;
+      var extension = name.split('.').pop().toLowerCase();
+
+      if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+        error += "Invalid " + count + " Image File";
+      } else {
+        form_data.append("files[]", filesName[count]);
+      }
+    }
+
+    if (error == '') {
+      imagesPreview(this, imageContainer);
+    } else {
+      alert(error);
+      $(this).val('');
+    }
+  });
+
+  $('#upload').on('click', function() {
+    var numOfFiles = form_data.getAll("files[]").length;
+    alert("Total " + numOfFiles + (numOfFiles > 1 ? ' Files Selected' : ' File Selected'));
+  });
+});
+
+
+</script>
+
 <script src="assets/js/jquery.js"></script>
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/dz.carousel.js"></script><!-- Swiper -->
@@ -209,7 +336,7 @@ figcaption{
 <script src="assets/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script><!-- Swiper -->
 <script src="assets/js/settings.js"></script>
 <script src="assets/js/custom.js"></script>
-<script src="multi-image.js"></script>
+<!-- <script src="multi-image.js"></script> -->
 <script>
     $(".stepper").TouchSpin();
 </script>
