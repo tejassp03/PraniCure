@@ -1,0 +1,15 @@
+{
+  "background_color": "#2c406e",
+  "description": "PraniCare - Animal Helpline App",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "assets/images/pwa150x150.png",
+      "sizes": "150x150",
+      "type": "image/png"
+    }
+  ],
+  "name": "PraniCare - Animal Helpline App",
+  "short_name": "PraniCare",
+  "start_url": "index.html"
+}

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    
+    <!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
+	<meta name="theme-color" content="#2196f3">
+	<meta name="author" content="DexignZone" /> 
+    <meta name="keywords" content="" /> 
+    <meta name="robots" content="" /> 
+	<meta name="description" content="PraniCare - Animal Helpline App"/>
+	<meta property="og:title" content="PraniCare - Animal Helpline App" />
+	<meta property="og:description" content="PraniCare - Animal Helpline App" />
+	<meta name="format-detection" content="telephone=no">
+    
+    <!-- Favicons Icon -->
+	<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
+    
+    <!-- Title -->
+	<title>PraniCare - Animal Helpline App</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    
+    <!-- Google Fonts -->
+    <script src="https://code.jquery.com/jquery-3.6.2.slim.min.js" integrity="sha256-E3P3OaTZH+HlEM7f1gdAT3lHAn4nWBZXuYe89DFg2d0=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&amp;family=Roboto+Slab:wght@100;300;500;600;800&amp;display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="./plugins/toastr/css/toastr.min.css" rel="stylesheet">
+</head>   
+<body class="bg-white">
+<div class="page-wraper">
+
+    <!-- Preloader -->
+	<div id="preloader">
+		<div class="spinner"></div>
+	</div>
+    <!-- Preloader end-->
+
+    <!-- Page Content -->
+    <div class="page-content">
+        
+        <!-- Banner -->
+        <div class="banner-wrapper">
+            <div class="circle-1"></div>
+            <div class="container inner-wrapper">
+                <h1 class="dz-title">PraniCare</h1>
+                <p class="mb-0">Restaurant App</p>
+            </div>
+        </div>
+        <!-- Banner End -->
+        
+        <div class="account-box">
+            <div class="container">
+                <div class="account-area">
+                    <h3 class="title">Create your account</h3>
+                    <p>Lorem ipsum dolor sit amet</p>
+                    <div id="prof" style="display: flex;justify-content: space-between;">
+                   
+                    
+                    <div id="imgcontainer">
+                        <img src="profileimages/download.jpg" alt="..." style="height: 150px;width: 120px;" id="imageprofile">
+                        <!-- <img src="" alt=""> -->
+
+                    </div>
+                    <div class="custom-file">
+                                                                  
+                        <input type="file" id="picfile" name="picfile" class="custom-file-input" >
+                        <input type="hidden" id="picdata" name="picdata" value="0" >
+                        <label class="custom-file-label">Choose file</label>
+
+                        <div class="input-group-append">
+                            <button class="btn mb-1 btn-outline-secondary" id="fileuploder" type="button">Upload</button>
+                        </div>
+                    </div>
+               </div>
+					<div class="input-style">
+						<div class="input-group input-mini mb-3">
+							<span class="input-group-text"><i class="fa fa-user"></i></span>
+							<input type="text" class="form-control" placeholder="Name" id="name">
+						</div>
+						<div class="mb-3 input-group input-mini">
+							<span class="input-group-text"><i class="fa fa-at"></i></span>
+							<input type="email" class="form-control" placeholder="Email"  id="email">
+						</div>
+                        <div class="input-group input-mini mb-3">
+							<span class="input-group-text"><i class="fa fa-phone"></i></span>
+							<input type="text" class="form-control" placeholder="Phone"  id="phone">
+						</div>
+                        <div id="loc">
+
+                        </div>
+                        <div id="drop">
+                            <div name="locdrop" id="locdrop">
+                                <p value=""></p>
+                            </div>
+                        </div>
+						<div class="mb-3 input-group input-mini">
+							<span class="input-group-text"><i class="fa fa-lock"></i></span>
+							<input type="password" class="form-control dz-password" placeholder="Password"  id="password">
+							<span class="input-group-text show-pass"> 
+								<i class="fa fa-eye-slash"></i>
+								<i class="fa fa-eye"></i>
+							</span>
+						</div>
+                        <div class="mb-3 input-group input-mini">
+							<span class="input-group-text"><i class="fa fa-lock"></i></span>
+							<input type="password" class="form-control dz-password" placeholder="Confirm Password"  id="confirmpassword">
+							<span class="input-group-text show-pass"> 
+								<i class="fa fa-eye-slash"></i>
+								<i class="fa fa-eye"></i>
+							</span>
+						</div>
+
+                        
+						<div class="input-group" id="sggrp">
+							<a  id="signup" class="btn mt-2 btn-primary w-100 btn-rounded">SIGN UP</a>
+						</div>
+
+                        <div class="input-group" id="valid">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+							<input type="text" class="form-control dz-password" placeholder="Enter Otp"  id="otpval">
+							<a  id="validate" class="btn mt-2 btn-primary w-100 btn-rounded">Validate Otp</a>
+						</div>
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+								<label class="form-check-label" for="flexCheckChecked">
+									By tapping “Sign Up” you accept our <a href="javascript:void(0);" class="text-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom2" aria-controls="offcanvasBottom">terms</a> and <a href="javascript:void(0);" class="text-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom2" aria-controls="offcanvasBottom">Condition</a>
+								</label>
+							</div>
+						</div>
+					</div>  
+                    <div class="text-center mb-auto p-tb20">
+                        <a href="login.html" class="saprate">Already have account?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Content End -->
+    
+    <!-- Footer -->
+    <footer class="footer fixed">
+        <div class="container">
+            <a href="login.html" class="btn btn-transparent btn-rounded d-block">SIGN IN</a>
+        </div>
+    </footer>
+    <!-- Footer End -->
+    
+    <!-- Theme Color Settings -->
+	<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom">
+        <div class="offcanvas-body small">
+            <ul class="theme-color-settings">
+                <li>
+                    <input class="filled-in" id="primary_color_8" name="theme_color" type="radio" value="color-primary" />
+					<label for="primary_color_8"></label>
+                    <span>Default</span>
+                </li>
+                <li>
+					<input class="filled-in" id="primary_color_2" name="theme_color" type="radio" value="color-green" />
+					<label for="primary_color_2"></label>
+                    <span>Green</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_3" name="theme_color" type="radio" value="color-blue" />
+					<label for="primary_color_3"></label>
+                    <span>Blue</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_4" name="theme_color" type="radio" value="color-pink" />
+					<label for="primary_color_4"></label>
+                    <span>Pink</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_5" name="theme_color" type="radio" value="color-yellow" />
+					<label for="primary_color_5"></label>
+                    <span>Yellow</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_6" name="theme_color" type="radio" value="color-orange" />
+					<label for="primary_color_6"></label>
+                    <span>Orange</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_7" name="theme_color" type="radio" value="color-purple" />
+					<label for="primary_color_7"></label>
+                    <span>Purple</span>
+                </li>
+                <li>
+					<input class="filled-in" id="primary_color_1" name="theme_color" type="radio" value="color-red" />
+					<label for="primary_color_1"></label>
+                    <span>Red</span>
+                </li>
+                <li>
+					<input class="filled-in" id="primary_color_9" name="theme_color" type="radio" value="color-lightblue" />
+					<label for="primary_color_9"></label>
+                    <span>Lightblue</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_10" name="theme_color" type="radio" value="color-teal" />
+					<label for="primary_color_10"></label>
+                    <span>Teal</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_11" name="theme_color" type="radio" value="color-lime" />
+					<label for="primary_color_11"></label>
+                    <span>Lime</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_12" name="theme_color" type="radio" value="color-deeporange" />
+					<label for="primary_color_12"></label>
+                    <span>Deeporange</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+	<!-- Theme Color Settings End -->
+	<!-- CART -->
+	<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom2">
+		<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
+			<i class="fa-solid fa-xmark"></i>
+		</button>
+        <div class="offcanvas-body">
+			<h4 class="title border-bottom pb-2 mb-2">Terms & Condition</h4>
+			<p class="mb-0">Lorem ipsum dolor sit amet const Lorem ipsum dolor sit amet const Lorem ipsum dolor sit amet const Lorem ipsum dolor sit amet const.</p>
+        </div>
+    </div>
+	<!-- CART -->
+</div>
+<script>
+function set(place,lat,long){
+    alert(1);
+    $("#locinp").val(place);
+    $("#locinp").data("lat",lat)
+    $("#locinp").data("lon",long)
+    $("#drop").slideUp();
+    alert($("#locinp").data("lat"));
+    alert($("#locinp").data("lon"));
+
+}
+
+$(document).ready(function(){
+$("#valid").slideUp();
+$("#drop").slideUp();
+ let query =window.location.search
+let url =new URLSearchParams(query)
+var mode=url.get('mode')   
+if(mode=='ngo'){
+$("#loc").append(`<div class="mb-3 input-group input-mini">
+							<span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+							<input data-lat="" data-lon="" type="text" class="form-control dz-password" placeholder="Type Location" id="locinp" >
+							<span class="input-group-text show-pass"> 
+							
+							</span>
+						</div>`);
+
+}
+
+$("#locinp").on("keyup",function(){
+var val=$("#locinp").val();
+$("#drop").slideDown();
+const options = {method: 'GET'};
+
+fetch(`https://geocode.maps.co/search?q=${val}`, options)
+  .then(response => response.json())
+  .then(function(response) { 
+    $("#locdrop").html('')
+    for(let i of response){
+        $("#locdrop").append(`<p onclick="set('${i.display_name}','${i.lat}','${i.lon}')" style="cursor:pointer" id="locii" >${i.display_name}</p>`)
+    }
+    console.log(response)})
+  .catch(err => console.error(err));
+
+
+})
+// $("#locii").each(function(){
+$("#locii").on("click",function(){
+    alert(1)
+})
+// })
+
+$("#fileuploder").on("click",async function(){
+       
+       let formData = new FormData(); 
+       formData.append("picfile", picfile.files[0]);
+       await fetch('http://localhost:9000/upload', {
+           method: "POST", 
+           body: formData
+   }).then(response => response.json())
+
+           // Displaying results to console
+           .then(json => {
+               if(json.status==200){
+
+                   let src=json.response.indexOf("profileimages")
+                   src=json.response.slice(src)
+
+                   $("#imageprofile").attr("src",src)
+                   $("#picdata").val(src)
+               }
+               
+               
+               console.log(json.response)}); 
+   })
+
+
+
+
+
+$("#signup").on("click",function(){
+var usr=$("#name").val();
+var pass=$("#password").val();
+var cpass=$("#confirmpassword").val();
+var mail=$("#email").val();
+var phone=$("#phone").val();
+
+
+
+
+if(usr== '' || usr.length<=7){
+
+alert("user");     
+
+ toastr.warning("Please Enter valid user name having more that 5 letters", "User name  Error", { positionClass: "toast-top-right", timeOut: 5e3, closeButton: !0, debug: !1, newestOnTop: !0, progressBar: !0, preventDuplicates: !0, onclick: null, showDuration: "300", hideDuration: "1000", extendedTimeOut: "1000", showEasing: "swing", hideEasing: "linear", showMethod: "fadeIn", hideMethod: "fadeOut", tapToDismiss: !1 }) 
+return;
+   
+}
+
+if(phone== '' || phone < 10){
+
+alert("phone");     
+
+toastr.warning("Please Enter valid user name having more that 5 letters", "User name  Error", { positionClass: "toast-top-right", timeOut: 5e3, closeButton: !0, debug: !1, newestOnTop: !0, progressBar: !0, preventDuplicates: !0, onclick: null, showDuration: "300", hideDuration: "1000", extendedTimeOut: "1000", showEasing: "swing", hideEasing: "linear", showMethod: "fadeIn", hideMethod: "fadeOut", tapToDismiss: !1 }) 
+return;
+   
+}
+
+if(mail!=''|| mail==''){
+var epat=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if(!epat.test(mail)){
+    alert("mail");
+ toastr.warning("Please Enter a valid Mail", "Mail  Error", { positionClass: "toast-top-right", timeOut: 5e3, closeButton: !0, debug: !1, newestOnTop: !0, progressBar: !0, preventDuplicates: !0, onclick: null, showDuration: "300", hideDuration: "1000", extendedTimeOut: "1000", showEasing: "swing", hideEasing: "linear", showMethod: "fadeIn", hideMethod: "fadeOut", tapToDismiss: !1 }) 
+return;
+}
+   
+}
+if(pass=='' || !( pass===cpass)){
+
+alert("pass");
+toastr.warning("Please Enter valid Paaword having more that 5 characters", "Password  Error", { positionClass: "toast-top-right", timeOut: 5e3, closeButton: !0, debug: !1, newestOnTop: !0, progressBar: !0, preventDuplicates: !0, onclick: null, showDuration: "300", hideDuration: "1000", extendedTimeOut: "1000", showEasing: "swing", hideEasing: "linear", showMethod: "fadeIn", hideMethod: "fadeOut", tapToDismiss: !1 }) 
+return;
+
+
+}
+var digits='1234567890'
+var otp=''
+
+
+for (let j = 0; j < 4; j++) {
+  otp += digits[Math.floor(Math.random() * 10)];
+}
+$.ajax({
+                    url:"http://localhost:9000/signupemail",
+                    type:"post",
+                    dataType: "json",
+                    data: { Mail:mail,Otp:otp,Phone:phone},
+                    success: function(res){
+                    
+                        if(res.status==200){
+                            swal("Otp Sent Successfully");
+                            $("#sggrp").slideUp();
+                           $("#valid").slideDown();
+                        }
+                        else{
+                            alert("some error occured")
+                        }
+
+                    }
+                })
+
+
+
+            })
+
+
+
+            $("#validate").on("click",function(){
+var mail=$("#email").val();
+var otpvalue=$("#otpval").val();
+                $.ajax(`http://localhost:9000/validateotp?mail=${mail}&otpval=${otpvalue} `, {
+            type: 'GET',
+            dataType: 'json',
+         
+      
+            success: function(res){
+                // console.log(res)
+                if(res.status==200){
+
+                    var uid=''
+
+                    var digits='1234567890'
+for (let j = 0; j < 4; j++) {
+  uid += digits[Math.floor(Math.random() * 10)];
+}
+const now = new Date();
+
+// Get the current minute and second
+const minutes = now.getMinutes();
+const seconds = now.getSeconds();
+uid+=minutes+seconds;
+const randomNum =uid;
+let addr='Bangalore';
+let lati='12.00993';
+let long='17.86556';
+
+let picdata=$("#picdata").val()
+if(mode=='ngo'){
+   addr=$("#locinp").val();
+   lati=$("#locinp").data("lat");
+  long=$("#locinp").data("lon");
+  alert(long);
+}
+var usr=$("#name").val();
+var pass=$("#password").val();
+var cpass=$("#confirmpassword").val();
+var mail=$("#email").val();
+var phone=$("#phone").val();
+   
+
+        $.ajax({
+                    url:"http://localhost:9000/signup",
+                    type:"post",
+                    dataType: "json",
+                    data: { Userid:uid,Usr:usr,Phone:phone,passwd:pass,Mail:mail,Mode:mode,img:picdata,address:addr,lat:lati,lon:long},
+                    success: function(res){
+                    
+                        if(res.status==200){
+                           
+                            swal("Sign Up Successfully")
+                            
+                            setTimeout(function(){
+                                window.location.href=`login.html?mode=${mode}`
+
+                            
+                            },1000)
+                        
+                       
+                        }
+                        else{
+                            alert("some error occured")
+                        }
+
+                    }
+                })
+
+
+                }
+            else{
+                alert("otp failed")
+            }}
+            })
+            })
+
+})
+    
+    
+
+
+
+
+
+
+
+
+</script>
+<!--**********************************
+    Scripts
+***********************************-->
+<script src="assets/js/jquery.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/settings.js"></script>
+<script src="assets/js/custom.js"></script>
+<script src="./plugins/toastr/js/toastr.min.js"></script>
+<script src="./plugins/toastr/js/toastr.init.js"></script>
+</body>
+
+
+</html>
