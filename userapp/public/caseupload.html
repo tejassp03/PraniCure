@@ -38,7 +38,7 @@
 <!-- Load the coco-ssd model. -->
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>
 
-    <script src="https://code.jquery.com/jquery-3.6.2.slim.min.js" integrity="sha256-E3P3OaTZH+HlEM7f1gdAT3lHAn4nWBZXuYe89DFg2d0=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.2.slim.min.js" integrity="sha256-E3P3OaTZH+HlEM7f1gdAT3lHAn4nWBZXuYe89DFg2d0=" crossorigin="anonymous"></script>
 
 </head>   
 
@@ -142,8 +142,8 @@ figcaption{
     <!-- Page content -->
     <div class="page-content">
         <div class="container fb">
-            <input type="file" id="fileinput" name="fileinput" accept="image/png, image/jpeg"  multiple>
-                <label class="label" for="fileinput">
+            <input type="file" id="picfile" name="picfile" accept="image/png, image/jpeg"  multiple>
+                <label class="label" for="picfile">
                     <i class="fas fa-upload"></i> &nbsp; Select photos
                 </label>
                 <br>
@@ -151,10 +151,10 @@ figcaption{
                 <div class="images">
 
                 </div>
-                <button type="button" class="btn btn-primary w-100">Upload</button>
+                <button type="button" class="btn btn-primary w-100" id="fileuploder">Upload</button>
                 <a id="seloc" class="btn btn-secondary mb-3 font-15 p-2 mt-2 d-flex align-items-center btn-block">
                     <i class='fas fa-location-arrow' style='font-size:24px;color:white;'></i> &nbsp;Select Location</a>
-                    <div class="mb-2 input-group input-radius" id="location">
+                    <div class="mb-2 input-group input-radius" id="location" data-lat="" data-lon="">
                     
                         <input disabled type="text" class="form-control" placeholder="" required>
                     </div>
@@ -240,9 +240,9 @@ figcaption{
 <script>
     $(document).ready(function(){
 
-     var ulat=""
-    var ulon=""
-    $("#location").slideUp();
+     var ulat="";
+    var ulon="";
+$("#location").slideUp();
 $("#seloc").on("click",function(){
    
     getUserLocation()
@@ -253,15 +253,19 @@ async function getUserLocation() {
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(
       function(position) {
-    ulat = position.coords.latitude;
+     ulat = position.coords.latitude;
       ulon = position.coords.longitude;
+      alert(ulat)
+      alert(ulon)
       const options = {method: 'GET'};
 
-fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=12.9767936&lon=77.590082', options)
+fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${ulat}&lon=${ulon}`, options)
   .then(response => response.json())
   .then(function(response){console.log(response)
     $("#location").slideDown();
     $("#location").html(response.display_name);
+    $("#location").data("lat",ulat);
+    $("#location").data("lon",ulon);
 
 })
   .catch(err => console.error(err));
@@ -293,9 +297,15 @@ fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=12.9767936&lo
         var title=$("#title").val()
         var desp=$("#desp").val()
         var phone=$("#phone").val()
+       var address= $("#location").html()
         if(title==''){
             // tosat
             alert("title")
+            return
+        }
+        if(address==''){
+            // tosat
+            alert("address")
             return
         }
         if(desp==''){
@@ -308,12 +318,50 @@ fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=12.9767936&lo
             alert("phonr")
             return
         }
+        // if(!(is_Animal) && true){
+        if(false){
+            alert("not animal")
+            return
+
+}
+let uid=localStorage.getItem("prani");
+  let id=uid.split('-')
+  var digits='1234567890'
+var otp=''
+
+
+for (let j = 0; j < 6; j++) {
+  otp += digits[Math.floor(Math.random() * 10)];
+}
+$.ajax({
+    url:"http://localhost:9000/caseupload",
+    type:"post",
+    dataType: "json",
+    data: { user:id[0],caseid: otp, photo:img_array.join(','),titl:title,desc:desp,phon:phone,pri: priority,ty:type,add:address,status:1,lat:$("#location").data("lat"),long:$("#location").data("lon")
+    },
+    
+    success: function(res){
+        if(res.status==200){
+          alert("inserted")
+
+    
+          console.log(res)
+          
+        
+         }
+        else if(res.status==500){
+          console.log(res)
+        }
+    }
+})
 
 
         alert(type)
         alert(priority)
 
     })
+
+
 
 </script>
 <script>
@@ -323,6 +371,7 @@ fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=12.9767936&lo
   var imagesPreview = function(input, placeToInsertImagePreview) {
     if (input.files) {
       var filesAmount = input.files.length;
+      alert(99)
 
       for (var i = 0; i < filesAmount; i++) {
         var reader = new FileReader();
@@ -336,44 +385,129 @@ fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=12.9767936&lo
       }
     }
   };
-
- 
-  $('#fileinput').change( async function() {
-    var form_data = new FormData();
-    form_data.append("fileinput", fileinput.files[0]);
-     var filesName = $('#fileinput')[0].files;
+  var formData="";
+  var filesName ="";
+  const input = document.querySelector("input[type=file]");
+const files = input.files;
+  $('#picfile').change( async function() {
+   
+   
+    // formData.append("picfile", picfile.files[0]);
+ filesName = $('#picfile')[0].files;
     var error = '';
 
 
     for (var count = 0; count < filesName.length; count++) {
       var name = filesName[count].name;
       var extension = name.split('.').pop().toLowerCase();
-      var numOfFiles = form_data.getAll("files[]").length;
-     
+    //   var numOfFiles = formData.getAll("files[]").length;
+    //  alert(9)
       
       if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
         error += "Invalid " + count + " Image File";
       } else {
-        if(numOfFiles>4)
+        if(filesName.length>4)
         {
             alert('Maximum 3 images can be uploaded.');
             return;
         }
     }
-}
-      
-  
-
  
+
+} 
+  
 
     if (error == '') {
       imagesPreview(this, 'div.images');
-      var nofiles = form_data.getAll("files[]").length;
+      var nofiles = filesName.length;
       $('#num-of-files').text(nofiles + (nofiles > 1 ? ' Files Selected' : ' File Selected'));
     } else {
       alert(error);
     }
+
+    
   });
+
+ var is_animal=1
+var img_array;
+  $("#fileuploder").on("click",async function(){
+alert(0)
+const files = $("#picfile")[0].files;
+
+const formData = new FormData();
+    
+    for (let i = 0; i < files.length; i++) {
+      formData.append("picfile", files[i]);
+    }
+    
+    try {
+      const response = await fetch('http://localhost:9000/uploadmultiple', {
+        method: "POST",
+        body: formData
+      });
+      
+      const json = await response.json();
+      
+      if (json.status === 200) {
+        img_array=json.response
+      let i=0
+for( let item of  img_array){
+    let path=item.split('incidentimages')
+    img_array[i]=`incidentimages${path[1]}`
+i++
+    console.log(path[1])
+ 
+        await cocoSsd.load().then(model => {
+    //   Load the image.
+      const img = new Image();
+      console.log(`incidentimages${path[1]}`)
+      img.src = `incidentimages/pug.jpg`; // Replace with the path to your image file.
+  
+      // When the image is loaded, perform object detection.
+      img.onload = () => {
+        console.time("test_timer");
+        // Detect objects in the image.
+      model.detect(img).then(async predictions => {
+          console.timeEnd("test_timer");
+          const animalClasses = ['bird', 'cat', 'dog', 'horse','elephant']; // Array of most common animal classes
+     const detectedClasses = predictions.map( async prediction => prediction.class);
+  
+          // Check if any of the detected classes are present in the animalClasses array
+         const isAnimal = detectedClasses.some(cls => animalClasses.includes(cls));
+  
+          console.log('Is animal:', isAnimal);
+          if(!isAnimal){
+            is_Animal=0
+
+          }
+
+        });
+      };
+    });
+}
+
+// console.log(json.response)
+
+        alert("Files uploaded successfully!");
+      } else {
+        alert("An error occurred during file upload.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+   
+
+               
+
+
+
+
+   
+   
+
+ 
+        // console.log(form_data.getAll("files[]"));
+  })
 
 
 //   $('#upload').on('click', function() {
