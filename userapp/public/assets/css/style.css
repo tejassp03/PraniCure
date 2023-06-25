@@ -173,7 +173,14 @@
 }
 
 
-
+.first-box{
+ padding-top: 2rem;
+ padding-bottom: 1rem;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+    border-radius: 5%;
+}
 
 .card{
   padding: 10px;
@@ -5784,7 +5791,8 @@ width: 26rem !important;
 
 .mb-0 {
   margin-bottom: 0 !important;
-padding-top: 0;}
+padding-top: 0;
+text-align: center;}
 
 .mb-1 {
   margin-bottom: 0.25rem !important; }
@@ -14046,24 +14054,21 @@ button {
     .recomended-list .text-content .number {
       color: #BFC9DA; }
 
-.item-box {
-  display: flex;
-  justify-content: space-between;
-  background: var(--bg-white);
-  border-radius: var(--border-radius-base);
-  overflow: hidden;
-  margin: 20px 0;
-  box-shadow: 3px 0px 25px -6px rgba(48, 48, 48, 0.1); }
-  .item-box .item-media {
-    overflow: hidden;
-    min-width: 135px; }
+
   .item-box .item-content {
-    width: 100%;
-    padding: 14px 15px;
+    width: 70%;
+    padding: 12px 15px 12px 15px;
+    align-items: center;
     background: var(--bg-white);
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius-base);
-    margin-left: -30px;
+    margin-left: 3.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-evenly;
+  
     display: flex;
     flex-direction: column;
     justify-content: space-evenly; }
