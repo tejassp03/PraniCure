@@ -4,7 +4,7 @@
 
 <head>
 	<!-- Meta -->
-    <script src="assets/js/navbaractivate.js"></script>
+    <script src="assets/js/navbaractivate1.js"></script>
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
@@ -414,6 +414,13 @@
 <script src="assets/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script><!-- Swiper -->
 <script src="assets/js/settings.js"></script>
 <script src="assets/js/custom.js"></script>
+
+<script>
+    fetch("navbar1.html")
+      .then((response) => response.text())
+      .then((content) => {
+        document.getElementById("navbarContainer").innerHTML = content;
+      });</script>
 <!-- <script src="index.js" defer></script> -->
 <script>
     $(".stepper").TouchSpin();
