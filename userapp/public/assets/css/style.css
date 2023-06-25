@@ -8052,7 +8052,7 @@ ul {
 img {
   border-style: none;
   height: 100%;
-  max-width: 100%;
+  /* max-width: 100%; */
   vertical-align: middle; }
 
 li {
@@ -14051,14 +14051,9 @@ button {
 
 
   .item-box .item-content {
-<<<<<<< HEAD
     width: 70%;
     padding: 12px 15px 12px 15px;
     align-items: center;
-=======
-    width: 100%;
-    padding: 7px 25px;
->>>>>>> 9c6a0b811033c44db9f67c635080e9ac8baa82a0
     background: var(--bg-white);
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius-base);
