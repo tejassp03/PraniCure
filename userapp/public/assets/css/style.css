@@ -14362,7 +14362,12 @@ svg.text-primary g path {
 .title {
   font-weight: 700;
   margin-bottom: 0;
+<<<<<<< HEAD
   color: var(--dark); }
+=======
+  color: var(--dark); 
+font-size: 20px;}
+>>>>>>> 8ff46008e4b6d049543f8c60e8ba9a8198e48157
 
 .team-swiper-4 .swiper-wrapper .swiper-slide:first-child {
   margin-left: 15px; }
