@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<!-- Meta -->
+    <script src="assets/js/navbaractivate.js"></script>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
+	<meta name="theme-color" content="#2196f3">
+	<meta name="author" content="DexignZone" /> 
+    <meta name="keywords" content="" /> 
+    <meta name="robots" content="" /> 
+	<meta name="description" content="PraniCure - Animal Helpline App"/>
+	<meta property="og:title" content="PraniCure - Animal Helpline App" />
+	<meta property="og:description" content="PraniCure - Animal Helpline App" />
+	<meta name="format-detection" content="telephone=no">
+	
+    <!-- Favicons Icon -->
+	<link rel="shortcut icon" type="image/x-icon" href="assets/images/whitelogo.png" />
+    <script src="https://code.jquery.com/jquery-3.6.2.slim.min.js" integrity="sha256-E3P3OaTZH+HlEM7f1gdAT3lHAn4nWBZXuYe89DFg2d0=" crossorigin="anonymous"></script>
+    <!-- Title -->
+	<title>PraniCure - Animal Helpline App</title>
+	
+	<!-- PWA Version -->
+	<link rel="manifest" href="manifest.json">
+    
+    <!-- Stylesheets -->
+	<link rel="stylesheet" href="assets/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css">
+    <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&amp;family=Roboto+Slab:wght@100;300;500;600;800&amp;display=swap" rel="stylesheet">
+
+    <style>
+        .main-bar.sticky-header {
+            padding-top: 10px;
+        }
+    </style>
+</head>   
+<body class="bg-white">
+<div class="page-wraper">
+    
+    <!-- Header -->
+	
+    <!-- Header End -->
+    
+    <!-- Preloader -->
+	<div id="preloader">
+		<div class="spinner"></div>
+	</div>
+    <!-- Preloader end-->
+    
+    <!-- Header -->
+    <header class="header" style="padding-top: 5px; border: 0">
+        <div class="main-bar">
+          <div class="container">
+            <div class="header-content">
+              <div class="left-content">
+                <div class="dz-info d-flex align-items-center">
+                  <img src="assets/images/whitelogo.png" width="30" alt="" />
+                  <h4 class="name mb-0" style="color: rgb(91, 91, 91)">
+                    &nbsp;Prani<span style="color: rgb(60, 164, 255)"
+                      >Care</span
+                    >
+                  </h4>
+                </div>
+              </div>
+              <div class="mid-content"></div>
+              <div class="right-content">
+                <a href="profile.html">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="21"
+                    fill="#bfc9da"
+                    xmlns:v="https://vecta.io/nano"
+                  >
+                    <path
+                      d="M8 7.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 1 0 0 7.5zm7.5 9v1.5c-.002.199-.079.39-.217.532C13.61 20.455 8.57 20.5 8 20.5s-5.61-.045-7.282-1.718C.579 18.64.501 18.449.5 18.25v-1.5a7.5 7.5 0 1 1 15 0z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+    <!-- Header done -->
+    
+    <!-- Page Content -->
+    <div class="page-content">
+        
+        <div class="content-inner pt-0">
+			<div class="container fb">
+                <!-- Search -->
+                <form>
+					<div class="mb-3 input-group input-radius">
+						<span class="input-group-text">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+								<path d="M20.5605 18.4395L16.7528 14.6318C17.5395 13.446 18 12.0262 18 10.5C18 6.3645 14.6355 3 10.5 3C6.3645 3 3 6.3645 3 10.5C3 14.6355 6.3645 18 10.5 18C12.0262 18 13.446 17.5395 14.6318 16.7528L18.4395 20.5605C19.0245 21.1462 19.9755 21.1462 20.5605 20.5605C21.1462 19.9748 21.1462 19.0252 20.5605 18.4395ZM5.25 10.5C5.25 7.605 7.605 5.25 10.5 5.25C13.395 5.25 15.75 7.605 15.75 10.5C15.75 13.395 13.395 15.75 10.5 15.75C7.605 15.75 5.25 13.395 5.25 10.5Z" fill="#B9B9B9"/>
+							</svg>
+						</span>
+                        <input type="text" id="search" placeholder="Search cases.." class="form-control main-in ps-0 bs-0"><i style="display: block;position:relative;top:10px;right:25px;font-size: 25px;" class="fas fa-times-circle" id="cls"></i> 
+					</div>
+                </form>
+                
+                <!-- Dashboard Area -->
+                <div class="dashboard-area">
+				    
+					<!-- Item box Start -->
+                    <div class="title-bar mt-4">
+                        <h5 class="title">Cases Nearby 	📍</h5>
+                    </div>
+                    <div id="posts">
+
+                        
+                    </div>
+                    
+                   
+                    <!-- <div class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
+                        <div class="item-media" style="width: 100%; object-fit: cover;">
+                            <img src="https://hips.hearstapps.com/hmg-prod/images/headshot-of-giraffe-sabi-sands-game-reserve-royalty-free-image-1573571360.jpg?crop=1.00xw:0.334xh;0,0.106xh&resize=1200:*" alt="food">
+                        </div>
+                        <div class="item-content" style="padding:10px 15px;" >
+                            <a href="product.html"><h6 class="mb-0">Zebra refusing to eat food</h6></a>
+                            <div class="item-footer mt-2">
+                                <h6>1.0 km away</h6> 
+                                <a href="javascript:void(0);" class="item-bookmark">
+                                    <span class="badge badge-secondary ">Emergency</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div> -->
+                    
+                    <!-- <div class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
+                        <div class="item-media" style="width: 100%; object-fit: cover;">
+                            <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YW5pbWFsfGVufDB8fDB8fHww&w=1000&q=80" alt="food">
+                        </div>
+                        <div class="item-content" style="padding:10px 15px;" >
+                            <a href="product.html"><h6 class="mb-0">Fox stuck between a small gate of my house</h6></a>
+                            <div class="item-footer mt-2">
+                                <h6>500 mtrs away</h6> 
+                                <a href="javascript:void(0);" class="item-bookmark">
+                                    <span class="badge badge-secondary ">Emergency</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div> -->
+					<!-- Item box Start -->
+                    <a href="" class="btn btn-outline-primary btn-rounded btn-block">VIEW MORE</a>
+				</div>
+			</div>    
+		</div>
+        
+    </div>    
+    <!-- Page Content End-->
+    
+    <!-- Menubar -->
+    <div id="navbarContainer">
+        <script>
+            var currentURL = window.location.href;
+            activate(currentURL);
+        </script>
+      </div>
+	<!-- Menubar -->
+	
+	<!-- Theme Color Settings -->
+	<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom">
+        <div class="offcanvas-body small">
+            <ul class="theme-color-settings">
+                <li>
+                    <input class="filled-in" id="primary_color_8" name="theme_color" type="radio" value="color-primary" />
+					<label for="primary_color_8"></label>
+                    <span>Default</span>
+                </li>
+                <li>
+					<input class="filled-in" id="primary_color_2" name="theme_color" type="radio" value="color-green" />
+					<label for="primary_color_2"></label>
+                    <span>Green</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_3" name="theme_color" type="radio" value="color-blue" />
+					<label for="primary_color_3"></label>
+                    <span>Blue</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_4" name="theme_color" type="radio" value="color-pink" />
+					<label for="primary_color_4"></label>
+                    <span>Pink</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_5" name="theme_color" type="radio" value="color-yellow" />
+					<label for="primary_color_5"></label>
+                    <span>Yellow</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_6" name="theme_color" type="radio" value="color-orange" />
+					<label for="primary_color_6"></label>
+                    <span>Orange</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_7" name="theme_color" type="radio" value="color-purple" />
+					<label for="primary_color_7"></label>
+                    <span>Purple</span>
+                </li>
+                <li>
+					<input class="filled-in" id="primary_color_1" name="theme_color" type="radio" value="color-red" />
+					<label for="primary_color_1"></label>
+                    <span>Red</span>
+                </li>
+                <li>
+					<input class="filled-in" id="primary_color_9" name="theme_color" type="radio" value="color-lightblue" />
+					<label for="primary_color_9"></label>
+                    <span>Lightblue</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_10" name="theme_color" type="radio" value="color-teal" />
+					<label for="primary_color_10"></label>
+                    <span>Teal</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_11" name="theme_color" type="radio" value="color-lime" />
+					<label for="primary_color_11"></label>
+                    <span>Lime</span>
+                </li>
+                <li>
+                    <input class="filled-in" id="primary_color_12" name="theme_color" type="radio" value="color-deeporange" />
+					<label for="primary_color_12"></label>
+                    <span>Deeporange</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+	<!-- Theme Color Settings End -->
+	<!-- CART -->
+	<div class="offcanvas offcanvas-bottom rounded-0" tabindex="-1" id="offcanvasBottom2" aria-modal="true" role="dialog" style="visibility: visible;">
+		<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
+			<i class="fa-solid fa-xmark"></i>
+		</button>
+        <div class="offcanvas-body container fixed p-0 m-0"  >
+			<br>
+            <header class="header">
+                <div class="main-bar">
+                    <div class="container">
+                        <div class="header-content">
+                            <div class="left-content">
+                               
+                                <h5 class="mb-0 ms-2 text-nowrap">Notification</h5>
+                            </div>
+                            <div class="mid-content">
+                            </div>
+                            <div class="right-content">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+			<div class="page-content bottom-content">
+                <div class="container"> 
+                    <a href="profile.html" class="notification bg-success">
+                        <div class="notification-content item-list">
+                            <div class="item-content">
+                                <div class="media media-35">
+                                    <img src="assets/images/author/pic1.png" alt="image">
+                                </div>
+                                <div class="item-inner">
+                                    <h6 class="title">Lily MacDonald</h6>
+                                    <p class="mb-0">Lorem ipsum dolor sit ameet..</p>
+                                </div>
+                                <div  class="ms-auto font-10 text-white d-flex align-items-center">
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11Z" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M6 3V6L8 7" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    12 min ago
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a  href="profile.html" class="notification bg-success">
+                        <div class="notification-content item-list">
+                            <div class="item-content">
+                                <div class="media media-35">
+                                    <img src="assets/images/avatar/1.jpg" alt="image">
+                                </div>
+                                <div class="item-inner">
+                                    <h6 class="title">Lily MacDonald</h6>
+                                    <p class="mb-0">Lorem ipsum dolor sit ameet..</p>
+                                </div>
+                                <div class="ms-auto font-10 text-white d-flex align-items-center">
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11Z" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M6 3V6L8 7" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    12 min ago
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="profile.html" class="notification">
+                        <div class="notification-content item-list">
+                            <div class="item-content">
+                                <div class="media media-35">
+                                    <img src="assets/images/avatar/2.jpg" alt="image">
+                                </div>
+                                <div class="item-inner">
+                                    <h6 class="title">Lily MacDonald</h6>
+                                    <p class="mb-0">Lorem ipsum dolor sit ameet..</p>
+                                </div>
+                                <div class="ms-auto font-10 text-dark d-flex align-items-center">
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11Z" stroke="#787878" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M6 3V6L8 7" stroke="#787878" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    12 min ago
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="profile.html" class="notification">
+                        <div class="notification-content item-list">
+                            <div class="item-content">
+                                <div class="media media-35">
+                                    <img src="assets/images/avatar/3.jpg" alt="image">
+                                </div>
+                                <div class="item-inner">
+                                    <h6 class="title">Lily MacDonald</h6>
+                                    <p class="mb-0">Lorem ipsum dolor sit ameet..</p>
+                                </div>
+                                <div class="ms-auto font-10 text-dark d-flex align-items-center">
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11Z" stroke="#787878" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M6 3V6L8 7" stroke="#787878" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    12 min ago
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="profile.html" class="notification">
+                        <div class="notification-content item-list">
+                            <div class="item-content">
+                                <div class="media media-35">
+                                    <img src="assets/images/avatar/4.jpg" alt="image">
+                                </div>
+                                <div class="item-inner">
+                                    <h6 class="title">Lily MacDonald</h6>
+                                    <p class="mb-0">Lorem ipsum dolor sit ameet..</p>
+                                </div>
+                                <div class="ms-auto font-10 text-dark d-flex align-items-center">
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11Z" stroke="#787878" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M6 3V6L8 7" stroke="#787878" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    12 min ago
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="profile.html" class="notification">
+                        <div class="notification-content item-list">
+                            <div class="item-content">
+                                <div class="media media-35">
+                                    <img src="assets/images/avatar/5.jpg" alt="image">
+                                </div>
+                                <div class="item-inner">
+                                    <h6 class="title">Lily MacDonald</h6>
+                                    <p class="mb-0">Lorem ipsum dolor sit ameet..</p>
+                                </div>
+                                <div class="ms-auto font-10 text-dark d-flex align-items-center">
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 11C8.76142 11 11 8.76142 11 6C11 3.23858 8.76142 1 6 1C3.23858 1 1 3.23858 1 6C1 8.76142 3.23858 11 6 11Z" stroke="#787878" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M6 3V6L8 7" stroke="#787878" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    12 min ago
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!-- CART -->
+	
+	<!-- PWA Offcanvas -->
+	<!-- <div class="offcanvas offcanvas-bottom pwa-offcanvas">
+		<div class="container">
+			<div class="offcanvas-body small">
+				<img class="logo" src="assets/images/whitelogo.png" alt="">
+				<h5 class="title">PraniCure on Your Home Screen</h5>
+				<p class="pwa-text">Install PraniCure on your device to access the app at ease and quickly when in need.</p>
+				<a href="javascript:void(0);" class="btn btn-sm btn-primary pwa-btn">Add to Home Screen</a>
+			</div>
+		</div>
+	</div>
+	<div class="offcanvas-backdrop pwa-backdrop"></div> -->
+	<!-- PWA Offcanvas End -->
+	
+</div>  
+<!--**********************************
+    Scripts
+***********************************-->
+<script src="assets/js/jquery.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script><!-- Swiper -->
+<script src="assets/js/dz.carousel.js"></script><!-- Swiper -->
+<script src="assets/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script><!-- Swiper -->
+<script src="assets/js/settings.js"></script>
+<script src="assets/js/custom.js"></script>
+<!-- <script src="index.js" defer></script> -->
+<script>
+    $(".stepper").TouchSpin();
+    function openn(id){
+window.location.href=`tracking-order2.html?id=${id}`
+}
+    $(document).ready(function () { 
+
+// $("#open").on("click",function(){
+//     alert()
+// })
+        var ulat=''
+        var ulon=''
+        async function load(){
+            await getUserLocation();
+        // alert("kk")
+        $("#tbody").html('')
+        await fetch('http://localhost:9000/fetchngo')
+        .then(response => response.json())
+        .then(data =>{ 
+            
+            data.response.sort((a, b) => {
+                return b.ID - a.ID;
+            });
+            console.log(data)
+            $.each(data.response,async function(key,value){
+                console.log(value.Fname)
+                $("#posts").html()
+                let pri=''
+                if(value.priority==1){
+                    pri="Emergency"
+
+                }
+                else if(value.priority==2){
+                    pri="Moderate"
+                }
+                else{
+                    pri="easy"
+                }
+  
+   
+    let you='--';
+    let uid=localStorage.getItem("prani");
+  let id=uid.split('-')
+//   if(id[0]==value.user_id){
+//     you="You"
+//   }
+   
+        distance='Allow Location---'
+   
+var ph=value.photo.split(",")
+if(ph==null){
+    ph=value.photo;
+}
+else{
+    ph=ph[0]
+}
+    $("#posts").append(
+                    `<div  class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
+                            <div class="item-media" style="width: 100%; object-fit: cover;">
+                                <img src="${ph}" alt="food" data-caseid=${value.case_id} onclick="openn('${value.case_id}')">
+                            </div>
+                            <div class="item-content" style="padding:10px 15px;" >
+                                <a href="product.html"><h6 class="mb-0">${value.title}</h6></a>
+                                <div class="item-footer mt-2">
+                                    <h6>${distance} kms away</h6> 
+                                    <a href="javascript:void(0);" class="item-bookmark">
+                                        
+                                        <span class="badge badge-secondary">${pri}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>`
+                )
+ 
+    // console.log(data.distances[0]);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+// var ui= await geo('12.892920','77.528310',`${value.latitude}`,`${value.longitude}`);
+               
+    
+    
+     
+            
+            
+            
+            console.log(data)
+        })
+    
+    }
+
+    load()
+    alert(8)
+   const ws = new WebSocket('wss://localhost:9000');
+// const hh=document.getElementById("hh");
+      ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+
+        if (data.type === 'refresh') {
+          // Update flashlight state on the UI
+        //   const flashlightStateElement = document.getElementById('flashlight-state');
+        //   flashlightStateElement.textContent = data.isOn ? 'ON' : 'OFF';
+
+          // Trigger flashlight and vibration
+          if (data.isOn) {
+            let prio='';
+            if(data.priority==1){
+                prio='Emergency 🚨🚨'
+
+            }
+            else if(data.priority==2){
+                prio='Moderate🚨'
+            }
+            else{
+                prio="Easy"
+            }
+          
+           sendNotification({
+            title: `${prio}--${data.title}`,
+            message: `${data.address}`,
+            icon:'https://cdn2.iconfinder.com/data/icons/mixed-rounded-flat-icon/512/megaphone-64.png',
+            clickCallback: function () {
+                load()
+            }
+          });
+          } 
+        }
+      };
+
+
+
+      function sendNotification (data) {
+  if (data == undefined || !data) { return false }
+  var title = (data.title === undefined) ? 'Notification' : data.title
+  var clickCallback = data.clickCallback
+  var message = (data.message === undefined) ? 'null' : data.message
+  var icon = (data.icon === undefined) ? 'https://cdn2.iconfinder.com/data/icons/mixed-rounded-flat-icon/512/megaphone-64.png' : data.icon
+  var sendNotification = function (){
+      var notification = new Notification(title, {
+          icon: icon,
+          body: message
+      })
+      if (clickCallback !== undefined) {
+          notification.onclick = function () {
+              clickCallback()
+              notification.close()
+          }
+      }
+  }
+
+  if (!window.Notification) {
+      return false
+  } else {
+      if (Notification.permission === 'default') {
+          Notification.requestPermission(function (p) {
+              if (p !== 'denied') {
+                  sendNotification()
+              }
+          })
+      } else { sendNotification();
+      }}}
+async function geo(ulat,ulon,plat,plon){
+    const options = {
+  method: 'GET',
+  headers: {
+    'X-RapidAPI-Key': 'b38251f12dmsh1e354647d127793p1fe19ejsnd617ffc74cff',
+    'X-RapidAPI-Host': 'trueway-matrix.p.rapidapi.com'
+  }
+};
+
+const params = new URLSearchParams({
+  origins: `${ulat },${ulon}`,
+  destinations: `${plat},${plon}`,
+});
+
+const url = `https://trueway-matrix.p.rapidapi.com/CalculateDrivingMatrix?${params}`;
+
+fetch(url, options)
+  .then(function(response) {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Network response was not ok.');
+    }
+  })
+  .then(function(data) {
+    return data.distances[0]
+    // console.log(data.distances[0]);
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
+}
+
+async function getUserLocation() {
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+    ulat = position.coords.latitude;
+      ulon = position.coords.longitude;
+
+
+      },
+      function(error) {
+        if (error.code === error.PERMISSION_DENIED) {
+          console.error('Location permission denied.');
+        } else {
+          console.error('Error:', error.message);
+        }
+        
+        // Prompt again for location
+        // getUserLocation();
+      }
+    );
+  } else {
+    console.error('Geolocation is not supported by this browser.');
+  }
+}
+$("#cls").slideUp();
+$("#cls").on("click",function(){
+    $("#posts").html('')
+    $("#search").val('');
+    $("#cls").slideDown();
+    load();
+
+})
+$("#search").on("keyup",function(){
+    var val=$("#search").val();
+    if(val.length ==0){
+        load();
+        $("#cls").slideUp();
+        return
+    }
+
+$("#cls").slideDown();
+$.ajax({
+        
+        url:`http://localhost:9000/glbsearch?search=${val}`,
+        type: 'GET',
+        dataType: "json",
+        // data:{query:val},
+    
+        success: function(res){
+           
+            console.log(res.response)
+            if(res.response.length==0){
+                $("#posts").html('')
+                $("#posts").append(
+                    `<div  class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
+                            <div class="item-media" style="width: 100%; object-fit: cover;">
+                                <img src="" alt="food" data-caseid=>
+                            </div>
+                            <div class="item-content" style="padding:10px 15px;" >
+                                <a href="product.html"><h6 class="mb-0"></h6></a>
+                                <div class="item-footer mt-2">
+                                    <h6> kms away</h6> 
+                                    <a href="javascript:void(0);" class="item-bookmark">
+                                        <span class="badge badge-secondary">Not found</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>`
+                    )
+                    return
+
+            }
+            res.response.sort((a, b) => {
+                return b.ID - a.ID;
+            });
+            $.each(res.response,async function(key,value){
+                // console.log(value.Fname)
+                $("#posts").html('')
+                let pri=''
+                if(value.priority==1){
+                    pri="Emergency"
+
+                }
+                else if(value.priority==2){
+                    pri="Moderate"
+                }
+                else{
+                    pri="easy"
+                }
+//                 const options = {
+//   method: 'GET',
+//   headers: {
+//     'X-RapidAPI-Key': 'b38251f12dmsh1e354647d127793p1fe19ejsnd617ffc74cff',
+//     'X-RapidAPI-Host': 'trueway-matrix.p.rapidapi.com'
+//   }
+// };
+// if(ulat==''){
+//     ulat=0;
+//     ulon=0;
+// }
+// const params = new URLSearchParams({
+//   origins: `${ulat },${ulon}`,
+// //   origins: `12.906060,77.566570`,
+//   destinations: `${value.latitude},${value.longitude}`,
+// });
+
+
+// const url = `https://trueway-matrix.p.rapidapi.com/CalculateDrivingMatrix?${params}`;
+
+// fetch(url, options)
+//   .then(function(response) {
+//     if (response.ok) {
+//       return response.json();
+//     } else {
+//       throw new Error('Network response was not ok.');
+//     }
+//   })
+//   .then(function(data) {
+    let distance=''
+    // if(data.distances[0]==undefined){
+        distance='Allow Location---'
+    // }
+    // else{
+    //     distance= (data.distances[0]/1000).toFixed(1);
+
+    // }
+    var ph=value.photo.split(",")
+if(ph==null){
+    ph=value.photo;
+}
+else{
+    ph=ph[0]
+}
+    $("#posts").append(
+                    `<div  class="item-box" style="flex-direction: column; justify-content: center;align-items: flex-end;">
+                            <div class="item-media" style="width: 100%; object-fit: cover;">
+                                <img src="${ph}" alt="food" data-caseid=${value.case_id} onclick="openn('${value.case_id}') id="open">
+                            </div>
+                            <div class="item-content" style="padding:10px 15px;" >
+                                <a href="product.html"><h6 class="mb-0">${value.title}</h6></a>
+                                <div class="item-footer mt-2">
+                                    <h6>${distance} kms away</h6> 
+                                    <a href="javascript:void(0);" class="item-bookmark">
+                                        <span class="badge badge-secondary">${pri}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>`
+                )
+ 
+  
+//   })
+  
+// var ui= await geo('12.892920','77.528310',`${value.latitude}`,`${value.longitude}`);
+               
+    
+    
+            })
+
+        }
+    })
+
+
+
+
+})
+
+
+// Call the function to start requesting the user's location
+
+
+
+
+})
+
+
+
+
+</script>
+</body>
+
+
+</html>

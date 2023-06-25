@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 const path = require("path");
+const axios = require("axios");
+const WebSocket = require('ws');
+// let cron = require('node-cron')
+const multer = require('multer')
 const nodemailer=require('nodemailer')
 let formidable = require('formidable');
 let fs = require('fs');
@@ -13,6 +17,23 @@ const mysql = require("mysql");
 
 app.use(bodyParser.json());
 app.use(express.static('public'))
+const port = process.env.PORT ||9000
+let server=app.listen(port, () => {
+	console.log("server started on port 9000...");
+});
+console.log(server)
+const wss = new WebSocket.Server({ server });
+const clients = [];
+var isOn=true;
+
+//   ws.on('message', (message) => {
+
+
+
+      // Toggle flashlight state
+     
+   
+//   });
 
 
 
@@ -20,19 +41,19 @@ app.use(express.static('public'))
 
 app.use(cors())
 
-const port = process.env.PORT ||9000
+
 
 //Create Database Connection
 const conn = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "",
-	database: "pranicure",
+	// host: "localhost",
+	// user: "root",
+	// password: "",
+	// database: "pranicure",
 
-	// host: "bvccsm8jfuuoms3dyzxc-mysql.services.clever-cloud.com",
-	// user: "ufc6wtg8pxguvx91",
-	// password: "DFSXXuSMABl6C9ONUzj2",
-	// database: "bvccsm8jfuuoms3dyzxc",
+	host: "bkiavxeu5zu9pmpwonnz-mysql.services.clever-cloud.com",
+	user: "uknhl4z8opncvk4m",
+	password: "Tv9ht17Hotg2cwy8cbjS",
+	database: "bkiavxeu5zu9pmpwonnz",
 });
 
 // connect to database
@@ -245,6 +266,62 @@ const timeString = `${formattedDate} ${dayOfWeek}`;
 	});
 });
 
+
+app.post("/caseupload", (req, res) => {
+	const date = new Date();
+
+// Format the date as "dd/mm/yy"
+const formattedDate = date.toLocaleDateString('en-US', {
+  day: '2-digit',
+  month: '2-digit',
+  year: '2-digit'
+});
+
+// Get the day of the week
+const dayOfWeek = date.toLocaleString('en-US', {
+  weekday: 'long'
+});
+
+// Combine the formatted date and day of the week
+const timeString = `${formattedDate} ${dayOfWeek}`;
+
+	let data = { case_id:req.body.caseid,user_id: req.body.user,ngo_id:0,photo: req.body.photo, title: req.body.titl , 
+		description:req.body.desc, phone_number	:req.body.phon, priority:req.body.pri,type:req.body.ty,address:req.body.add,latitude:req.body.lat,longitude:req.body.long,status:1
+	};
+	let sql = "INSERT INTO cases SET ?";
+	let query = conn.query(sql, data, (err, result) => {
+		if (err) throw err;
+		res.send(JSON.stringify({ status: 200, error: null, response: "New Record is Added successfully" }));
+        let isOn =true;
+        wss.on('connection', (ws) => {
+            console.log('New connection');
+            
+            // Add client to the list of connected clients
+            clients.push(ws);
+          
+            // Send initial flashlight state to newly connected device
+          //   ws.send(JSON.stringify({ type: 'flashlight', isOn }));
+          ws.on('close', () => {
+              console.log('Connection closed');
+              
+              // Remove client from the list of connected clients
+              const index = clients.indexOf(ws);
+              if (index !== -1) {
+                clients.splice(index, 1);
+              }
+            });
+         
+        // Broadcast flashlight state to all connected devices
+        const broadcastMessage = JSON.stringify({ type: 'refresh', isOn:true,title:req.body.titl ,priority:req.body.pri,address:req.body.add });
+        clients.forEach((client) => {
+          if (client.readyState === WebSocket.OPEN) {
+            client.send(broadcastMessage);
+          }
+        });
+    });
+	});
+});
+
 app.get("/fetch", (req, res) => {
 
 
@@ -258,6 +335,21 @@ app.get("/fetch", (req, res) => {
 	
 		})
 	});
+
+
+    app.get("/fetchngo", (req, res) => {
+
+
+        let sqll = `SELECT * FROM cases where status="1"`;
+        let query = conn.query(sqll,(err, result) => {
+            if (err) throw err;
+        
+            
+            res.send(JSON.stringify({ status: 500, error: null, response: result }));
+        
+        
+            })
+        });
 	app.post("/updateprof", (req, res) => {
 
 		let sql =`UPDATE std_user SET username= '${req.body.Username}',address='${req.body.address}',phone_number='${req.body.Phone}',password='${req.body.Pass}',lat='${req.body.lat}',lon='${req.body.lon}',profile_picture='${req.body.img}' WHERE user_id='${req.body.Uid}'`;
@@ -379,7 +471,33 @@ app.post("/casedesp", (req, res) => {
   
   
   })  
+  const upload = multer({ dest: 'C:/PraniCare/userapp/public/incidentimages/' });
 
+  app.post("/uploadmultiple", upload.array("picfile"), (req, res) => {
+    console.log("Files uploaded:", req.files);
+    
+    if (req.files && req.files.length > 0) {
+      const uploadedFiles = req.files.map(file => {
+        const filePath = file.path;
+        const newFilePath = "C:/PraniCare/userapp/public/incidentimages/" + file.originalname;
+        
+        fs.rename(filePath, newFilePath, err => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          console.log(`File ${file.originalname} uploaded successfully.`);
+        });
+        
+        return newFilePath;
+      });
+      
+      res.status(200).json({ status: 200, response: uploadedFiles });
+    } else {
+      res.status(500).json({ status: 500, error: "No files uploaded" });
+    }
+  });
+  
 app.post("/loadprof", (req, res) => {
 
 	let sql = `SELECT * FROM std_user where user_id="${req.body.Uid}"`;
@@ -483,6 +601,5 @@ async function mail1(to, sub, body,res) {
     
     });
 }
-app.listen(port, () => {
-	console.log("server started on port 9000...");
-});
+
+

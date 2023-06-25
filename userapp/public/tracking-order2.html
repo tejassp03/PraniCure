@@ -284,11 +284,16 @@ function load(){
                 else{
                     $("#pri").html(`<span class="badge badge-sm badge-success me-1 mb-1">Easy</span>`)
                 }
-                if(res.response.status==1){
+                let uid=localStorage.getItem("prani");
+  let id=uid.split('-')
+                if(!(id[1]=="user")){
                     $("#status").html(`<span class="badge badge-danger me-1 mb-1">Active</span>`)
                     $("#butinner").html(`<a style="color:white" class="btn btn-primary btn-block"> CONFIRM PICKUP</a>`)
                   
 
+                }
+                if(res.response.status==1 ){
+                    $("#status").html(`<span class="badge badge-danger me-1 mb-1">Active</span>`)
                 }
                 else if(res.response.status==2){
                     $("#status").html(`<span class="badge badge-success me-1 mb-1">In-Active</span>`)
