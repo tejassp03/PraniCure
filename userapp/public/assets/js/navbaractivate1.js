@@ -18,8 +18,8 @@ function activate() {
       userHomeLink.classList.add("active");
     }
   }
-  else if(page==="indexuser.html"){
-    const userHomeLink = parentDocument.getElementById("order-lisr");
+  else if(page==="ngo-order-list.html"){
+    const userHomeLink = parentDocument.getElementById("order-list");
     userHomeLink.classList.add("active");
   }
   // else if(page==="profile.html"){
